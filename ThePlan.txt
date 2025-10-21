@@ -73,7 +73,7 @@ phase 3 school page
     - allow parents to RSVP for events and receive reminders
 
 
-phase 4 advanced features ?? ------------------------------------------
+phase 4 advanced future feature ideas ------------------------------------------
 1. Mobile app for church members and school parents
     - access to sermons, event calendar, and donation system
     - push notifications for important updates and reminders
