@@ -1,6 +1,7 @@
 
 
 Admin user-
+- id: string, unique, required
 - email: string, unique, required
 - password: string, required    
 - role: string, default 'admin'
@@ -12,4 +13,7 @@ Admin user-
                 - gallery images
                 - pastor message section
                 - daily verse api call 
+
+
+                
 
