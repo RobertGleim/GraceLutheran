@@ -1,0 +1,93 @@
+
+
+Mvp ( https://gracelcs.com/ base website)
+
+refrences : https://bacc.cc/
+            https://www.netgrace.org/
+            https://www.ocparkdistrict.com/
+
+
+
+Church ------------------------------------------
+1. Build a simple website with basic information about the church (location, service times, contact info).
+    - contact info page for the church and school, including phone numbers and email addresses.
+    - location map embedded from Google Maps.
+    - service time and event schedule.
+    - picture gallery of church events and activities.
+    - pastor message section with a welcome video or text.
+
+2. Create social media profiles links youtube facebook
+    - you tube link to live sermons and recorded sermons
+3. daily verse post on landing page and verse search feature
+    - verse of the day widget using api.bible
+    - bible api to search for verses by keyword or reference
+
+4. church religious holiday calendar ( advent, lent, etc. )
+    - display upcoming religious holidays and events
+    - allow users to add events to their personal calendars
+    - background img that changes colors based on what season it is (e.g. purple for Advent, green for Ordinary Time)
+
+5. admin page to update landing page content
+    - simple crud interface for updating service times, event schedule, gallery images, and daily verse
+
+6. a color sash that changes colors based on liturgical season ( advent, lent, etc. )
+    - implement a dynamic color scheme that changes based on the current liturgical season    
+
+
+
+
+Phase 2 Members sign in page ------------------------------------------
+1. Online sermon archive with search functionality
+    - upload past sermons with titles, dates, and descriptions
+    - search sermons by keyword, date, or speaker
+
+2. Volunteer sign-up form for church events and activities
+    - form to collect volunteer information and availability    
+    - include options for specific events and roles
+    - confirmation email sent to volunteers upon sign-up
+
+3. Online donation system for tithes and offerings
+    - secure payment gateway integration (e.g., PayPal, Stripe)
+
+4. review and rating system for sermons and events
+    - allow members to leave feedback on sermons and events
+    - display average ratings and recent reviews  
+
+
+phase 3 school page 
+1. School information page with details about programs, admissions, and faculty
+    - program descriptions and curriculum overview
+    - admissions process and requirements
+    - faculty bios and photos
+
+2. Online application form for prospective students
+    - form to collect applicant information and documents
+    - confirmation email sent to applicants upon submission
+
+3. brightwheel integration for student management ??? 
+    - link to Brightwheel portal for parents and teachers
+    - display important announcements and updates from Brightwheel  
+
+4. school event calendar with RSVP functionality
+    - display upcoming school events and activities
+    - allow parents to RSVP for events and receive reminders
+
+
+phase 4 advanced future feature ideas ------------------------------------------
+1. Mobile app for church members and school parents
+    - access to sermons, event calendar, and donation system
+    - push notifications for important updates and reminders
+
+2. Live streaming of church services and events
+    - integrate with YouTube or other streaming platforms
+    
+3. Online store for church and school merchandise
+    - sell branded apparel, books, and other items
+    - secure payment gateway integration   
+
+
+development plan ------------------------------------------
+
+1. planning CRUD features and database schema design
+2. set up development environment and version control
+3. develop and test MVP features for church website
