@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ .navbar {
+    border: 1px solid #ccc;
+     display: flex;
+     justify-content: space-between;
+     align-items: end;
+     height: 40vh;
+     background-image: url('/Sanctuary-1024x768.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: rgba(0, 8, 255, 0.281);
+        background-blend-mode: overlay;  
+
+ }
+    
+
+nav {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}

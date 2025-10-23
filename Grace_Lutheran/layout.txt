@@ -25,7 +25,7 @@ Landing Page Content
                             statement_of_faith_page, 
                         history_page, 
                             grace_history_page
-                        calendar_page,
+                        events_page,
                             google _calendar_link
 
             school_page (menu on all pages )
