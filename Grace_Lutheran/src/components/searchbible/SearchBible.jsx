@@ -43,7 +43,7 @@ const SearchBible = () => {
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          placeholder="e.g. faith, love, John 3:16, hope"
+          placeholder="e.g. faith, love, Matthew 1:20, hope"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
