@@ -1,8 +1,81 @@
-import React from 'react'
-import './HomeView.css'
+import React, { useEffect, useState } from 'react';
+import './HomeView.css';
+import SearchBible from '../components/SearchBible.jsx';
+import { API_KEY } from '../../my_key.jsx';
 
+
+// API_KEY is now imported from my_key.jsx
+const BIBLE_ID = '685d1470fe4d5c3b-01';
+const VERSES = [
+  // Old Testament
+  'GEN.1.1', // Genesis 1:1
+  'EXO.20.15', // Exodus 20:15
+  'PRO.3.5-6', // Proverbs 3:5-6
+  'PRO.22.6', // Proverbs 22:6
+  'ISA.40.31', // Isaiah 40:31
+  'ISA.41.10', // Isaiah 41:10
+  'JER.29.11', // Jeremiah 29:11
+  'JOS.1.9', // Joshua 1:9
+  'PSA.23.1', // Psalm 23:1
+  'PSA.46.1', // Psalm 46:1
+  'PSA.121.8', // Psalm 121:8
+  'MIC.6.8', // Micah 6:8
+  // New Testament
+  'MAT.6.33', // Matthew 6:33
+  'MAT.7.12', // Matthew 7:12
+  'MAT.11.28', // Matthew 11:28
+  'JHN.3.16', // John 3:16
+  'JHN.14.6', // John 14:6
+  'ROM.8.28', // Romans 8:28
+  'ROM.10.9', // Romans 10:9
+  'ROM.12.2', // Romans 12:2
+  '1COR.10.13', // 1 Corinthians 10:13
+  '1COR.13.4-8', // 1 Corinthians 13:4-8
+  'GAL.5.22-23', // Galatians 5:22-23
+  'EPH.2.8-9', // Ephesians 2:8-9
+  'PHP.4.6-7', // Philippians 4:6-7
+  'PHP.4.13', // Philippians 4:13
+  'HEB.11.1', // Hebrews 11:1
+  'JAS.1.5', // James 1:5
+  'JAS.5.16', // James 5:16
+  '1PET.5.7', // 1 Peter 5:7
+  'REV.21.4', // Revelation 21:4
+];
 
 const HomeView = () => {
+  const [verseText, setVerseText] = useState('Loading...');
+  const [verseRef, setVerseRef] = useState('');
+
+  useEffect(() => {
+  // Pick a verse for the day based on the day of the year for consistency
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  const verseIndex = dayOfYear % VERSES.length;
+  const verseID = VERSES[verseIndex];
+
+    async function fetchVerse() {
+      try {
+        // Use the /search endpoint as per documentation
+        const res = await fetch(`https://api.scripture.api.bible/v1/bibles/${BIBLE_ID}/search?query=${verseID}`, {
+          headers: {
+            'api-key': API_KEY,
+          },
+        });
+        const data = await res.json();
+        if (data && data.data && data.data.passages && data.data.passages.length > 0) {
+          const passage = data.data.passages[0];
+          setVerseText(`<div class='text eb-container'>${passage.content}</div>`);
+          setVerseRef(passage.reference);
+        } else {
+          setVerseText('Verse not found.');
+        }
+      } catch {
+        setVerseText('Error fetching verse.');
+      }
+    }
+    fetchVerse();
+  }, []);
+
   return (
     <>
       <div className="home-view">
@@ -11,9 +84,12 @@ const HomeView = () => {
       </div>
       <div className="daily-verse">
         <h2>Daily verse</h2>
+        <h3>{verseRef}</h3>
+        <div dangerouslySetInnerHTML={{ __html: verseText }} />
       </div>
+      <SearchBible />
     </>
-  )
-}
+  );
+};
 
 export default HomeView
