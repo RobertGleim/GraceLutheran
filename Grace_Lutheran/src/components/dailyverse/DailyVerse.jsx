@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './DailyVerse.css';
-import { API_KEY } from '../../my_key.jsx';
+import { API_KEY } from '../../../my_key.jsx';
 
 
 const BIBLE_ID = '06125adad2d5898a-01'; // The Holy Bible, American Standard Version
