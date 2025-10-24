@@ -5,7 +5,7 @@ import { API_KEY } from '../../my_key.jsx';
 
 
 // API_KEY is now imported from my_key.jsx
-const BIBLE_ID = '685d1470fe4d5c3b-01';
+const BIBLE_ID = '06125adad2d5898a-01'; // The Holy Bible, American Standard Version
 const VERSES = [
   // Old Testament
   'GEN.1.1', // Genesis 1:1
@@ -47,15 +47,12 @@ const HomeView = () => {
   const [verseRef, setVerseRef] = useState('');
 
   useEffect(() => {
-  // Pick a verse for the day based on the day of the year for consistency
-  const today = new Date();
-  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-  const verseIndex = dayOfYear % VERSES.length;
+    // Pick a random Bible version and verse each time the page is loaded
+  const verseIndex = Math.floor(Math.random() * VERSES.length);
   const verseID = VERSES[verseIndex];
 
     async function fetchVerse() {
       try {
-        // Use the /search endpoint as per documentation
         const res = await fetch(`https://api.scripture.api.bible/v1/bibles/${BIBLE_ID}/search?query=${verseID}`, {
           headers: {
             'api-key': API_KEY,
@@ -64,8 +61,12 @@ const HomeView = () => {
         const data = await res.json();
         if (data && data.data && data.data.passages && data.data.passages.length > 0) {
           const passage = data.data.passages[0];
-          setVerseText(`<div class='text eb-container'>${passage.content}</div>`);
-          setVerseRef(passage.reference);
+            // Remove <span class="v">...</span> and <span ... data-number ...>...</span> from passage.content
+            let cleanedContent = passage.content.replace(/<span class="v">.*?<\/span>/g, '');
+            cleanedContent = cleanedContent.replace(/<span[^>]*data-number[^>]*>.*?<\/span>/g, '');
+            setVerseText(`<div class='text eb-container'>${cleanedContent}</div>`);
+            setVerseText(`<div class='text eb-container'>${cleanedContent}</div>`);
+            setVerseRef(passage.reference);
         } else {
           setVerseText('Verse not found.');
         }
@@ -86,6 +87,7 @@ const HomeView = () => {
         <h2>Daily verse</h2>
         <h3>{verseRef}</h3>
         <div dangerouslySetInnerHTML={{ __html: verseText }} />
+        <h4>American Standard Bible Version</h4>
       </div>
       <SearchBible />
     </>
