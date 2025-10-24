@@ -1,0 +1,34 @@
+.site-footer {
+	background: #027cff;
+	color: #fff;
+	padding: 1.5rem 0 1rem 0;
+	text-align: center;
+	margin-top: 3rem;
+}
+
+.footer-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.footer-nav a {
+	color: #fff;
+	font-size: 1rem;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+	color: #f6fbff;
+	text-decoration: underline;
+}
+
+.footer-copy {
+	font-size: 0.95rem;
+	color: #e0e0e0;
+}
+
