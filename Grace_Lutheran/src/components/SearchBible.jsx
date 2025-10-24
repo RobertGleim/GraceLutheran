@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SearchBible.css';
 import { API_KEY } from '../../my_key.jsx';
 
 const BIBLE_ID = '685d1470fe4d5c3b-01';
@@ -49,7 +50,7 @@ const SearchBible = () => {
         <button type="submit" disabled={loading}>Search</button>
       </form>
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+  {error && <p className="search-error">{error}</p>}
       <div className="search-results">
         {results.map((item, idx) => (
           <div key={idx} className="search-result">
