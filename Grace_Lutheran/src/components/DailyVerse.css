@@ -1,0 +1,36 @@
+.daily-verse {
+	background: #f6fbff;
+	border-radius: 8px;
+	padding: 1.5rem;
+	margin: 2rem auto;
+	max-width: 600px;
+	box-shadow: 0 2px 14px 0 rgba(0,0,0,0.08);
+	text-align: center;
+    border: 1px solid #ccc;
+}
+
+.daily-verse h2 {
+	font-size: 1.5rem;
+	color: #027cff;
+	margin-bottom: 0.5rem;
+}
+
+.daily-verse h3 {
+	font-size: 1.2rem;
+	color: #333;
+	margin-bottom: 1rem;
+}
+
+.verse-text {
+	font-size: 1.1rem;
+	font-family: 'Libre Baskerville', serif;
+	color: #222;
+	margin-bottom: 1rem;
+}
+
+.bible-version {
+	font-size: 1rem;
+	color: #027cff;
+	font-style: italic;
+	margin-top: 1rem;
+}
