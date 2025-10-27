@@ -13,16 +13,7 @@
     
 }
 
-.daily-verse {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    padding: 1rem;
-    background-color: #eee;
-    border-top: 1px solid #ccc;
-    border: 1px solid #120c0c;
-}
 
 .church-card {
     display: flex;
@@ -38,6 +29,7 @@
     z-index: 5;
     bottom: 5rem;
     background-color: rgb(247, 253, 255);
+    border: 1px solid #ccc;
 }
  .school-card {
     display: flex;
@@ -53,6 +45,7 @@
     z-index: 5;
     bottom: 5rem;
     background-color: rgb(247, 253, 255);
+    border: 1px solid #ccc;
 }
 .donation-card {
     display: flex;
@@ -68,29 +61,42 @@
     z-index: 5;
     bottom: 5rem;
     background-color:  rgb(247, 253, 255);
+    border: 1px solid #ccc;
 }
 
 .pastor-message-sidebar {
     display: flex;
-    
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    width: 20%;
-    height: 200px;
     
+    padding:10px;
+    width: 20%;
+    height: 60vh;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     position: relative;
     z-index: 5;
-    bottom: 5rem;
+    
     background-color:  rgb(247, 253, 255);
+    border: 1px solid #ccc;
 }
 
 .main-content {
     display: flex;
     margin: 0 auto;
-    justify-content: center;
+    align-items: start;
+    justify-content: center; 
+    gap: 4.7rem; 
+} 
+.dailyverse-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    
+}
 
-    align-items: flex-start;
-
-}   
+.search-bible {
+    margin: 0 auto; 
+    align-self: center;
+}
