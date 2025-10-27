@@ -1,12 +1,11 @@
 .daily-verse {
 	background: #f6fbff;
 	border-radius: 8px;
-	padding: 1.5rem;
-	margin: 2rem auto;
-	max-width: 600px;
+	max-width: 400px;
 	box-shadow: 0 2px 14px 0 rgba(0,0,0,0.08);
 	text-align: center;
     border: 1px solid #ccc;
+	padding: 1rem;
 }
 
 .daily-verse h2 {
@@ -19,6 +18,7 @@
 	font-size: 1.2rem;
 	color: #333;
 	margin-bottom: 1rem;
+	padding: 5px;
 }
 
 .verse-text {
@@ -33,4 +33,11 @@
 	color: #014691f1;
 	font-style: italic;
 	margin-top: 1rem;
+}
+
+.hr-verse {
+	border: none;
+	margin: 0 auto;
+	width: 80%;
+	border: #014691f1 1px solid;
 }

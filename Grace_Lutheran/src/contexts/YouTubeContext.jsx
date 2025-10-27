@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from "react";
 
 const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-const CHANNEL_ID = "UCwQnQZ6yFQwZ5qX6Ch12RSg";
+const CHANNEL_ID = "UC_A6oPK5tGcSf6fQigDKJrQ";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const YouTubeContext = createContext();
