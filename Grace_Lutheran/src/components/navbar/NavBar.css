@@ -5,33 +5,95 @@
 }
 
  .navbar {
-    border: 1px solid #ccc;
-     display: flex;
-     justify-content: space-between;
-     align-items: end;
-     height: 40vh;
-     background-image: url('/Sanctuary-1024x768.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: rgba(0, 8, 255, 0.281);
-        background-blend-mode: overlay;  
-
+   border: 1px solid #ccc;
+   display: flex;
+   justify-content: space-between;
+   align-items: end;
+   
  }
     
+ .burger-navbar {
+   display: flex;
+   align-items: center;
+   z-index: 10;
+   background: none; 
+   border: none;
+   box-shadow: none;
+    cursor: pointer;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   flex-direction: column;
+   height: 40px;
+   width: 60px;
+   padding: 0;
+   margin: 0;
+ }
+ 
+ .burger-menu {
+   width: 40px;
+   
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background: transparent; /* Hide background */
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   margin-bottom: 0.5rem;
+   transition: background 0.2s;
+ }
+ .burger-menu.open {
+   background: transparent; /* Hide background when open */
+ }
+ .burger-bar {
+   width: 24px;
+   height: 3px;
+   background: #68c0f3;
+   margin: 3px 0;
+   border-radius: 2px;
+   transition: all 0.3s;
+ }
+ .nav-links {
+   display: none;
+   flex-direction: column;
+   align-items: flex-end;
+   border-radius: 10px;
+   padding: 1rem 1.5rem;
+   margin-top: 0.5rem;
+ }
+ .nav-links.show {
+   display: flex;
+   background-color: #d6e1f8;
+   margin-right: 15px;
+ }
+ .nav-links a {
+   color: #1056ec;
+   text-decoration: none;
+   text-shadow: #000000;
+   margin: 0 auto;
+   font-size: 1.1rem;
+   font-weight: 500;
+   transition: color 0.2s;
+ }
+ .nav-links a:hover {
+   color: #b3cbe6;
+   text-decoration: underline;
+ }
 
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #333;
-  color: white;
+  
+  color: rgb(126, 46, 46);
   padding: 1rem;
   border-radius: 10px;
 }
 
 nav a {
-  color: white;
+  color: rgb(187, 77, 77);
   text-decoration: none;
   margin: 0 1rem;
 }

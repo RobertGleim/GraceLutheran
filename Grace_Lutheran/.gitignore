@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +23,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# google client secret files
+client_secret_*.json
+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
+
+#  youtube api- AIzaSyDbSYG1jrjJPrWlEtDTiAfnDGhTISwsZVk
+youtube_api_key.txt
+youtube_api_key_backup.txt
+youtube_api_key_*.txt
+
+.env.local
+.env.*.local
+
+
+

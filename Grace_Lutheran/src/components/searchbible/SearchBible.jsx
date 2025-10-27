@@ -38,6 +38,12 @@ const SearchBible = () => {
     setLoading(false);
   };
 
+  const handleClear = () => {
+    setQuery('');
+    setResults([]);
+    setError('');
+  };
+
   return (
     <div className="search-bible">
       <form onSubmit={handleSearch}>
@@ -48,9 +54,10 @@ const SearchBible = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
         <button type="submit" disabled={loading}>Search</button>
+        <button type="button" onClick={handleClear} disabled={loading}>Clear</button>
       </form>
       {loading && <p>Loading...</p>}
-  {error && <p className="search-error">{error}</p>}
+      {error && <p className="search-error">{error}</p>}
       <div className="search-results">
         {results.map((item, idx) => (
           <div key={idx} className="search-result">
