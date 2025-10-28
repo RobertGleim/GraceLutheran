@@ -1,43 +1,84 @@
 .daily-verse {
-	background: #f6fbff;
-	border-radius: 8px;
-	max-width: 400px;
-	box-shadow: 0 2px 14px 0 rgba(0,0,0,0.08);
-	text-align: center;
-    border: 1px solid #ccc;
-	padding: 1rem;
+  background: #f6fbff;
+  border-radius: 8px;
+  max-width: 400px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 
 .daily-verse h2 {
-	font-size: 1.5rem;
-	color: #014691f1;
-	margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: #014691f1;
+  margin-bottom: 0.5rem;
 }
 
+.text eb-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.p {
+	  font-size: 1rem;
+  color: #333;
+  width: 80%;
+  margin: 0 auto;
+  
+}
+
+
+
+.verse-results {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 .daily-verse h3 {
-	font-size: 1.2rem;
-	color: #333;
-	margin-bottom: 1rem;
-	padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #014691f1;
+  margin-bottom: 1rem;
+  padding: 5px;
 }
 
 .verse-text {
-	font-size: 1.1rem;
-	font-family: 'Libre Baskerville', serif;
-	color: #222;
-	margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-family: "Libre Baskerville", serif;
+  color: #222;
+  margin-bottom: 1rem;
 }
 
 .bible-version {
-	font-size: 1rem;
-	color: #014691f1;
-	font-style: italic;
-	margin-top: 1rem;
+  font-size: 1rem;
+  color: #014691f1;
+  font-style: italic;
+  margin-top: 1rem;
 }
 
 .hr-verse {
-	border: none;
-	margin: 0 auto;
-	width: 80%;
-	border: #014691f1 1px solid;
+  border: none;
+  margin: 0 auto;
+  width: 80%;
+  border: #555 1px solid;
+}
+
+.hr-verse-2 {
+  margin: 0 auto;
+
+  width: 80%;
+  border: #555 1px solid;
 }

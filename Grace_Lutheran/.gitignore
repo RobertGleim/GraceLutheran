@@ -37,5 +37,7 @@ youtube_api_key_*.txt
 .env.local
 .env.*.local
 
+my_key.jsx
+
 
 
