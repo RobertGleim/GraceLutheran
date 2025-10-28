@@ -5,6 +5,47 @@
     box-sizing: border-box;
 }
 
+.homeHero-bg1{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 300px;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/Sanctuary-1024x768.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 8, 255, 0.3);
+  background-blend-mode: overlay;
+  position: relative;
+  text-align: center;
+
+}
+/* .homeHero-bg2 {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, -50%);
+  background-image: url('/cropped-GLCS-Logo-removebg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+  width: 75%;
+  height: 25%;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(1, 2, 2, 0.3);} */
+
+ 
+
+
+
 .home-intro {
     display: flex;
     margin: 0 auto;
