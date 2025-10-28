@@ -21,6 +21,21 @@
   height: 100%;
 }
 
+@keyframes scaleUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
 .ChurchHero-bg2 {
   position: absolute;
   left: 50%;
@@ -37,11 +52,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: scaleUp 2s ease-out;
 }
 
 
+
+@keyframes scaleUp1 {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .worship-card {
-    background-image: url('/public/W2logo-removebg.png');
+    background-image: url('/W2logo-removebg.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -53,13 +85,14 @@
     height: 150px;
     z-index: 5;
     border: 1px solid #ccc;
+    animation: scaleUp1 2s ease-out;
     
    
 }
 
 
 .mission-card {
-     background-image: url('/public/missionlogo-removebg.png');
+     background-image: url('/missionlogo-removebg.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -71,11 +104,12 @@
     height: 150px;
     z-index: 5;
     border: 1px solid #ccc;
+    animation: scaleUp1 2s ease-out;
 }
 
 
 .beliefs-card {
-    background-image: url('/public/beliefslogo-removebg.png');
+    background-image: url('/beliefslogo-removebg.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -87,6 +121,7 @@
     height: 150px;
     z-index: 5;
     border: 1px solid #ccc;
+    animation: scaleUp1 2s ease-out;
 }
 
 .church-info-cards {
@@ -96,6 +131,7 @@
     align-items: center;
     gap: 1rem;
 }
+
 
 .pastor-card {
     display: flex;
