@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SearchBible.css';
 import { API_KEY } from '../../../my_key.jsx';
 
-const BIBLE_ID = '685d1470fe4d5c3b-01';
+const BIBLE_ID = '72f4e6dc683324df-01'; // Updated Bible version
 
 const SearchBible = () => {
   const [query, setQuery] = useState('');
@@ -72,7 +72,7 @@ const SearchBible = () => {
       </div>
       <footer className="search-footer">
         <hr />
-        <p>Search powered by API.Bible. Results from American Standard Version .</p>
+        <p>Search powered by API.Bible. Results from World English Bible .</p>
         
       </footer>
     </div>

@@ -3,7 +3,7 @@ import './DailyVerse.css';
 import { API_KEY } from '../../../my_key.jsx';
 
 
-const BIBLE_ID = '06125adad2d5898a-01'; // The Holy Bible, American Standard Version
+const BIBLE_ID = '72f4e6dc683324df-01'; 
 const VERSES = [
   // Old Testament
   'GEN.1.1', // Genesis 1:1
@@ -76,10 +76,10 @@ const DailyVerse = () => {
     <div className="daily-verse">
       <h2>Daily verse</h2>
       <hr className='hr-verse' />
-      <h3>{verseRef}</h3>
-      <div className="verse-text" dangerouslySetInnerHTML={{ __html: verseText }} />
-      <hr className='hr-verse' />
-      <h4 className="bible-version">American Standard Bible Version</h4>
+      <div className='verse-results'><h3>{verseRef}</h3>
+      <div className="verse-text" dangerouslySetInnerHTML={{ __html: verseText }} /></div>
+      <hr className='hr-verse-2' />
+      <h4 className="bible-version">World English Bible</h4>
     </div>
   );
 };

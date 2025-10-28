@@ -1,0 +1,25 @@
+
+--- home view card style
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+background-color: rgb(247, 253, 255);
+border: 1px solid #ccc;
+
+
+--- dailyverse text style
+color: #014691f1; 
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+background-color: rgb(247, 253, 255);
+border: 1px solid #ccc;
+
+
+--- search bar style
+background: #fff;
+
+border: 1px solid #ccc;
+background: #014691f1;
+color: red;
+background: #f6fbff;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+color: #222;
+color: #666;
+border: 1px solid #ccc;
