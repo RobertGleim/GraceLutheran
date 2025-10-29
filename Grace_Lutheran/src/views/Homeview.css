@@ -18,7 +18,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0, 8, 255, 0.3);
+  background-color: rgba(0, 8, 255, 0.1); 
   background-blend-mode: overlay;
   position: relative;
   text-align: center;
@@ -40,8 +40,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(1, 2, 2, 0.3);} */
+} */
 
+
+.gracename {
+    background: linear-gradient(90deg, #000000f1 50%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-size: 5rem;
+    text-shadow:
+        2px 0px 2px rgba(236, 116, 4, 0.76),
+        2px 2px 2px rgba(4, 161, 252, 0.829);
+}
  
 
 
@@ -57,9 +69,13 @@
 
 
 .church-card {
+    background-image: url('/Logo-removebg.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     width: 25%;
     height: 150px;
@@ -132,4 +148,19 @@
 .search-bible {
     margin: 0 auto; 
     align-self: center;
+}
+
+iframe {
+  
+    
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
+}
+
+.youtube {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
 }
