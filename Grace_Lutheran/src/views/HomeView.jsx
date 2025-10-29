@@ -28,7 +28,7 @@ const HomeView = () => {
           onClick={() => navigate("/church")}
           style={{ cursor: "pointer" }}
         >
-         Church Information
+          Church Information
         </div>
         <div className="school-card">School Information</div>
         <div className="donation-card">Donation Information</div>
@@ -83,6 +83,14 @@ const HomeView = () => {
       </div>
 
       <SearchBible />
+      <div className="contact-info">
+        <h4>Mailing Address</h4>
+
+        <div>Mailing Address : 1007 Bacon Ranch Road, Killeen, Texas 76542</div>
+      </div>
+      <div ><div className="church-office">Church Office (254) 392-0717 Mon.-Thurs. 9:00 – 2:00</div>
+
+      <div className="school-office">School Office (254) 441-5519 Mon.-Fri. 8:30 – 3:30</div></div>
     </>
   );
 };
