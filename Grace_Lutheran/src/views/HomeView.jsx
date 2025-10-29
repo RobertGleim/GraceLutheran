@@ -18,7 +18,9 @@ const HomeView = () => {
   return (
     <>
       <div className="home-hero">
-        <div className="homeHero-bg1"></div>
+        
+        <div className="homeHero-bg1"><h1 className="gracename ">Grace Lutheran Church</h1></div>
+       
         <div className="homeHero-bg2"></div>
         <HeroSection />
       </div>
@@ -28,10 +30,10 @@ const HomeView = () => {
           onClick={() => navigate("/church")}
           style={{ cursor: "pointer" }}
         >
-          Church Card
+         Church Information
         </div>
-        <div className="school-card">School Card</div>
-        <div className="donation-card">Donation Card</div>
+        <div className="school-card">School Information</div>
+        <div className="donation-card">Donation Information</div>
       </div>
 
       <div className="main-content">
@@ -63,7 +65,7 @@ const HomeView = () => {
 
         {/*  temp iframe code for testing  */}
 
-        <div>
+        <div className="youtube">
           <iframe
             width="560"
             height="315"
@@ -74,6 +76,7 @@ const HomeView = () => {
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
+          <h4>Watch Our Latest Sermon</h4>
         </div>
         <div className="dailyverse-container">
           <DailyVerse />

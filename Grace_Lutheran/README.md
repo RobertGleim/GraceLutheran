@@ -8,3 +8,5 @@ api Youtube https://developers.google.com/youtube/v3/getting-started documentaii
 ai used
 
 hero section universal background prompt" help me create a herosection component that can be used across all pages, which allows me to change the background of each hero section on every page 
+
+ai used to make @mediaquery for responsive design 
