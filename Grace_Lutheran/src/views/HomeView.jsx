@@ -18,9 +18,7 @@ const HomeView = () => {
   return (
     <>
       <div className="home-hero">
-        
-        <div className="homeHero-bg1"><h1 className="gracename ">Grace Lutheran Church</h1></div>
-       
+        <div className="homeHero-bg1 scaleUp"></div>
         <div className="homeHero-bg2"></div>
         <HeroSection />
       </div>
@@ -37,8 +35,9 @@ const HomeView = () => {
       </div>
 
       <div className="main-content">
-        <div className="pastor-message-sidebar">
+        <div className="pastor-message-sidebar scrollable-sidebar">
           <h2>Message from the Pastor</h2>
+          <br />
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
             odit impedit ratione dolore. Deserunt deleniti minus nostrum,

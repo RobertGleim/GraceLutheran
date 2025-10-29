@@ -5,26 +5,45 @@
     box-sizing: border-box;
 }
 
-.homeHero-bg1{
+
+
+.homeHero-bg1 {
   position: absolute;
+  border-radius: 5px;
   inset: 0;
   width: 100%;
   min-height: 300px;
   height: 40vh;
+  margin-top: .5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/Sanctuary-1024x768.jpg');
-  background-size: cover;
+  background-image: url('/Grace-Exterior-Pic.png');
+  background-size: 102%; 
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom -18px; 
   background-color: rgba(0, 8, 255, 0.1); 
   background-blend-mode: overlay;
   position: relative;
   text-align: center;
 
 }
-/* .homeHero-bg2 {
+
+@keyframes scaleUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+.homeHero-bg2 {
   position: absolute;
   left: 50%;
   top: 15%;
@@ -40,20 +59,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-} */
-
-
-.gracename {
-    background: linear-gradient(90deg, #000000f1 50%, #000000 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    font-size: 5rem;
-    text-shadow:
-        2px 0px 2px rgba(236, 116, 4, 0.76),
-        2px 2px 2px rgba(4, 161, 252, 0.829);
+  animation: scaleUp 2.0s ease;
 }
+
+
+
+
+
  
 
 
@@ -164,3 +176,32 @@ iframe {
     align-items: center;
     margin-bottom: 2rem;
 }
+
+.scrollable-sidebar {
+  max-height: 400px; 
+  overflow-y: auto;
+  padding-right: 10px; 
+
+}
+
+/* ===== Scrollbar CSS ===== */
+  
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #014691f1 #ffffff;
+  }
+
+  
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #014691f1;
+    border-radius: 5px;
+    border: 3px solid #ffffff;
+  }
