@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import "./HomeView.css";
+import "./Homeview.css";
 import SearchBible from "../components/searchbible/SearchBible.jsx";
 import DailyVerse from "../components/dailyverse/DailyVerse.jsx";
 import HeroSection from "../components/hero/HeroSection.jsx";
