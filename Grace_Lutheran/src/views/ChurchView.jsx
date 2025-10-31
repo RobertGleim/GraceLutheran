@@ -1,7 +1,8 @@
 import React from "react";
-import HeroSection from "../components/HeroSection.jsx";
+import HeroSection from "../components/hero/HeroSection.jsx";
 import "./ChurchView.css";
 import { NavLink } from "react-router-dom";
+
 
 function ChurchView() {
   return (

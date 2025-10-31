@@ -272,37 +272,44 @@ margin:0  auto;
     }
 
 .history {
-  
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     margin: 0 auto;
     width: 300px;
     height: 150px;
     z-index: 5;
     box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    animation: scaleUp1 2s ease-out;
-    border: #ddd solid 1px;
-    border-radius: 8px;
     
-   
-} 
+    
+    border-radius: 8px;
+    background-image: url('/public/open-book.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    ;
+
+}
 
 .calendar {
   
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     margin: 0 auto;
     width: 300px;
     height: 150px;
     z-index: 5;
     box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    animation: scaleUp1 2s ease-out;
-    border: #ddd solid 1px;
+    background-image: url('/public/calendar.png');
+    background-size: 35%;
+    background-position: center;
+    background-repeat: no-repeat;
+   
     border-radius: 8px;
+    
     
    
 } 
@@ -310,7 +317,7 @@ margin:0  auto;
 .youtube-icon {
   display: flex;
     flex-direction: column;
-    
+    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
     bottom: 20px;
     right: 20px;
     width: 150px;

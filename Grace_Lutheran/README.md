@@ -10,3 +10,4 @@ ai used
 hero section universal background prompt" help me create a herosection component that can be used across all pages, which allows me to change the background of each hero section on every page 
 
 ai used to make @mediaquery for responsive design 
+used ai to pull all styles from css sheet and document it ina style.txt sheet 
