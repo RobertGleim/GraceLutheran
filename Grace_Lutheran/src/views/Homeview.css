@@ -201,6 +201,18 @@ iframe {
     border: 1px solid #ccc;
 }
 
+/* Make YouTube video scale for smaller screens */
+@media (max-width: 600px) {
+  .youtube {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .youtube-responsive {
+    padding-bottom: 60%; /* slightly taller for mobile */
+  }
+}
+
 .scrollable-sidebar {
   max-height: 400px; 
   overflow-y: auto;
