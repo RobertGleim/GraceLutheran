@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "vercel-build": "npm run build",
-    "postinstall": "npm install"
+    
   },
   "dependencies": {
     "react": "^19.1.1",
