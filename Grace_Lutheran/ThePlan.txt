@@ -91,6 +91,3 @@ development plan ------------------------------------------
 1. planning CRUD features and database schema design
 2. set up development environment and version control
 3. develop and test MVP features for church website
-
-
-comment for commit messages ------------------------------------------
