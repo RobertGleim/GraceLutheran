@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeroSection.css';
-import NavBar from './navbar/NavBar.jsx';
+import NavBar from '../navbar/NavBar.jsx';
 
 
 

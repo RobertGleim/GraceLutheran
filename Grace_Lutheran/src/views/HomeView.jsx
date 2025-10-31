@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import "./HomeView.css";
 import SearchBible from "../components/searchbible/SearchBible.jsx";
 import DailyVerse from "../components/dailyverse/DailyVerse.jsx";
-import HeroSection from "../components/HeroSection.jsx";
+import HeroSection from "../components/hero/HeroSection.jsx";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 import {
   YouTubeProvider,
   YouTubeEmbed,
@@ -88,9 +90,18 @@ const HomeView = () => {
 
         <div>Mailing Address : 1007 Bacon Ranch Road, Killeen, Texas 76542</div>
       </div>
-      <div ><div className="church-office">Church Office (254) 392-0717 Mon.-Thurs. 9:00 – 2:00</div>
+      <div ><div className="church-office">Church Office (254) 392-0717 Mon.-Thurs. 9:00 – 2:00 
+        <NavLink to="/contact"><img style={{ width: '50px', transform: 'translateY(10px)' }}
+              src="/icons8-email-100.png"
+              alt="Envelope icon representing email contact option"
+            /></NavLink></div>
 
-      <div className="school-office">School Office (254) 441-5519 Mon.-Fri. 8:30 – 3:30</div></div>
+      <div className="school-office">School Office (254) 441-5519 Mon.-Fri. 8:30 – 3:30 <NavLink to="/contact"><img style={{ width: '50px', transform: 'translateY(10px)' }}
+              src="/icons8-email-100.png"
+              alt="Envelope icon representing email contact option"
+            /></NavLink></div>
+
+      </div>
     </>
   );
 };

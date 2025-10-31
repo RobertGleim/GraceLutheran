@@ -7,6 +7,7 @@ import LoginView from './views/LoginView'
 import ChurchView from './views/ChurchView';
 import Footer from './components/footer/footer';
 import HistoryView from './views/HistoryView.jsx';
+import CalenderView from './views/CalenderView-Church.jsx';
 
 
 
@@ -22,13 +23,13 @@ function App() {
   
       <Routes>
   <Route path="/" element={<HomeView />} />
-  <Route path="/Login" element={<LoginView />} />
+  <Route path="/login" element={<LoginView />} />
   <Route path="/church" element={<ChurchView />} />
-  <Route path="/History" element={<HistoryView />} />
-  {/* <Route path="/Worship" element={<ChurchView />} />
-  <Route path="/Mission" element={<ChurchView />} /> */}
-  
-       
+  <Route path="/history" element={<HistoryView />} />
+  <Route path="/calendar" element={<CalenderView />} />
+  {/* <Route path="/worship" element={<ChurchView />} />
+  <Route path="/mission" element={<ChurchView />} /> */}
+
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,9 +1,129 @@
+--- ChurchView styles
+.ChurchHero {
+  /* Hero section container */
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  /* background and layout styles as needed */
+}
+.ChurchHero-bg1 {
+  /* Background layer 1 for hero */
+  /* Add background image or color */
+}
+.ChurchHero-bg2 {
+  /* Background layer 2 for hero */
+  /* Add background image or color */
+}
+.scaleUp {
+  /* Animation or transform for scaling up */
+}
+.gracename {
+  /* Main church name heading */
+  font-size: 3rem;
+  font-weight: bold;
+  color: #014691f1;
+  text-align: center;
+  /* Add text-shadow if needed */
+}
+.greeting {
+  /* Greeting section styles */
+  margin: 2rem auto;
+  max-width: 800px;
+  font-size: 1.2rem;
+  color: #222;
+}
+.church-info-cards {
+  /* Container for info cards */
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.worship-card, .mission-card, .beliefs-card {
+  /* Individual card styles */
+  width: 200px;
+  height: 150px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.scaleUp1 {
+  /* Animation or transform for scaling up (variant) */
+}
+.church-staff {
+  /* Staff cards container */
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.pastor-card, .admin-card {
+  /* Individual staff card styles */
+  width: 350px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+.image-container1, .image-container2 {
+  /* Image container for staff */
+  text-align: center;
+}
+.pastor-image, .admin-image {
+  /* Staff images */
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+.church-resources {
+  /* Resources section */
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.youtube-icon {
+  /* YouTube icon styles */
+  width: 48px;
+  height: 48px;
+  background: url('/youtube-icon.png') no-repeat center center;
+  background-size: contain;
+}
+.history, .calendar {
+  /* History and Calendar resource cards */
+  padding: 1rem 2rem;
+  background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+  color: #014691f1;
+  cursor: pointer;
+}
+
+--- CalendarView styles
+.calendar-hero {
+  position: relative;
+  background: #f7f7f7;
+  padding: 2rem 0 1rem 0;
+  text-align: center;
+}
+.calendar-title {
+  font-size: 2.5rem;
+  color: #014691f1;
+  margin-top: 1rem;
+  text-shadow: 1px 1px 4px #e6b800;
+}
 
 --- home view card style
 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 background-color: rgb(247, 253, 255);
 border: 1px solid #ccc;
-
 
 --- dailyverse text style
 color: #014691f1; 
@@ -11,10 +131,8 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 background-color: rgb(247, 253, 255);
 border: 1px solid #ccc;
 
-
 --- search bar style
 background: #fff;
-
 border: 1px solid #ccc;
 background: #014691f1;
 color: red;
