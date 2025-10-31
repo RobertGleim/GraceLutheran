@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('Grace-Exterior-Pic.png');
+  background-image: url('/Grace-Exterior-Pic.png');
   background-size: 102%; 
   background-repeat: no-repeat;
   background-position: center bottom -18px; 
@@ -48,7 +48,7 @@
   left: 50%;
   top: 15%;
   transform: translate(-50%, -50%);
-  background-image: url('cropped-GLCS-Logo-removebg.png');
+  background-image: url('/cropped-GLCS-Logo-removebg.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,7 +81,7 @@
 
 
 .church-card {
-    background-image: url('Logo-removebg.png');
+    background-image: url('/Logo-removebg.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
