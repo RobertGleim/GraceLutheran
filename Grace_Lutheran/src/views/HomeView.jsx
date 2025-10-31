@@ -65,20 +65,19 @@ const HomeView = () => {
       </YouTubeProvider> */}
 
         {/*  temp iframe code for testing  */}
-
-        <div className="youtube">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-          <h4>Watch Our Latest Sermon</h4>
-        </div>
+          <div className="youtube">
+            <div className="youtube-responsive">
+              <iframe
+                src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <h4>Watch Our Latest Sermon</h4>
+          </div>
         <div className="dailyverse-container">
           <DailyVerse />
         </div>
