@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "vercel-build": "npm run build",
-    
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "react": "^19.1.1",
