@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-// import "./HomeView.css";
+import "./HomeView.css";
 import SearchBible from "../components/searchbible/SearchBible.jsx";
 import DailyVerse from "../components/dailyverse/DailyVerse.jsx";
 import HeroSection from "../components/hero/HeroSection.jsx";
@@ -18,7 +18,7 @@ const HomeView = () => {
   // const [apiStatus, setApiStatus] = useState("");
 
   return (
-    <React.Fragment>
+    <>
       <div className="home-hero">
         <div className="homeHero-bg1 scaleUp"></div>
         <div className="homeHero-bg2"></div>
@@ -70,12 +70,12 @@ const HomeView = () => {
           <iframe
             width="560"
             height="315"
-            src="https://www.youtube.com/embed"
+            src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
             title="YouTube video player"
-            frameBorder="0"
+            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
           ></iframe>
           <h4>Watch Our Latest Sermon</h4>
         </div>
@@ -90,30 +90,19 @@ const HomeView = () => {
 
         <div>Mailing Address : 1007 Bacon Ranch Road, Killeen, Texas 76542</div>
       </div>
-      <div>
-        <div className="church-office">
-          Church Office (254) 392-0717 Mon.-Thurs. 9:00 – 2:00 
-          <NavLink to="/contact">
-            <img
-              style={{ width: '50px', transform: 'translateY(10px)' }}
+      <div ><div className="church-office">Church Office (254) 392-0717 Mon.-Thurs. 9:00 – 2:00 
+        <NavLink to="/contact"><img style={{ width: '50px', transform: 'translateY(10px)' }}
               src="/icons8-email-100.png"
               alt="Envelope icon representing email contact option"
-            />
-          </NavLink>
-        </div>
+            /></NavLink></div>
 
-        <div className="school-office">
-          School Office (254) 441-5519 Mon.-Fri. 8:30 – 3:30 
-          <NavLink to="/contact">
-            <img
-              style={{ width: '50px', transform: 'translateY(10px)' }}
+      <div className="school-office">School Office (254) 441-5519 Mon.-Fri. 8:30 – 3:30 <NavLink to="/contact"><img style={{ width: '50px', transform: 'translateY(10px)' }}
               src="/icons8-email-100.png"
               alt="Envelope icon representing email contact option"
-            />
-          </NavLink>
-        </div>
+            /></NavLink></div>
+
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
