@@ -159,18 +159,19 @@
 
 /* Responsive layout for main content and cards */
 @media (max-width: 900px) {
+  .homeHero-bg1 {
+    min-height: 180px;
+    height: 25vh;
+    background-size: 110%;
+  }
+  .homeHero-bg2 {
+    width: 90%;
+    height: 20%;
+    top: 10%;
+  }
   .main-content {
     flex-direction: column;
     align-items: center;
-  }
-  .pastor-message-sidebar {
-    width: 90vw;
-    max-width: 500px;
-    height: auto;
-    margin-bottom: 1rem;
-  }
-  .youtube {
-    max-width: 100vw;
   }
 }
 
@@ -190,6 +191,23 @@
     width: 95vw;
     max-width: 400px;
     height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .homeHero-bg1 {
+    min-height: 120px;
+    height: 18vh;
+    background-size: 120%;
+  }
+  .homeHero-bg2 {
+    width: 98%;
+    height: 15%;
+    top: 8%;
+  }
+  .main-content {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
