@@ -18,16 +18,29 @@ const CalenderView = () => {
       <style>
         {`
           .calendar-hero {
+          display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
             position: relative;
-            background: #f7f7f7;
+            background: #a5edfac4;
             padding: 2rem 0 1rem 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           }
           .calendar-title {
             font-size: 2.5rem;
             color: #014691f1;
             margin-top: 1rem;
-            text-shadow: 1px 1px 4px #e6b800;
+            text-shadow: 1px 1px 4px #665202ff;
+            background-color:none;
+           
+            
+            border-radius: 8px;
+            font-weight: bold;
+            
+            font-size: 5rem;
           }
         `}
       </style>

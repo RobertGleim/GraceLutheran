@@ -8,6 +8,7 @@ import Footer from './components/footer/footer';
 import HistoryView from './views/HistoryView.jsx';
 import CalenderView from './views/CalenderView-Church.jsx';
 import WorshipView from './views/WorshipView.jsx';
+import MissionView from './views/MissionView.jsx';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/history" element={<HistoryView />} />
         <Route path="/calendar" element={<CalenderView />} />
         <Route path="/worship" element={<WorshipView />} />
-        {/* <Route path="/mission" element={<ChurchView />} /> */}
+        <Route path="/mission" element={<MissionView />} />
       </Routes>
       <Footer />
     </BrowserRouter>

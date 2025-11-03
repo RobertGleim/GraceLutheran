@@ -30,8 +30,8 @@ function ChurchView() {
 
       <div className="church-info-cards">
         <NavLink to="/worship" className="worship-card scaleUp1"></NavLink>
-        <div className="mission-card scaleUp1"></div>
-        <div className="beliefs-card scaleUp1"></div>
+        <NavLink to="/mission" className="mission-card scaleUp1"></NavLink>
+        <NavLink to="/beliefs" className="beliefs-card scaleUp1"></NavLink>
       </div>
 
       <div className="church-staff">
@@ -76,7 +76,9 @@ function ChurchView() {
               src="/melissa_img.png"
               alt="Melissa Hamilton of Grace Lutheran Church"
             />
-            <h4>Melissa Hamilton, Administrative Assistant/Music Director</h4>
+            <h4>Melissa Hamilton, 
+              <br />
+              Administrative Assistant/Music Director</h4>
             <br />
             <p>
               Melissa has split her time as our Music Director and Music Teacher
@@ -112,7 +114,7 @@ function ChurchView() {
           <div className="history">History</div>
         </NavLink>
         <NavLink to="/calendar">
-          <div className="calendar">Calendar</div>
+          <div className="calendar">Events</div>
         </NavLink>
       </div>
     </>
