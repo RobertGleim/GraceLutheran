@@ -1,11 +1,8 @@
 * {
-    
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-
 
 .homeHero-bg1 {
   position: absolute;
@@ -14,19 +11,18 @@
   width: 100%;
   min-height: 300px;
   height: 40vh;
-  margin-top: .5px;
+  margin-top: 0.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/Grace-Exterior-Pic.png');
-  background-size: 102%; 
+  background-image: url("/Grace-Exterior-Pic.png");
+  background-size: 102%;
   background-repeat: no-repeat;
-  background-position: center bottom -18px; 
-  background-color: rgba(0, 8, 255, 0.1); 
+  background-position: center bottom -18px;
+  background-color: rgba(0, 8, 255, 0.1);
   background-blend-mode: overlay;
   position: relative;
   text-align: center;
-
 }
 
 @keyframes scaleUp {
@@ -48,7 +44,7 @@
   left: 50%;
   top: 15%;
   transform: translate(-50%, -50%);
-  background-image: url('/cropped-GLCS-Logo-removebg.png');
+  background-image: url("/cropped-GLCS-Logo-removebg.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -59,107 +55,96 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: scaleUp 2.0s ease;
+  animation: scaleUp 2s ease;
 }
-
-
-
-
-
- 
-
-
 
 .home-intro {
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    
-    
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 0 7rem;
 }
-
-
 
 .church-card {
-    background-image: url('/Logo-removebg.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
-    width: 25%;
-    height: 150px;
-    margin: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-    bottom: 2rem;
-    background-color: rgb(247, 253, 255);
-    border: 1px solid #ccc;
+  background-image: url("/Logo-removebg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  width: 25%;
+  height: 150px;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 5;
+  bottom: 2rem;
+  background-color: rgb(247, 253, 255);
+  border: 1px solid #ccc;
 }
- .school-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    height: 150px;
-    margin: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-    bottom: 2rem;
-    background-color: rgb(247, 253, 255);
-    border: 1px solid #ccc;
+.school-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 150px;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 5;
+  bottom: 2rem;
+  background-color: rgb(247, 253, 255);
+  border: 1px solid #ccc;
 }
 .donation-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    height: 150px;
-    margin: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-    bottom: 2rem;
-    background-color:  rgb(247, 253, 255);
-    border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 150px;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 5;
+  bottom: 2rem;
+  background-color: rgb(247, 253, 255);
+  border: 1px solid #ccc;
 }
 
 .pastor-message-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    padding:10px;
-    width: 400px;
-    height: 400px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-    
-    background-color:  rgb(247, 253, 255);
-    border: 1px solid #ccc;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  padding: 10px;
+  width: 400px;
+  height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 5;
+
+  background-color: rgb(247, 253, 255);
+  border: 1px solid #ccc;
+}
 
 .main-content {
-    display: flex;
-    margin: 0 auto;
-    justify-content: space-evenly;
-} 
-
-.pastor-message-sidebar {
-  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 0 8rem;
 }
+
+
 
 /* Responsive layout for main content and cards */
 @media (max-width: 900px) {
@@ -279,49 +264,46 @@
   }
 }
 
-
 .search-bible {
-    margin: 0 auto; 
-    align-self: center;
+  margin: 0 auto;
+  align-self: center;
 }
 
 iframe {
-  
-    
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
 }
 
 .youtube {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Responsive YouTube embed */
 .youtube-responsive {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
 }
 
 .youtube-responsive iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid #ccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
 }
 
 /* Make YouTube video scale for smaller screens */
@@ -337,51 +319,49 @@ iframe {
 }
 
 .scrollable-sidebar {
-  max-height: 400px; 
+  max-height: 400px;
   overflow-y: auto;
-  padding-right: 10px; 
-
+  padding-right: 10px;
 }
 
 /* ===== Scrollbar CSS ===== */
-  
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #014691f1 #ffffff;
-  }
 
-  
-  *::-webkit-scrollbar {
-    width: 8px;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #014691f1 #ffffff;
+}
 
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
+*::-webkit-scrollbar {
+  width: 8px;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #014691f1;
-    border-radius: 5px;
-    border: 3px solid #ffffff;
-  }
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
 
-  .contact-info {
-    margin: 2rem auto;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #020202ff;
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #014691f1;
+  border-radius: 5px;
+  border: 3px solid #ffffff;
+}
 
-  .church-office {
-    margin: 1rem auto;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #020202ff;
-  }
+.contact-info {
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #020202ff;
+}
 
-  .school-office {
-    margin: 1rem auto;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #020202ff;
-  }
+.church-office {
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #020202ff;
+}
+
+.school-office {
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #020202ff;
+}
