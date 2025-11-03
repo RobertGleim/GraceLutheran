@@ -11,7 +11,7 @@ const HistoryView = () => {
         <HeroSection />
       </div>
 
-      <fieldset style={{ margin: "20px", padding: "20px", borderRadius: "10px", border: "2px solid #ccc", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",  width: "800px", height:"auto", marginLeft: "auto", marginRight: "auto", textAlign: "center", backgroundColor: "#f6fbff" }}>
+      <fieldset style={{ margin: "20px", padding: "20px", borderRadius: "10px", border: "0px solid #ccc", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",  width: "800px", height:"auto", marginLeft: "auto", marginRight: "auto", textAlign: "center", backgroundColor: "#f6fbff" }}>
         <legend><span style={{fontSize:'24px', fontWeight:"bold"}}>History</span></legend>
         <div>
           <h1>For Over 50 Years... We Have Received Grace Upon Grace</h1>
