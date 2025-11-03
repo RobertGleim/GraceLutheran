@@ -18,16 +18,17 @@ function ChurchView() {
           A Member of the Lutheran Church - Missouri Synod
         </p>
       </div>
-      <div className="greeting"> <p>Welcome! <br /> Here at Grace we strive to follow Jesus – first as He gathers us together in worship to feed and nourish us with His Word and Sacraments and then as He leads us into our neighborhoods and work places to serve one another and share God’s love.  Take some time to browse through our website and get to know a little about us.  You will discover our mission and learn how to connect to the people and ministry of Grace.  When you are ready, know that you are welcome to join us and be part of our mission team.
+      <div className="greeting">
+        <p>
+          Welcome! <br /> Here at Grace we strive to follow Jesus – first as He gathers us together in worship to feed and nourish us with His Word and Sacraments and then as He leads us into our neighborhoods and work places to serve one another and share God’s love.  Take some time to browse through our website and get to know a little about us.  You will discover our mission and learn how to connect to the people and ministry of Grace.  When you are ready, know that you are welcome to join us and be part of our mission team.
 
-<br /><br />   Visiting for the first time...
-<br /><br />
-If you are visiting with us, here are a few links that will help you get acquainted with Grace.  Of course, nothing beats experiencing Grace in person.  Please know you are welcome to visit anytime.</p>
-
+          <br /><br />   Visiting for the first time...
+          <br /><br />
+          If you are visiting with us, here are a few links that will help you get acquainted with Grace.  Of course, nothing beats experiencing Grace in person.  Please know you are welcome to visit anytime.
+        </p>
       </div>
 
       <div className="church-info-cards">
-       
         <NavLink to="/worship" className="worship-card scaleUp1"></NavLink>
         <div className="mission-card scaleUp1"></div>
         <div className="beliefs-card scaleUp1"></div>
@@ -97,9 +98,8 @@ If you are visiting with us, here are a few links that will help you get acquain
             />
           </NavLink>
         </div>
-        
       </div>
-      
+
       <div className="church-resources">
         <a
           href="https://www.youtube.com/@GraceLCS/streams"
