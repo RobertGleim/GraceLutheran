@@ -157,6 +157,10 @@
     justify-content: space-evenly;
 } 
 
+.pastor-message-sidebar {
+  margin-left: 10px;
+}
+
 /* Responsive layout for main content and cards */
 @media (max-width: 900px) {
   .homeHero-bg1 {
