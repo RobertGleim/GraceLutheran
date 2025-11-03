@@ -385,6 +385,7 @@ margin:0  auto;
     width: 90vw;
     height: 80px;
     font-size: 1rem;
+    background-size: contain; /* ensure responsiveness */
   }
 }
 
@@ -438,5 +439,6 @@ margin:0  auto;
     width: 98vw;
     height: 50px;
     font-size: 0.8rem;
+    background-size: contain; /* ensure responsiveness */
   }
 }

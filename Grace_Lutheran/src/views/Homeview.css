@@ -173,6 +173,19 @@
     flex-direction: column;
     align-items: center;
   }
+  fieldset {
+    width: 95vw !important;
+    padding: 1rem !important;
+  }
+  legend span {
+    font-size: 1.3rem !important;
+  }
+  fieldset h1 {
+    font-size: 1.3rem !important;
+  }
+  fieldset h3 {
+    font-size: 1rem !important;
+  }
 }
 
 @media (max-width: 700px) {
@@ -209,6 +222,20 @@
     flex-direction: column;
     align-items: center;
   }
+  fieldset {
+    width: 99vw !important;
+    padding: 0.5rem !important;
+    margin: 0.5rem !important;
+  }
+  legend span {
+    font-size: 1rem !important;
+  }
+  fieldset h1 {
+    font-size: 1rem !important;
+  }
+  fieldset h3 {
+    font-size: 0.85rem !important;
+  }
 }
 
 @media (max-width: 500px) {
@@ -230,6 +257,21 @@
   .school-office {
     font-size: 1rem;
     padding: 0 5px;
+  }
+  fieldset {
+    width: 100vw !important;
+    padding: 0.2rem !important;
+    margin: 0.2rem !important;
+    border-radius: 5px !important;
+  }
+  legend span {
+    font-size: 0.8rem !important;
+  }
+  fieldset h1 {
+    font-size: 0.8rem !important;
+  }
+  fieldset h3 {
+    font-size: 0.7rem !important;
   }
 }
 

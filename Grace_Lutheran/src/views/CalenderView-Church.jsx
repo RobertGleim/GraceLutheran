@@ -18,7 +18,7 @@ const CalenderView = () => {
       <style>
         {`
           .calendar-hero {
-          display: flex;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -35,12 +35,34 @@ const CalenderView = () => {
             margin-top: 1rem;
             text-shadow: 1px 1px 4px #665202ff;
             background-color:none;
-           
-            
             border-radius: 8px;
             font-weight: bold;
-            
             font-size: 5rem;
+          }
+          @media (max-width: 900px) {
+            .calendar-hero {
+              height: 25vh;
+              padding: 1rem 0 0.5rem 0;
+            }
+            .calendar-title {
+              font-size: 3rem;
+            }
+          }
+          @media (max-width: 600px) {
+            .calendar-hero {
+              height: 18vh;
+              padding: 0.5rem 0 0.25rem 0;
+            }
+            .calendar-title {
+              font-size: 1.5rem;
+              margin-top: 0.5rem;
+            }
+          }
+          @media (max-width: 400px) {
+            .calendar-title {
+              font-size: 1rem;
+              margin-top: 0.2rem;
+            }
           }
         `}
       </style>

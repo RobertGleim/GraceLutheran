@@ -18,6 +18,10 @@ const MissionView = () => {
             </video>
         </div>
 
+       
+          
+        
+        
         <div className='mission-details'>
             <img src="/public/mission-details.png" alt="Mission Image" />
             <p>If you would like to know more about the mission of Grace Lutheran Church & School, download and read over this Biblical explanation of our mission statement.

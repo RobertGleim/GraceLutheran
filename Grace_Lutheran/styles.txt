@@ -143,7 +143,3 @@ color: #666;
 border: 1px solid #ccc;
 
 
-}
-a[href="/About-Holy-communion.pdf"]:hover {
-  background: #0a2e5c;
-}

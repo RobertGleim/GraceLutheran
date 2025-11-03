@@ -9,6 +9,7 @@ import HistoryView from './views/HistoryView.jsx';
 import CalenderView from './views/CalenderView-Church.jsx';
 import WorshipView from './views/WorshipView.jsx';
 import MissionView from './views/MissionView.jsx';
+import BeliefsView from './views/BeliefsView.jsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/calendar" element={<CalenderView />} />
         <Route path="/worship" element={<WorshipView />} />
         <Route path="/mission" element={<MissionView />} />
+        <Route path="/beliefs" element={<BeliefsView />} />
       </Routes>
       <Footer />
     </BrowserRouter>
