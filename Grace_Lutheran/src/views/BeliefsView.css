@@ -56,3 +56,65 @@ h4 {
     margin-bottom: 1rem;
     text-decoration: underline;
 }
+
+@media (max-width: 900px) {
+  .beliefs-hero {
+    min-height: 180px;
+    height: 25vh;
+    background-size: 90%;
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+  .card-container {
+    width: 98%;
+    padding: 1rem;
+  }
+  .card {
+    width: 95vw;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .beliefs-hero {
+    min-height: 120px;
+    height: 18vh;
+    background-size: 100%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 10px;
+  }
+  .card-container {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  .card {
+    width: 99vw;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  hr {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .beliefs-hero {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    min-height: 80px;
+    height: 10vh;
+    background-size: 120%;
+  }
+  .card {
+    width: 100vw;
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    margin: 0.2rem 0;
+  }
+  hr {
+    width: 98%;
+  }
+}
