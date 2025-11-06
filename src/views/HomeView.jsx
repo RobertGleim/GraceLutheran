@@ -21,17 +21,44 @@ const HomeView = () => {
   useEffect(() => {
     const fetchPastorMessage = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/pastor-messages/active`);
+        const apiUrl = import.meta.env.VITE_API_URL;
+        console.log('API URL:', apiUrl);
+        console.log('Fetching active pastor message...');
+        const response = await fetch(`${apiUrl}/pastor-messages/active`);
+        console.log('Response status:', response.status);
         if (response.ok) {
           const data = await response.json();
+          console.log('Received pastor message:', data);
+          console.log('Has title?', !!data.title);
+          console.log('Has message?', !!data.message);
           setPastorMessage(data);
+        } else {
+          console.log('No active message found - status:', response.status);
+          setPastorMessage(null);
         }
       } catch (error) {
         console.error('Error fetching pastor message:', error);
       }
     };
     
+    // Fetch immediately
     fetchPastorMessage();
+    
+    // Poll every 30 seconds for updates
+    const interval = setInterval(fetchPastorMessage, 30000);
+    
+    // Listen for custom event when admin updates messages
+    const handleMessageUpdate = () => {
+      console.log('Received pastorMessageUpdated event');
+      fetchPastorMessage();
+    };
+    window.addEventListener('pastorMessageUpdated', handleMessageUpdate);
+    
+    // Cleanup
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('pastorMessageUpdated', handleMessageUpdate);
+    };
   }, []);
 
   return (
@@ -58,7 +85,7 @@ const HomeView = () => {
           {pastorMessage ? (
             <>
               <h2>{pastorMessage.title}</h2>
-              <br />
+               <hr />
               <p>{pastorMessage.message}</p>
             </>
           ) : (

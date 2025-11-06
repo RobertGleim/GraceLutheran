@@ -86,6 +86,23 @@
    color: #b3cbe6;
    text-decoration: underline;
  }
+ 
+ .nav-logout-btn {
+   background: transparent;
+   border: none;
+   color: #1056ec;
+   font-size: 1.1rem;
+   font-weight: 500;
+   cursor: pointer;
+   padding: 0;
+   margin: 0 auto;
+   transition: color 0.2s;
+ }
+ 
+ .nav-logout-btn:hover {
+   color: #b3cbe6;
+   text-decoration: underline;
+ }
 
 nav {
   display: flex;

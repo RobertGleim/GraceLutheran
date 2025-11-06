@@ -64,21 +64,38 @@ function AdminView() {
       });
 
       if (response.ok) {
-        const newMessage = await response.json();
+        const result = await response.json();
+        // Backend returns { message: "...", data: {...} }
+        const newMessage = result.data || result;
         
         // If creating a new message (not editing), automatically activate it
         if (!editingId && newMessage.id) {
-          await handleActivate(newMessage.id);
+          // Don't await - let it run in background
+          handleActivate(newMessage.id, false).then(() => {
+            fetchMessages();
+          });
+        } else {
+          fetchMessages();
+          // Dispatch event for updates too
+          window.dispatchEvent(new Event('pastorMessageUpdated'));
         }
         
         setFormData({ title: '', message: '' });
         setEditingId(null);
-        fetchMessages();
-        alert(editingId ? 'Message updated!' : 'Message created and activated!');
+        
+        // Use setTimeout to prevent blocking
+        setTimeout(() => {
+          alert(editingId ? 'Message updated!' : 'Message created and activated!');
+        }, 0);
+      } else {
+        // Log error details
+        const errorData = await response.text();
+        console.error('Error response:', response.status, errorData);
+        alert(`Error saving message: ${response.status} - ${errorData}`);
       }
     } catch (error) {
       console.error('Error saving message:', error);
-      alert('Error saving message');
+      alert('Error saving message: ' + error.message);
     } finally {
       setLoading(false);
     }
@@ -86,9 +103,10 @@ function AdminView() {
 
   // Delete message
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this message?')) return;
+    if (!window.confirm('Are you sure you want to delete this message?')) return;
 
     const token = localStorage.getItem('token');
+    setLoading(true);
     try {
       const response = await fetch(`${API_URL}/pastor-messages/${id}`, {
         method: 'DELETE',
@@ -99,17 +117,20 @@ function AdminView() {
 
       if (response.ok) {
         fetchMessages();
-        alert('Message deleted!');
+        setTimeout(() => alert('Message deleted!'), 0);
       }
     } catch (error) {
       console.error('Error deleting message:', error);
       alert('Error deleting message');
+    } finally {
+      setLoading(false);
     }
   };
 
   // Activate message
   const handleActivate = async (id, showAlert = true) => {
     const token = localStorage.getItem('token');
+    setLoading(true);
     try {
       const response = await fetch(`${API_URL}/pastor-messages/${id}/activate`, {
         method: 'PATCH',
@@ -119,9 +140,13 @@ function AdminView() {
       });
 
       if (response.ok) {
-        fetchMessages();
+        fetchMessages(); // Refresh the list to show updated active status
+        
+        // Dispatch custom event to notify other components
+        window.dispatchEvent(new Event('pastorMessageUpdated'));
+        
         if (showAlert) {
-          alert('Message activated!');
+          setTimeout(() => alert('Message activated!'), 0);
         }
         return true;
       }
@@ -132,13 +157,25 @@ function AdminView() {
         alert('Error activating message');
       }
       return false;
+    } finally {
+      setLoading(false);
     }
   };
 
   // Edit message
   const handleEdit = (message) => {
+    console.log('Edit button clicked for message:', message);
     setFormData({ title: message.title, message: message.message });
     setEditingId(message.id);
+    
+    // Scroll to the form when editing
+    const formElement = document.querySelector('.message-form');
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
   };
 
   if (user?.role !== 'admin') {
@@ -150,7 +187,7 @@ function AdminView() {
       <h1>Pastor Messages Admin</h1>
       
       {/* Form */}
-      <form onSubmit={handleSubmit} className="message-form">
+      <form onSubmit={handleSubmit} className={`message-form ${editingId ? 'editing' : ''}`}>
         <h2>{editingId ? 'Edit Message' : 'Create New Message'}</h2>
         
         <div>
@@ -196,9 +233,17 @@ function AdminView() {
         {messages.length === 0 ? (
           <p>No messages yet.</p>
         ) : (
-          messages.map((msg) => (
-            <div key={msg.id} className={`message-card ${msg.is_active ? 'active' : ''}`}>
-              <h3>{msg.title}</h3>
+          messages
+            .sort((a, b) => {
+              // Sort by active status first (active messages at top)
+              if (a.is_active && !b.is_active) return -1;
+              if (!a.is_active && b.is_active) return 1;
+              // Then sort by ID in descending order (newest first)
+              return b.id - a.id;
+            })
+            .map((msg) => (
+            <div key={msg.id} className={`message-card ${msg.is_active ? 'active' : ''} ${editingId === msg.id ? 'being-edited' : ''}`}>
+              <h3>{msg.title} {editingId === msg.id && <span className="editing-indicator">(Editing)</span>}</h3>
               <p>{msg.message}</p>
               <div className="message-actions">
                 {msg.is_active ? (

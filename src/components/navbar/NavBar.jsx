@@ -1,11 +1,20 @@
 
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import "./NavBar.css";
 
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+  
   return (
     <div className="navbar burger-navbar">
       <button
@@ -25,7 +34,14 @@ const NavBar = () => {
         <NavLink to="/History" onClick={() => setOpen(false)}>History</NavLink>
         <NavLink to="/Missions" onClick={() => setOpen(false)}>Missions</NavLink>
         <NavLink to="/Worship" onClick={() => setOpen(false)}>Worship</NavLink>
-        <NavLink to="/Login" onClick={() => setOpen(false)}>Login</NavLink>
+        {user?.role === 'admin' && (
+          <NavLink to="/admin" onClick={() => setOpen(false)}>Admin</NavLink>
+        )}
+        {user ? (
+          <button className="nav-logout-btn" onClick={() => { handleLogout(); setOpen(false); }}>Logout</button>
+        ) : (
+          <NavLink to="/Login" onClick={() => setOpen(false)}>Login</NavLink>
+        )}
       </nav>
     </div>
   );

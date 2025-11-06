@@ -2,6 +2,7 @@
   background: #f6fbff;
   border-radius: 8px;
   max-width: 400px;
+  width: 100%;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
   text-align: center;
   border: 1px solid #ccc;
@@ -9,8 +10,10 @@
   height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: relative;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .daily-verse h2 {
@@ -19,19 +22,20 @@
   margin-bottom: 0.5rem;
 }
 
-.text eb-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
+/* Container for verse text - handled by .verse-text now */
+.text.eb-container {
+  width: 100%;
+  text-align: center;
 }
 
-.p {
-	  font-size: 1rem;
+.verse-results p {
+  font-size: 1rem;
   color: #333;
-  width: 80%;
-  margin: 0 auto;
-  
+  width: 100%;
+  margin: 0.5rem 0;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 
@@ -40,19 +44,25 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 1rem;
+  overflow-y: auto;
+  width: 100%;
+  padding: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .daily-verse h3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   font-size: 1.2rem;
   color: #014691f1;
   margin-bottom: 1rem;
   padding: 5px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .verse-text {
@@ -60,6 +70,23 @@
   font-family: "Libre Baskerville", serif;
   color: #222;
   margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.verse-text .text {
+  width: 100%;
+}
+
+.verse-text p {
+  margin: 0.5rem 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .bible-version {
@@ -78,7 +105,77 @@
 
 .hr-verse-2 {
   margin: 0 auto;
-
   width: 80%;
   border: #555 1px solid;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .daily-verse {
+    max-width: 95vw;
+    height: 350px;
+    padding: 0.75rem;
+  }
+  
+  .daily-verse h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .daily-verse h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .verse-text {
+    font-size: 1rem;
+  }
+  
+  .bible-version {
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .daily-verse {
+    max-width: 98vw;
+    height: 300px;
+    padding: 0.5rem;
+  }
+  
+  .daily-verse h2 {
+    font-size: 1.2rem;
+  }
+  
+  .daily-verse h3 {
+    font-size: 1rem;
+  }
+  
+  .verse-text {
+    font-size: 0.9rem;
+  }
+  
+  .bible-version {
+    font-size: 0.8rem;
+  }
+}
+
+/* Custom scrollbar styling for verse results */
+.verse-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.verse-results::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.verse-results::-webkit-scrollbar-thumb {
+  background: #014691f1;
+  border-radius: 3px;
+}
+
+.verse-results::-webkit-scrollbar-thumb:hover {
+  background: #012d5a;
 }

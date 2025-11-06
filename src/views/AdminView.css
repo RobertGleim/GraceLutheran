@@ -17,6 +17,13 @@
   border-radius: 8px;
   padding: 2rem;
   margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.message-form.editing {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
 }
 
 .message-form h2 {
@@ -101,6 +108,9 @@
   padding: 1.5rem;
   margin-bottom: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .message-card.active {
@@ -108,16 +118,57 @@
   background-color: #f0fff0;
 }
 
+.message-card.being-edited {
+  border: 2px solid #ffc107;
+  background-color: #fff3cd;
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
+}
+
+.editing-indicator {
+  font-size: 0.8rem;
+  color: #ffc107;
+  font-weight: bold;
+  background: #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
 .message-card h3 {
   margin-top: 0;
   color: #333;
   margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .message-card p {
   color: #666;
   line-height: 1.6;
   margin-bottom: 1rem;
+  overflow-y: auto;
+  max-height: 200px;
+  padding-right: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Custom scrollbar for message text */
+.message-card p::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-card p::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.message-card p::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.message-card p::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .message-actions {
