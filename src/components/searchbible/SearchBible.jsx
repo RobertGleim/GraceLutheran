@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SearchBible.css';
-import { API_KEY } from '../../../my_key.jsx';
+import { API_KEY } from '../../my_key.jsx';
 
 const BIBLE_ID = '72f4e6dc683324df-01'; // Updated Bible version
 
