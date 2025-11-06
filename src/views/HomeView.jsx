@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Homeview.css";
 import SearchBible from "../components/searchbible/SearchBible.jsx";
 import DailyVerse from "../components/dailyverse/DailyVerse.jsx";
@@ -16,6 +15,24 @@ import {
 const HomeView = () => {
   const navigate = useNavigate();
   // const [apiStatus, setApiStatus] = useState("");
+
+  const [pastorMessage, setPastorMessage] = useState(null);
+
+  useEffect(() => {
+    const fetchPastorMessage = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/pastor-messages/active`);
+        if (response.ok) {
+          const data = await response.json();
+          setPastorMessage(data);
+        }
+      } catch (error) {
+        console.error('Error fetching pastor message:', error);
+      }
+    };
+    
+    fetchPastorMessage();
+  }, []);
 
   return (
     <>
@@ -38,22 +55,32 @@ const HomeView = () => {
 
       <div className="main-content">
         <div className="pastor-message-sidebar scrollable-sidebar">
-          <h2>Message from the Pastor</h2>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            odit impedit ratione dolore. Deserunt deleniti minus nostrum,
-            voluptatibus magnam nesciunt temporibus. Necessitatibus facere animi
-            vel in veniam nostrum nam tempora hic molestias possimus culpa
-            tenetur assumenda, quidem, repellat sit officia iste, ullam adipisci
-            sapiente similique amet! Minima omnis numquam corporis placeat. Sunt
-            tempora illo maiores voluptatibus fugit dicta atque nostrum
-            molestias. Autem, totam quod, ratione doloribus nihil aspernatur
-            voluptatibus repellat aliquid, odio dolorum natus et quos. Aut,
-            mollitia quibusdam maiores ipsam ipsa veniam eum ipsum repudiandae
-            reprehenderit iste aspernatur et quia commodi at numquam voluptatem
-            adipisci. Dolor corporis pariatur architecto?
-          </p>
+          {pastorMessage ? (
+            <>
+              <h2>{pastorMessage.title}</h2>
+              <br />
+              <p>{pastorMessage.message}</p>
+            </>
+          ) : (
+            <>
+              <h2>Message from the Pastor</h2>
+              <br />
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+                odit impedit ratione dolore. Deserunt deleniti minus nostrum,
+                voluptatibus magnam nesciunt temporibus. Necessitatibus facere animi
+                vel in veniam nostrum nam tempora hic molestias possimus culpa
+                tenetur assumenda, quidem, repellat sit officia iste, ullam adipisci
+                sapiente similique amet! Minima omnis numquam corporis placeat. Sunt
+                tempora illo maiores voluptatibus fugit dicta atque nostrum
+                molestias. Autem, totam quod, ratione doloribus nihil aspernatur
+                voluptatibus repellat aliquid, odio dolorum natus et quos. Aut,
+                mollitia quibusdam maiores ipsam ipsa veniam eum ipsum repudiandae
+                reprehenderit iste aspernatur et quia commodi at numquam voluptatem
+                adipisci. Dolor corporis pariatur architecto?
+              </p>
+            </>
+          )}
         </div>
         {/* <YouTubeProvider setApiStatus={setApiStatus}>  you tube section temporarily removed waiting on client id
         <h2>Latest Livestream</h2>

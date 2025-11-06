@@ -1,0 +1,192 @@
+.admin-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.admin-view h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Form Styles */
+.message-form {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.message-form h2 {
+  margin-top: 0;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.message-form div {
+  margin-bottom: 1rem;
+}
+
+.message-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.message-form input[type="text"],
+.message-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.message-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.message-form button {
+  padding: 0.75rem 1.5rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.message-form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.message-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.message-form button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.message-form button[type="button"] {
+  background-color: #f44336;
+  color: white;
+}
+
+.message-form button[type="button"]:hover {
+  background-color: #da190b;
+}
+
+/* Messages List Styles */
+.messages-list {
+  margin-top: 2rem;
+}
+
+.messages-list h2 {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.message-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-card.active {
+  border: 2px solid #4CAF50;
+  background-color: #f0fff0;
+}
+
+.message-card h3 {
+  margin-top: 0;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.message-card p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.message-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.message-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.message-actions button:first-of-type {
+  background-color: #2196F3;
+  color: white;
+}
+
+.message-actions button:first-of-type:hover {
+  background-color: #0b7dda;
+}
+
+.message-actions button:nth-of-type(2) {
+  background-color: #FF9800;
+  color: white;
+}
+
+.message-actions button:nth-of-type(2):hover {
+  background-color: #e68900;
+}
+
+.message-actions .delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.message-actions .delete-btn:hover {
+  background-color: #da190b;
+}
+
+.active-badge {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-view {
+    padding: 1rem;
+  }
+
+  .message-form {
+    padding: 1rem;
+  }
+
+  .message-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .message-actions button {
+    width: 100%;
+  }
+}
