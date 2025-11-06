@@ -9,7 +9,7 @@ function ChurchView() {
     <>
       <div className="ChurchHero">
         <div className="ChurchHero-bg1"></div>
-        <div className="ChurchHero-bg2 scaleUp">
+        <div className="ChurchHero-bg2 fadeIn">
           <h1 className="gracename ">Grace Lutheran Church</h1>
           <br />
         </div>
@@ -29,9 +29,9 @@ function ChurchView() {
       </div>
 
       <div className="church-info-cards">
-        <NavLink to="/worship" className="worship-card scaleUp1"></NavLink>
-        <NavLink to="/mission" className="mission-card scaleUp1"></NavLink>
-        <NavLink to="/beliefs" className="beliefs-card scaleUp1"></NavLink>
+        <NavLink to="/worship" className="worship-card fadeInCards"></NavLink>
+        <NavLink to="/mission" className="mission-card fadeInCards"></NavLink>
+        <NavLink to="/beliefs" className="beliefs-card fadeInCards"></NavLink>
       </div>
 
       <div className="church-staff">

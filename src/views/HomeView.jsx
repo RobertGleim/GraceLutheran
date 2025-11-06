@@ -64,7 +64,7 @@ const HomeView = () => {
   return (
     <>
       <div className="home-hero">
-        <div className="homeHero-bg1 scaleUp"></div>
+        <div className="homeHero-bg1 fadeIn"></div>
         <div className="homeHero-bg2"></div>
         <HeroSection />
       </div>
@@ -109,29 +109,22 @@ const HomeView = () => {
             </>
           )}
         </div>
-        {/* <YouTubeProvider setApiStatus={setApiStatus}>  you tube section temporarily removed waiting on client id
-        <h2>Latest Livestream</h2>
-        <YouTubeEmbed />
-        <YouTubeLink />
-        <div style={{ marginTop: "1rem" }}>
-          <b>Status:</b> {apiStatus}
-        </div>
-      </YouTubeProvider> */}
 
-        {/*  temp iframe code for testing  */}
-          <div className="youtube">
-            <div className="youtube-responsive">
-              <iframe
-                src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <h4>Watch Our Latest Sermon</h4>
+        {/* YouTube Video Section - In center */}
+        <div className="youtube">
+          <div className="youtube-responsive">
+            <iframe
+              src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
           </div>
+          <h4>Watch Our Latest Sermon</h4>
+        </div>
+
         <div className="dailyverse-container">
           <DailyVerse />
         </div>

@@ -12,4 +12,6 @@ hero section universal background prompt" help me create a herosection component
 ai used to make @mediaquery for responsive design 
 used ai to pull all styles from css sheet and document it ina style.txt sheet 
 ai used to create test 
+ai used to create admin dashboard 
+used ai to fix styling issues
 

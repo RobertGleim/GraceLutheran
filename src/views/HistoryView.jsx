@@ -6,7 +6,7 @@ const HistoryView = () => {
   return (
     <div>
       <div className="home-hero">
-        <div className="homeHero-bg1 scaleUp"></div>
+        <div className="homeHero-bg1 fadeIn"></div>
         <div className="homeHero-bg2"></div>
         <HeroSection />
       </div>

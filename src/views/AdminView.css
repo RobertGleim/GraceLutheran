@@ -2,6 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  min-height: 80vh;
 }
 
 .admin-view h1 {
@@ -10,234 +11,167 @@
   margin-bottom: 2rem;
 }
 
-/* Form Styles */
-.message-form {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 2rem;
+/* Navigation */
+.admin-nav {
   margin-bottom: 2rem;
-  transition: all 0.3s ease;
 }
 
-.message-form.editing {
-  background: #fff3cd;
-  border: 2px solid #ffc107;
-  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
-}
-
-.message-form h2 {
-  margin-top: 0;
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-.message-form div {
-  margin-bottom: 1rem;
-}
-
-.message-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.message-form input[type="text"],
-.message-form textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.message-form textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.message-form button {
-  padding: 0.75rem 1.5rem;
-  margin-right: 0.5rem;
+.back-button {
+  background: #6c757d;
+  color: white;
   border: none;
-  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.message-form button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
+.back-button:hover {
+  background: #5a6268;
 }
 
-.message-form button[type="submit"]:hover:not(:disabled) {
-  background-color: #45a049;
+/* Dashboard Styles */
+.admin-dashboard {
+  text-align: center;
 }
 
-.message-form button[type="submit"]:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.dashboard-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
 }
 
-.message-form button[type="button"] {
-  background-color: #f44336;
-  color: white;
-}
-
-.message-form button[type="button"]:hover {
-  background-color: #da190b;
-}
-
-/* Messages List Styles */
-.messages-list {
+.admin-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
 }
 
-.messages-list h2 {
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-.message-card {
+.feature-card {
   background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-height: 400px;
-  display: flex;
-  flex-direction: column;
-}
-
-.message-card.active {
-  border: 2px solid #4CAF50;
-  background-color: #f0fff0;
-}
-
-.message-card.being-edited {
-  border: 2px solid #ffc107;
-  background-color: #fff3cd;
-  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
-}
-
-.editing-indicator {
-  font-size: 0.8rem;
-  color: #ffc107;
-  font-weight: bold;
-  background: #fff;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  margin-left: 0.5rem;
-}
-
-.message-card h3 {
-  margin-top: 0;
-  color: #333;
-  margin-bottom: 0.5rem;
-  flex-shrink: 0;
-}
-
-.message-card p {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  overflow-y: auto;
-  max-height: 200px;
-  padding-right: 0.5rem;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-/* Custom scrollbar for message text */
-.message-card p::-webkit-scrollbar {
-  width: 8px;
-}
-
-.message-card p::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.message-card p::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-.message-card p::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.message-actions {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.message-actions button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.message-actions button:first-of-type {
-  background-color: #2196F3;
-  color: white;
+.feature-card:hover:not(.disabled) {
+  border-color: #014691f1;
+  box-shadow: 0 4px 16px rgba(1, 70, 145, 0.2);
+  transform: translateY(-2px);
 }
 
-.message-actions button:first-of-type:hover {
-  background-color: #0b7dda;
+.feature-card.disabled {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-.message-actions button:nth-of-type(2) {
-  background-color: #FF9800;
-  color: white;
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.message-actions button:nth-of-type(2):hover {
-  background-color: #e68900;
+.feature-card h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
-.message-actions .delete-btn {
-  background-color: #f44336;
-  color: white;
+.feature-card p {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
 
-.message-actions .delete-btn:hover {
-  background-color: #da190b;
+.feature-arrow {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color: #014691f1;
+  transition: transform 0.3s ease;
 }
 
-.active-badge {
-  background-color: #4CAF50;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+.feature-card:hover:not(.disabled) .feature-arrow {
+  transform: translateX(4px);
+}
+
+.feature-status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ffc107;
+  color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
   font-weight: bold;
-  font-size: 0.9rem;
 }
+
+/* Access Denied */
+.access-denied {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.access-denied h1 {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.access-denied p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Moved form and message styles to PastorMessages.css */
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .admin-view {
     padding: 1rem;
   }
+  
+  .admin-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+  
+  .dashboard-subtitle {
+    margin-bottom: 2rem;
+  }
+}
 
-  .message-form {
+@media (max-width: 480px) {
+  .admin-view {
+    padding: 0.5rem;
+  }
+  
+  .feature-card {
     padding: 1rem;
   }
-
-  .message-actions {
-    flex-direction: column;
-    align-items: stretch;
+  
+  .feature-icon {
+    font-size: 2.5rem;
   }
-
-  .message-actions button {
-    width: 100%;
+  
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 }
