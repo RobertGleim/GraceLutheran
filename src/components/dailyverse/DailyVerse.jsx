@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './DailyVerse.css';
-import { API_KEY } from '../../my_key.jsx';
+import { API_KEY } from '../../config/api.js';
 
 
 const BIBLE_ID = '72f4e6dc683324df-01'; 
