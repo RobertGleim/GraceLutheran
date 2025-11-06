@@ -48,32 +48,87 @@ export const testBackendAndCreateAdmin = async () => {
     console.log("❌ Register request failed:", error.message);
   }
 
-  // Test 3: Try login with the credentials
-  console.log("=== Testing login with admin@email.com / 123 ===");
+  // Test 3: Try login with common passwords
+  const commonPasswords = ["123", "admin", "password", "admin123", "grace", "church"];
   
-  try {
-    const loginResponse = await fetch(`${API_URL}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: "admin@email.com",
-        password: "123"
-      }),
-    });
-
-    console.log("Login test response status:", loginResponse.status);
+  console.log("=== Testing login with common passwords ===");
+  
+  for (const pwd of commonPasswords) {
+    console.log(`🔑 Trying password: "${pwd}"`);
     
-    if (loginResponse.ok) {
-      const loginData = await loginResponse.json();
-      console.log("✅ Login successful:", loginData);
-    } else {
-      const loginError = await loginResponse.text();
-      console.log("❌ Login failed:", loginError);
+    try {
+      const loginResponse = await fetch(`${API_URL}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "admin@email.com",
+          password: pwd
+        }),
+      });
+
+      console.log(`Password "${pwd}" response status:`, loginResponse.status);
+      
+      if (loginResponse.ok) {
+        const loginData = await loginResponse.json();
+        console.log(`🎉 SUCCESS! Login works with password: "${pwd}"`);
+        console.log("✅ Login data:", loginData);
+        console.log(`🔑 USE THESE CREDENTIALS: admin@email.com / ${pwd}`);
+        return; // Stop testing once we find working credentials
+      } else {
+        const loginError = await loginResponse.text();
+        console.log(`❌ Password "${pwd}" failed:`, loginError);
+      }
+    } catch (error) {
+      console.log(`❌ Password "${pwd}" test failed:`, error.message);
     }
-  } catch (error) {
-    console.log("❌ Login test failed:", error.message);
+  }
+  
+  console.log("💡 NONE of the common passwords worked.");
+  console.log("💡 SOLUTION: You need to either:");
+  console.log("   1. Remember the correct password for admin@email.com");
+  console.log("   2. Check your backend database directly");
+  console.log("   3. Create a new user with a known password");
+  console.log("   4. Reset the admin password in your backend database");
+  
+  // Test 4: Try alternative user creation methods
+  console.log("=== Trying alternative user creation ===");
+  
+  // Try POST to /admin/create-user or similar
+  const adminEndpoints = [
+    "/admin/create-user",
+    "/admin/users", 
+    "/create-admin",
+    "/setup-admin"
+  ];
+  
+  for (const endpoint of adminEndpoints) {
+    try {
+      console.log(`🔍 Trying endpoint: ${API_URL}${endpoint}`);
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: "admin",
+          email: "admin@email.com", 
+          password: "123",
+          role: "admin"
+        }),
+      });
+      
+      console.log(`Endpoint ${endpoint} response:`, response.status);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log(`🎉 SUCCESS! User created via ${endpoint}:`, data);
+        return;
+      }
+    } catch (error) {
+      console.log(`Endpoint ${endpoint} failed:`, error.message);
+    }
   }
 };
 

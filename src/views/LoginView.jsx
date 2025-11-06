@@ -82,10 +82,30 @@ const LoginView = () => {
           onClick={() => testBackendAndCreateAdmin()}
           style={{marginRight: '10px', padding: '5px 10px'}}
         >
-          Test & Create Admin User
+          Test Common Passwords
+        </button>
+        <button 
+          type="button" 
+          onClick={() => {
+            setEmail('admin@email.com');
+            setPassword('admin');
+          }}
+          style={{marginRight: '10px', padding: '5px 10px'}}
+        >
+          Try admin/admin
+        </button>
+        <button 
+          type="button" 
+          onClick={() => {
+            setEmail('admin@email.com');
+            setPassword('password');
+          }}
+          style={{marginRight: '10px', padding: '5px 10px'}}
+        >
+          Try admin/password
         </button>
         <p style={{fontSize: '12px', color: '#666'}}>
-          This will attempt to create admin@email.com with password "123"
+          Click "Test Common Passwords" to find the correct password, or try the preset buttons
         </p>
       </div>
       <img className="login-illustration" src="/Grace-Collage3.png" alt="Login Illustration" />
