@@ -1,16 +1,29 @@
 import React, { useState } from 'react'
 import {useAuth} from '../contexts/AuthContext.jsx'
+import { useNavigate } from 'react-router-dom'
 import './LoginView.css'
 
 const LoginView = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { login } = useAuth()
+  const navigate = useNavigate()
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await login(email, password)
+    const result = await login(email, password)
+    
+    if (result?.success) {
+      // Redirect based on user role
+      if (result.user?.role === 'admin') {
+        navigate('/admin')
+      } else {
+        navigate('/')
+      }
+    } else {
+      alert('Login failed. Please check your credentials.')
+    }
   }
 
   return (

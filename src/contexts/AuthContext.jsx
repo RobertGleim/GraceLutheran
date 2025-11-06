@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
+export { AuthContext };
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         });
         if (!response.ok) {
             console.log("Login failed");
-            return;
+            return { success: false };
         } 
 
         const data = await response.json();
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }) => {
         setToken(data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
+        return { success: true, user: data.user };
     }
 
     const value = {

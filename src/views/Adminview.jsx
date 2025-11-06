@@ -64,10 +64,17 @@ function AdminView() {
       });
 
       if (response.ok) {
+        const newMessage = await response.json();
+        
+        // If creating a new message (not editing), automatically activate it
+        if (!editingId && newMessage.id) {
+          await handleActivate(newMessage.id);
+        }
+        
         setFormData({ title: '', message: '' });
         setEditingId(null);
         fetchMessages();
-        alert(editingId ? 'Message updated!' : 'Message created!');
+        alert(editingId ? 'Message updated!' : 'Message created and activated!');
       }
     } catch (error) {
       console.error('Error saving message:', error);
@@ -101,7 +108,7 @@ function AdminView() {
   };
 
   // Activate message
-  const handleActivate = async (id) => {
+  const handleActivate = async (id, showAlert = true) => {
     const token = localStorage.getItem('token');
     try {
       const response = await fetch(`${API_URL}/pastor-messages/${id}/activate`, {
@@ -113,11 +120,18 @@ function AdminView() {
 
       if (response.ok) {
         fetchMessages();
-        alert('Message activated!');
+        if (showAlert) {
+          alert('Message activated!');
+        }
+        return true;
       }
+      return false;
     } catch (error) {
       console.error('Error activating message:', error);
-      alert('Error activating message');
+      if (showAlert) {
+        alert('Error activating message');
+      }
+      return false;
     }
   };
 
