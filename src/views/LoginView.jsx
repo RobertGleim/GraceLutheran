@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {useAuth} from '../contexts/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
-import { testBackendConnection } from '../utils/backendTest.js'
-import { testBackendAndCreateAdmin } from '../utils/backendDiagnostic.js'
 import './LoginView.css'
 
 const LoginView = () => {
@@ -12,13 +10,6 @@ const LoginView = () => {
   const [loading, setLoading] = useState(false)
   const { login } = useAuth()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    // Test backend connectivity on component mount
-    testBackendConnection();
-    // Run comprehensive backend diagnostic
-    testBackendAndCreateAdmin();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -39,7 +30,6 @@ const LoginView = () => {
     } else {
       const errorMessage = result?.error || 'Login failed. Please check your credentials.'
       setError(errorMessage)
-      console.log('Login failed:', errorMessage)
     }
   }
 
@@ -74,40 +64,7 @@ const LoginView = () => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
-      
-      <div style={{marginTop: '20px', padding: '10px', backgroundColor: '#f0f0f0', borderRadius: '5px'}}>
-        <h3>Debug Tools</h3>
-        <button 
-          type="button" 
-          onClick={() => testBackendAndCreateAdmin()}
-          style={{marginRight: '10px', padding: '5px 10px'}}
-        >
-          Test Common Passwords
-        </button>
-        <button 
-          type="button" 
-          onClick={() => {
-            setEmail('admin@email.com');
-            setPassword('admin');
-          }}
-          style={{marginRight: '10px', padding: '5px 10px'}}
-        >
-          Try admin/admin
-        </button>
-        <button 
-          type="button" 
-          onClick={() => {
-            setEmail('admin@email.com');
-            setPassword('password');
-          }}
-          style={{marginRight: '10px', padding: '5px 10px'}}
-        >
-          Try admin/password
-        </button>
-        <p style={{fontSize: '12px', color: '#666'}}>
-          Click "Test Common Passwords" to find the correct password, or try the preset buttons
-        </p>
-      </div>
+
       <img className="login-illustration" src="/Grace-Collage3.png" alt="Login Illustration" />
     </div>
   )

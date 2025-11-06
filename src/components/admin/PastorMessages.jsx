@@ -25,8 +25,8 @@ function PastorMessages() {
         const data = await response.json();
         setMessages(data);
       }
-    } catch (error) {
-      console.error('Error fetching messages:', error);
+    } catch {
+      // Error fetching messages - fail silently
     }
   };
 
@@ -88,14 +88,10 @@ function PastorMessages() {
           alert(editingId ? 'Message updated!' : 'Message created and activated!');
         }, 0);
       } else {
-        // Log error details
-        const errorData = await response.text();
-        console.error('Error response:', response.status, errorData);
-        alert(`Error saving message: ${response.status} - ${errorData}`);
+        alert('Error saving message. Please try again.');
       }
-    } catch (error) {
-      console.error('Error saving message:', error);
-      alert('Error saving message: ' + error.message);
+    } catch {
+      alert('Error saving message. Please check your connection.');
     } finally {
       setLoading(false);
     }
@@ -119,8 +115,7 @@ function PastorMessages() {
         fetchMessages();
         setTimeout(() => alert('Message deleted!'), 0);
       }
-    } catch (error) {
-      console.error('Error deleting message:', error);
+    } catch {
       alert('Error deleting message');
     } finally {
       setLoading(false);
@@ -151,8 +146,7 @@ function PastorMessages() {
         return true;
       }
       return false;
-    } catch (error) {
-      console.error('Error activating message:', error);
+    } catch {
       if (showAlert) {
         alert('Error activating message');
       }
@@ -164,7 +158,6 @@ function PastorMessages() {
 
   // Edit message
   const handleEdit = (message) => {
-    console.log('Edit button clicked for message:', message);
     setFormData({ title: message.title, message: message.message });
     setEditingId(message.id);
     

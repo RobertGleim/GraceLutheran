@@ -22,22 +22,15 @@ const HomeView = () => {
     const fetchPastorMessage = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL;
-        console.log('API URL:', apiUrl);
-        console.log('Fetching active pastor message...');
         const response = await fetch(`${apiUrl}/pastor-messages/active`);
-        console.log('Response status:', response.status);
         if (response.ok) {
           const data = await response.json();
-          console.log('Received pastor message:', data);
-          console.log('Has title?', !!data.title);
-          console.log('Has message?', !!data.message);
           setPastorMessage(data);
         } else {
-          console.log('No active message found - status:', response.status);
           setPastorMessage(null);
         }
-      } catch (error) {
-        console.error('Error fetching pastor message:', error);
+      } catch {
+        setPastorMessage(null);
       }
     };
     
@@ -49,7 +42,6 @@ const HomeView = () => {
     
     // Listen for custom event when admin updates messages
     const handleMessageUpdate = () => {
-      console.log('Received pastorMessageUpdated event');
       fetchPastorMessage();
     };
     window.addEventListener('pastorMessageUpdated', handleMessageUpdate);
