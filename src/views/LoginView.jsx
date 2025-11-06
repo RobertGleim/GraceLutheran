@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {useAuth} from '../contexts/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { testBackendConnection } from '../utils/backendTest.js'
+import { testBackendAndCreateAdmin } from '../utils/backendDiagnostic.js'
 import './LoginView.css'
 
 const LoginView = () => {
@@ -15,6 +16,8 @@ const LoginView = () => {
   useEffect(() => {
     // Test backend connectivity on component mount
     testBackendConnection();
+    // Run comprehensive backend diagnostic
+    testBackendAndCreateAdmin();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -71,6 +74,20 @@ const LoginView = () => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
+      
+      <div style={{marginTop: '20px', padding: '10px', backgroundColor: '#f0f0f0', borderRadius: '5px'}}>
+        <h3>Debug Tools</h3>
+        <button 
+          type="button" 
+          onClick={() => testBackendAndCreateAdmin()}
+          style={{marginRight: '10px', padding: '5px 10px'}}
+        >
+          Test & Create Admin User
+        </button>
+        <p style={{fontSize: '12px', color: '#666'}}>
+          This will attempt to create admin@email.com with password "123"
+        </p>
+      </div>
       <img className="login-illustration" src="/Grace-Collage3.png" alt="Login Illustration" />
     </div>
   )
