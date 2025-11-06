@@ -12,7 +12,7 @@ const MissionView = () => {
         <p>The information on this page is not an answer to the question, “What is the mission of the church?”  Scripture answers that question quite clearly.  Rather, what is presented here is an answer to the question, “How is the mission of the church engaged at Grace Lutheran Church & School?”  Take a moment to watch the video for a quick overview of the mission of Grace.</p>
       </div>
         <div className='mission-video'>
-            <video width="800" height="450" controls autoPlay muted loop>
+            <video width="800" height="450" controls muted loop preload="metadata">
                 <source src="/Mission-Video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
