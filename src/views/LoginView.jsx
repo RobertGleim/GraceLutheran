@@ -31,10 +31,24 @@ const LoginView = () => {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <input type="email" placeholder="Email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input 
+            type="email" 
+            placeholder="Email" 
+            name='email' 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            autoComplete="email"
+          />
         </div>
         <div className="input-container">
-          <input type="password" placeholder="Password" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input 
+            type="password" 
+            placeholder="Password" 
+            name='password' 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            autoComplete="current-password"
+          />
         </div>
         <button className='login-button' type="submit">Login</button>
       </form>
