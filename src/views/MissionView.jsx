@@ -12,8 +12,8 @@ const MissionView = () => {
         <p>The information on this page is not an answer to the question, “What is the mission of the church?”  Scripture answers that question quite clearly.  Rather, what is presented here is an answer to the question, “How is the mission of the church engaged at Grace Lutheran Church & School?”  Take a moment to watch the video for a quick overview of the mission of Grace.</p>
       </div>
         <div className='mission-video'>
-            <video width="800" height="450" controls autoPlay unmuted loop>
-                <source src="/public/Mission-Video.mp4" type="video/mp4" />
+            <video width="800" height="450" controls autoPlay muted loop>
+                <source src="/Mission-Video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -23,7 +23,7 @@ const MissionView = () => {
         
         
         <div className='mission-details'>
-            <img src="/public/mission-details.png" alt="Mission Image" />
+            <img src="/mission-details.png" alt="Mission Image" />
             <p>If you would like to know more about the mission of Grace Lutheran Church & School, download and read over this Biblical explanation of our mission statement.
 
 Of course, the best way to understand our mission is to participate in it.  Thus, you are invited to…</p>
