@@ -1,18 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {useAuth} from '../contexts/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
+import { testBackendConnection } from '../utils/backendTest.js'
 import './LoginView.css'
 
 const LoginView = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const { login } = useAuth()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    // Test backend connectivity on component mount
+    testBackendConnection();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
+    setError('')
+    
     const result = await login(email, password)
+    
+    setLoading(false)
     
     if (result?.success) {
       // Redirect based on user role
@@ -22,13 +34,16 @@ const LoginView = () => {
         navigate('/')
       }
     } else {
-      alert('Login failed. Please check your credentials.')
+      const errorMessage = result?.error || 'Login failed. Please check your credentials.'
+      setError(errorMessage)
+      console.log('Login failed:', errorMessage)
     }
   }
 
   return (
     <div className="login">
       <h1>Login</h1>
+      {error && <div className="error-message" style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <input 
@@ -38,6 +53,7 @@ const LoginView = () => {
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
             autoComplete="email"
+            required
           />
         </div>
         <div className="input-container">
@@ -48,9 +64,12 @@ const LoginView = () => {
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
             autoComplete="current-password"
+            required
           />
         </div>
-        <button className='login-button' type="submit">Login</button>
+        <button className='login-button' type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
       </form>
       <img className="login-illustration" src="/Grace-Collage3.png" alt="Login Illustration" />
     </div>

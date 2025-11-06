@@ -21,28 +21,59 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token") || null);
 
     const login = async (email, password) => {
-        const response = await fetch(API_URL + "/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ 
-                email: email, 
-                password: password
-            }),
-        });
-        if (!response.ok) {
-            console.log("Login failed");
-            return { success: false };
-        } 
+        try {
+            console.log('Attempting login to:', API_URL + "/users/login");
+            console.log('Login credentials:', { email: email, password: password ? '[REDACTED]' : 'empty' });
+            
+            const response = await fetch(API_URL + "/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    email: email, 
+                    password: password
+                }),
+            });
 
-        const data = await response.json();
-        console.log('response data', data);
-        setUser(data.user);
-        setToken(data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", data.token);
-        return { success: true, user: data.user };
+            console.log('Response status:', response.status);
+            console.log('Response headers:', [...response.headers.entries()]);
+
+            if (!response.ok) {
+                let errorText = '';
+                try {
+                    errorText = await response.text();
+                    console.log('Error response body:', errorText);
+                } catch {
+                    console.log('Could not read error response');
+                }
+                
+                if (response.status === 401) {
+                    console.log("Login failed: Invalid credentials");
+                    return { success: false, error: "Invalid email or password" };
+                } else {
+                    console.log("Login failed with status:", response.status, errorText);
+                    return { success: false, error: `Server error: ${response.status}` };
+                }
+            } 
+
+            const data = await response.json();
+            console.log('Login successful, response data:', data);
+            
+            if (data.token && data.user) {
+                setUser(data.user);
+                setToken(data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("token", data.token);
+                return { success: true, user: data.user };
+            } else {
+                console.log('Invalid response format:', data);
+                return { success: false, error: "Invalid server response" };
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            return { success: false, error: "Network error: " + error.message };
+        }
     }
 
     const value = {
