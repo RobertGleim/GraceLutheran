@@ -50,7 +50,8 @@ export const AuthProvider = ({ children }) => {
             } else {
                 return { success: false, error: "Invalid server response" };
             }
-        } catch {
+        } catch (error) {
+            console.error("Login error:", error);
             return { success: false, error: "Network error occurred" };
         }
     }
