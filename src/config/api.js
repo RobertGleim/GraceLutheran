@@ -1,1 +1,3 @@
-export const API_KEY = import.meta.env.VITE_BIBLE_API_KEY || 'cef5cb15e191231612a14a53d4b662d3';
+const API_URL = import.meta.env.VITE_API_URL || 'https://gracelutheranbacke.onrender.com';
+
+export default API_URL;

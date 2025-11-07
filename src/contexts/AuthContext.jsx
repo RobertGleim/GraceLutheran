@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { createContext, useContext, useState, useEffect } from "react";
-
+import API_URL from '../config/api';
 
 const AuthContext = createContext();
 
@@ -13,8 +13,6 @@ export const useAuth = () => {
 
 }
 
-const API_URL = import.meta.env.VITE_API_URL || "https://gracelutheranbacke.onrender.com";
-
 export const AuthProvider = ({ children }) => {
     const storedUser = localStorage.getItem("user");
     const [user, setUser] = useState(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null);
@@ -22,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await fetch(API_URL + "/users/login", {
+            const response = await fetch(`${API_URL}/users/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

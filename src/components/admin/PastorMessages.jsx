@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import API_URL from '../../config/api';
 import './PastorMessages.css';
 
 function PastorMessages() {
@@ -8,8 +9,6 @@ function PastorMessages() {
   const [formData, setFormData] = useState({ title: '', message: '' });
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const API_URL = import.meta.env.VITE_API_URL;
 
   // Fetch all messages
   const fetchMessages = async () => {
@@ -34,7 +33,6 @@ function PastorMessages() {
     if (user?.role === 'admin') {
       fetchMessages();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   // Handle form input changes
