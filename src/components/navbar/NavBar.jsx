@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -16,7 +15,10 @@ const NavBar = () => {
   };
   
   return (
-    <div className="navbar burger-navbar">
+    <div className="navbar">
+      <div className="nav-logo">
+        <NavLink to="/" onClick={() => setOpen(false)}>Church</NavLink>
+      </div>
       <button
         className={`burger-menu${open ? ' open' : ''}`}
         onClick={() => setOpen((prev) => !prev)}
