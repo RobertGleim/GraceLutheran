@@ -1,7 +1,26 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
+  color: white;
+  overflow: hidden;
+}
 
 
-.hero-content {
-  z-index: 10;
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  opacity: 0.95;
 }
 
 .hero-section .navbar {
@@ -26,4 +45,18 @@
   font-size: 1.3rem;
   font-weight: 400;
   
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 300px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
 }

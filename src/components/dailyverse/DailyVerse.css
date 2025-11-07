@@ -16,10 +16,17 @@
   overflow-wrap: break-word;
 }
 
+.daily-verse:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+  
+}
+
 .daily-verse h2 {
   font-size: 1.5rem;
   color: #014691f1;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 /* Container for verse text - handled by .verse-text now */
@@ -63,6 +70,7 @@
   overflow-wrap: break-word;
   width: 100%;
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .verse-text {

@@ -17,7 +17,10 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <div className="nav-logo">
-        <NavLink to="/" onClick={() => setOpen(false)}>Church</NavLink>
+        <NavLink to="/" onClick={() => setOpen(false)}>
+          <img src="/Logo-removebg.png" alt="Grace Logo" className="nav-logo-image" />
+          GraceLCS
+        </NavLink>
       </div>
       <button
         className={`burger-menu${open ? ' open' : ''}`}
@@ -30,12 +33,12 @@ const NavBar = () => {
       </button>
       <nav className={`nav-links${open ? ' show' : ''}`}>
         <NavLink to="/" onClick={() => setOpen(false)}>Home</NavLink>
-        <NavLink to="/Beliefs" onClick={() => setOpen(false)}>Beliefs</NavLink>
+        <NavLink to="/Church" onClick={() => setOpen(false)}>Church</NavLink>
         <NavLink to="/Contact" onClick={() => setOpen(false)}>Contact</NavLink>
-        <NavLink to="/Events" onClick={() => setOpen(false)}>Events</NavLink>
-        <NavLink to="/History" onClick={() => setOpen(false)}>History</NavLink>
-        <NavLink to="/Missions" onClick={() => setOpen(false)}>Missions</NavLink>
-        <NavLink to="/Worship" onClick={() => setOpen(false)}>Worship</NavLink>
+        <NavLink to="/Calendar" onClick={() => setOpen(false)}>Events</NavLink>
+
+        <NavLink to="/Donation" onClick={() => setOpen(false)}>Donations</NavLink>
+
         {user?.role === 'admin' && (
           <NavLink to="/admin" onClick={() => setOpen(false)}>Admin</NavLink>
         )}

@@ -3,8 +3,7 @@ import "./Homeview.css";
 import SearchBible from "../components/searchbible/SearchBible.jsx";
 import DailyVerse from "../components/dailyverse/DailyVerse.jsx";
 import HeroSection from "../components/hero/HeroSection.jsx";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import {
   YouTubeProvider,
@@ -14,7 +13,7 @@ import {
 
 const HomeView = () => {
   const navigate = useNavigate();
-  // const [apiStatus, setApiStatus] = useState("");
+ 
 
   const [pastorMessage, setPastorMessage] = useState(null);
 
@@ -34,19 +33,19 @@ const HomeView = () => {
       }
     };
     
-    // Fetch immediately
+   
     fetchPastorMessage();
     
-    // Poll every 30 seconds for updates
+    
     const interval = setInterval(fetchPastorMessage, 30000);
     
-    // Listen for custom event when admin updates messages
+    
     const handleMessageUpdate = () => {
       fetchPastorMessage();
     };
     window.addEventListener('pastorMessageUpdated', handleMessageUpdate);
     
-    // Cleanup
+   
     return () => {
       clearInterval(interval);
       window.removeEventListener('pastorMessageUpdated', handleMessageUpdate);
@@ -68,8 +67,20 @@ const HomeView = () => {
         >
           Church Information
         </div>
-        <div className="school-card">School Information</div>
-        <div className="donation-card">Donation Information</div>
+        <div
+          className="school-card"
+          onClick={() => navigate("/school")}
+          style={{ cursor: "pointer" }}
+        >
+          School Information
+        </div>
+        <div
+          className="donation-card"
+          onClick={() => navigate("/donation")}
+          style={{ cursor: "pointer" }}
+        >
+          Donation Information
+        </div>
       </div>
 
       <div className="main-content">
@@ -123,23 +134,7 @@ const HomeView = () => {
       </div>
 
       <SearchBible />
-      <div className="contact-info">
-        <h4>Mailing Address</h4>
-
-        <div>Mailing Address : 1007 Bacon Ranch Road, Killeen, Texas 76542</div>
-      </div>
-      <div ><div className="church-office">Church Office (254) 392-0717 Mon.-Thurs. 9:00 – 2:00 
-        <NavLink to="/contact"><img style={{ width: '50px', transform: 'translateY(10px)' }}
-              src="/icons8-email-100.png"
-              alt="Envelope icon representing email contact option"
-            /></NavLink></div>
-
-      <div className="school-office">School Office (254) 441-5519 Mon.-Fri. 8:30 – 3:30 <NavLink to="/contact"><img style={{ width: '50px', transform: 'translateY(10px)' }}
-              src="/icons8-email-100.png"
-              alt="Envelope icon representing email contact option"
-            /></NavLink></div>
-
-      </div>
+      
     </>
   );
 };

@@ -1,17 +1,31 @@
 .site-footer {
-	background: #014691f1;;
+	background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
 	color: #fff;
 	padding: 1.5rem 0 1rem 0;
 	text-align: center;
 	margin-top: 3rem;
+	position: relative;
+	border-top: none;
+}
+
+.site-footer::before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: 0;
+	right: 0;
+	height: 10px;
+	background: linear-gradient(to top, rgba(16, 86, 236, 0.1), transparent);
+	pointer-events: none;
 }
 
 .footer-nav {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
-	gap: 1.5rem;
+	justify-content: center;
+	gap: 3rem;
 	margin-bottom: 1rem;
+	align-items: flex-start;
 }
 
 .footer-nav a {
@@ -20,6 +34,8 @@
 	text-decoration: none;
 	font-weight: 500;
 	transition: color 0.2s;
+	padding: 0.5rem 0;
+	display: block;
 }
 
 .footer-nav a:hover {
@@ -35,19 +51,37 @@
 .footer-home-links {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  width: 300px;
+  width: auto;
+  min-width: 200px;
 }
 
+.footer-home-links > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1.0rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-
+.footer-home-links a {
+  font-size: 0.9rem;
+}
 
 .footer-church-links {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  width: 300px;
+  width: auto;
+  min-width: 200px;
 }
+
+.footer-church-links > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1.0rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .footer-church-links a {
   font-size: 0.9rem;
 }
@@ -55,9 +89,43 @@
 .footer-school-links {
   display: flex;
   flex-direction: column;
-  
-  gap: 0.5rem;
-  width: 300px;
+  width: auto;
+  min-width: 200px;
+}
+
+.footer-school-links > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1.0rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-school-links a {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer-nav {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .footer-home-links,
+  .footer-church-links,
+  .footer-school-links {
+    width: 100%;
+    max-width: 300px;
+    align-items: center;
+  }
+
+  .footer-home-links > div,
+  .footer-church-links > div,
+  .footer-school-links > div {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 

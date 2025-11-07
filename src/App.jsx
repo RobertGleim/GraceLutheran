@@ -11,6 +11,10 @@ import WorshipView from './views/WorshipView.jsx';
 import MissionView from './views/MissionView.jsx';
 import BeliefsView from './views/BeliefsView.jsx';
 import AdminView from './views/Adminview.jsx';
+import NavBar from './components/navbar/NavBar';
+import ContactView from './views/ContactView';
+import SchoolView from './views/SchoolView';
+import DonationView from './views/DonationView';
 
 function App() {
   return (
@@ -21,6 +25,7 @@ function App() {
         v7_relativeSplatPath: true
       }}
     >
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/login" element={<LoginView />} />
@@ -31,6 +36,9 @@ function App() {
         <Route path="/mission" element={<MissionView />} />
         <Route path="/beliefs" element={<BeliefsView />} />
         <Route path="/admin" element={<AdminView />} />
+        <Route path="/contact" element={<ContactView />} />
+        <Route path="/school" element={<SchoolView />} />
+        <Route path="/donation" element={<DonationView />} />
       </Routes>
       <Footer />
     </BrowserRouter>
