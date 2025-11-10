@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 import HomeView from './views/HomeView'
 import LoginView from './views/LoginView'
+import RegisterView from './views/RegisterView' // added import
 import ChurchView from './views/ChurchView';
 import Footer from './components/footer/footer';
 import HistoryView from './views/HistoryView.jsx';
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/login" element={<LoginView />} />
+        <Route path="/register" element={<RegisterView />} /> {/* added register route */}
         <Route path="/church" element={<ChurchView />} />
         <Route path="/history" element={<HistoryView />} />
         <Route path="/calendar" element={<CalenderView />} />

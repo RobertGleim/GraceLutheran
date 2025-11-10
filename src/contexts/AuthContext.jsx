@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { createContext, useContext, useState, useEffect } from "react";
-import API_URL from '../config/api';
+
+// safe fallback for API base URL (use REACT_APP_API_URL or same-origin)
+const API_URL = process.env.REACT_APP_API_URL || '';
 
 const AuthContext = createContext();
 
