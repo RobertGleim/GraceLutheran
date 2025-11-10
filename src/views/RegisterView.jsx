@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { API_URL } from '../contexts/AuthContext.jsx'
+import { apiFetch } from '../utils/api.js'
 import './AuthForm.css'
 
 const RegisterView = () => {
@@ -20,16 +20,11 @@ const RegisterView = () => {
       setError('Passwords do not match')
       return
     }
-    if (!API_URL) {
-      setError('Backend API URL is not configured. Set VITE_API_URL or use the default backend.')
-      return
-    }
 
     setLoading(true)
     try {
-      const res = await fetch(`${API_URL}/users`, {
+      const res = await apiFetch('/users', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: name.trim(),
           email: email.trim().toLowerCase(),
@@ -53,9 +48,8 @@ const RegisterView = () => {
       }
 
       // Fallback: attempt login if token wasn't returned
-      const loginRes = await fetch(`${API_URL}/users/login`, {
+      const loginRes = await apiFetch('/users/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim().toLowerCase(), password })
       })
       const loginBody = await loginRes.json().catch(() => null)
