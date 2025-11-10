@@ -124,31 +124,66 @@ function PastorMessages() {
   const handleActivate = async (id, showAlert = true) => {
     const token = localStorage.getItem('token');
     setLoading(true);
-    try {
-      const response = await fetch(`${API_URL}/pastor-messages/${id}/activate`, {
+
+    const tryPatch = async () => {
+      return fetch(`${API_URL}/pastor-messages/${id}/activate`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
+    };
 
-      if (response.ok) {
-        fetchMessages(); // Refresh the list to show updated active status
-        
-        // Dispatch custom event to notify other components
+    const tryPostOverride = async () => {
+      return fetch(`${API_URL}/pastor-messages/${id}/activate`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'X-HTTP-Method-Override': 'PATCH',
+          'Content-Type': 'application/json'
+        },
+        // some servers expect a body for POST; send minimal JSON
+        body: JSON.stringify({})
+      });
+    };
+
+    try {
+      // First attempt PATCH (normal)
+      let response = await tryPatch();
+
+      // If PATCH returned an invalid CORS/preflight response it may have failed with network error.
+      // If response is not ok, attempt POST override as a fallback.
+      if (!response.ok) {
+        // Try method-override fallback
+        response = await tryPostOverride();
+      }
+
+      if (response && response.ok) {
+        fetchMessages(); // Refresh list
         window.dispatchEvent(new Event('pastorMessageUpdated'));
-        
-        if (showAlert) {
-          setTimeout(() => alert('Message activated!'), 0);
-        }
+        if (showAlert) setTimeout(() => alert('Message activated!'), 0);
         return true;
+      } else {
+        if (showAlert) alert('Error activating message');
+        return false;
       }
-      return false;
-    } catch {
-      if (showAlert) {
-        alert('Error activating message');
+    } catch  {
+      // Network/CORS error — attempt fallback once
+      try {
+        const response = await tryPostOverride();
+        if (response && response.ok) {
+          fetchMessages();
+          window.dispatchEvent(new Event('pastorMessageUpdated'));
+          if (showAlert) setTimeout(() => alert('Message activated!'), 0);
+          return true;
+        } else {
+          if (showAlert) alert('Error activating message');
+          return false;
+        }
+      } catch  {
+        if (showAlert) alert('Error activating message (network/CORS). Check server CORS settings.');
+        return false;
       }
-      return false;
     } finally {
       setLoading(false);
     }
@@ -237,15 +272,16 @@ function PastorMessages() {
               <h3>{msg.title} {editingId === msg.id && <span className="editing-indicator">(Editing)</span>}</h3>
               <p>{msg.message}</p>
               <div className="message-actions">
-                {msg.is_active ? (
-                  <span className="active-badge">ACTIVE</span>
-                ) : (
-                  <button onClick={() => handleActivate(msg.id)}>
-                    Activate
-                  </button>
-                )}
-                <button onClick={() => handleEdit(msg)}>Edit</button>
-                <button onClick={() => handleDelete(msg.id)} className="delete-btn">
+                <button
+                  type="button"
+                  className={msg.is_active ? 'active-badge' : 'activate-btn'}
+                  aria-pressed={msg.is_active}
+                  onClick={() => handleActivate(msg.id)}
+                >
+                  {msg.is_active ? 'ACTIVE' : 'Activate'}
+                </button>
+                <button type="button" onClick={() => handleEdit(msg)}>Edit</button>
+                <button type="button" onClick={() => handleDelete(msg.id)} className="delete-btn">
                   Delete
                 </button>
               </div>

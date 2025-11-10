@@ -14,4 +14,5 @@ used ai to pull all styles from css sheet and document it ina style.txt sheet
 ai used to create test 
 ai used to create admin dashboard 
 used ai to fix styling issues
+ai used to create user management card and route 
 

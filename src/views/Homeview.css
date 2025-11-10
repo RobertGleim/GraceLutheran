@@ -234,8 +234,22 @@
 
 :root {
   --home-shared-bg: url('/background-main.jpg'); /* updated: served from root instead of /public */
+  /* shared design tokens for admin/pastor styles */
+  --primary-blue: #014691f1;
+  --primary-blue-dark: #012d5a;
+  --card-bg: rgba(247, 253, 255, 0.9);
+  --card-border: #ccc;
+  --card-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+  /* button tokens */
+  --btn-default-bg: #e9f3ff; /* pale blue */
+  --btn-default-text: var(--primary-blue-dark);
+  --btn-primary-bg: var(--primary-blue);
+  --btn-primary-text: #ffffff;
+  --btn-danger-bg: #f44336;
+  --btn-warning-bg: #FF9800;
+  --btn-success-bg: #4CAF50;
 }
-
 
 html,
 body,
