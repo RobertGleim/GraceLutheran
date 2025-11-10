@@ -196,7 +196,7 @@ function UserManage() {
         setPatchUnsupportedId(null);
       } else if (res && res.status === 400) {
         let errJson = null;
-        try { errJson = await res.json(); } catch {}
+        try { errJson = await res.json(); } catch {/* ignore parsing errors */}
         alert(`Validation error: ${JSON.stringify(errJson || 'Bad Request')}`);
       } else {
         let errMsg = `Error (status ${res ? res.status : 'unknown'}) while forcing update.`;
@@ -204,7 +204,9 @@ function UserManage() {
           const errJson = res ? await res.json() : null;
           if (errJson?.error) errMsg = errJson.error;
           else if (errJson?.message) errMsg = errJson.message;
-        } catch {}
+        } catch {
+          // Ignore JSON parsing errors, use fallback error message
+        }
         alert(errMsg);
       }
     } catch {
