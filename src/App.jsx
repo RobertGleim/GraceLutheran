@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 import HomeView from './views/HomeView'
@@ -19,6 +19,31 @@ import DonationView from './views/DonationView';
 import UpcomingView from './views/UpcomingView'; // <-- new import
 
 function App() {
+  // make scroll/touch/wheel listeners passive by default to avoid non-passive warnings
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.EventTarget) return;
+    if (window.__passiveListenerPatched) return;
+
+    const orig = EventTarget.prototype.addEventListener;
+    EventTarget.prototype.addEventListener = function (type, listener, options) {
+      try {
+        const passiveEvents = ['touchstart', 'touchmove', 'wheel', 'scroll'];
+        // ensure options is an object when needed
+        if (passiveEvents.includes(type)) {
+          if (options === undefined || typeof options === 'boolean') {
+            options = { passive: true };
+          } else if (typeof options === 'object' && !options.passive) {
+            options = { ...options, passive: true };
+          }
+        }
+      } catch  {
+        // ignore and fall back to original behavior
+      }
+      return orig.call(this, type, listener, options);
+    };
+    window.__passiveListenerPatched = true;
+  }, []);
+
   return (
    <>
     <BrowserRouter

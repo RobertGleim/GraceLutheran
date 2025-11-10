@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { apiFetch } from '../utils/api.js'
+import { useAuth } from '../contexts/AuthContext.jsx'
 import './AuthForm.css'
 
 const RegisterView = () => {
@@ -11,6 +11,7 @@ const RegisterView = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const { register } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,44 +24,15 @@ const RegisterView = () => {
 
     setLoading(true)
     try {
-      const res = await apiFetch('/users', {
-        method: 'POST',
-        body: JSON.stringify({
-          username: name.trim(),
-          email: email.trim().toLowerCase(),
-          password
-        })
-      })
-      const body = await res.json().catch(() => null)
+      const result = await register({ username: name.trim(), email: email.trim().toLowerCase(), password })
       setLoading(false)
-
-      if (!res.ok) {
-        setError(body?.message || (body?.errors && JSON.stringify(body.errors)) || 'Registration failed')
-        return
-      }
-
-      // If backend returns token+user use them, otherwise fallback to logging in
-      if (body?.token && body?.user) {
-        localStorage.setItem('token', body.token)
-        localStorage.setItem('user', JSON.stringify(body.user))
-        navigate('/')
-        return
-      }
-
-      // Fallback: attempt login if token wasn't returned
-      const loginRes = await apiFetch('/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ email: email.trim().toLowerCase(), password })
-      })
-      const loginBody = await loginRes.json().catch(() => null)
-      if (loginRes.ok && loginBody?.token) {
-        localStorage.setItem('token', loginBody.token)
-        localStorage.setItem('user', JSON.stringify(loginBody.user))
+      if (result?.success) {
+        // context populated by register(); navigate immediately
         navigate('/')
       } else {
-        navigate('/login')
+        setError(result?.error || 'Registration failed')
       }
-    } catch {
+    } catch  {
       setLoading(false)
       setError('Network error. Please try again.')
     }

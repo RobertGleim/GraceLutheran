@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { apiFetch } from '../utils/api.js'
+import { useAuth } from '../contexts/AuthContext.jsx'
 import './AuthForm.css'
 
 const LoginView = () => {
@@ -9,6 +9,7 @@ const LoginView = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -16,24 +17,16 @@ const LoginView = () => {
     setLoading(true)
 
     try {
-      const res = await apiFetch('/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ email: email.trim().toLowerCase(), password })
-      })
-      const body = await res.json().catch(()=>null)
+      const result = await login(email.trim().toLowerCase(), password)
       setLoading(false)
-
-      if (!res.ok) {
-        setError(body?.message || (body?.errors && JSON.stringify(body.errors)) || 'Login failed')
-        return
+      if (result?.success) {
+        // context user is set by login(), navigate now
+        if (result.user?.role === 'admin') navigate('/admin')
+        else navigate('/')
+      } else {
+        setError(result?.error || 'Login failed')
       }
-
-      if (body?.token) {
-        localStorage.setItem('token', body.token)
-      }
-      if (body?.user?.role === 'admin') navigate('/admin')
-      else navigate('/')
-    } catch {
+    } catch  {
       setLoading(false)
       setError('Network error. Please try again.')
     }
@@ -41,6 +34,16 @@ const LoginView = () => {
 
   return (
     <div className="auth-background">
+      {/* loading overlay */}
+      {loading && (
+        <div className="loading-overlay" role="status" aria-live="polite">
+          <div className="loading-card">
+            <div className="spinner" />
+            <div className="loading-text">Signing you in…</div>
+          </div>
+        </div>
+      )}
+
       <div className="auth-card">
         <div className="auth-hero">
           <div className="hero-content">

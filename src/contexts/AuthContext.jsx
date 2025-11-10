@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { API_URL } from "../utils/api";
+import { API_URL, apiFetch } from "../utils/api";
 
 const AuthContext = createContext();
 
@@ -22,15 +22,9 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await fetch(`${API_URL}/users/login`, {
+            const response = await apiFetch('/users/login', {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ 
-                    email: email, 
-                    password: password
-                }),
+                body: { email, password }
             });
 
             if (!response.ok) {
@@ -61,10 +55,9 @@ export const AuthProvider = ({ children }) => {
 
     const register = async ({ username, email, password }) => {
         try {
-            const response = await fetch(`${API_URL}/users`, {
+            const response = await apiFetch('/users', {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, email, password })
+                body: { username, email, password }
             });
             const data = await response.json().catch(()=>null);
             if (!response.ok) {
@@ -112,8 +105,8 @@ export const AuthProvider = ({ children }) => {
             const userId = decoded?.sub;
             if (!userId) return;
             try {
-                const res = await fetch(`${API_URL}/users/${userId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                const res = await apiFetch(`/users/${userId}`, {
+                    method: 'GET'
                 });
                 if (!mounted) return;
                 if (res.ok) {
