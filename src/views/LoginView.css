@@ -124,7 +124,7 @@ form input {
         padding: 5px;
         border-radius: 6px;
     }
-    h1 {
+    .login h1 {
         font-size: 1.3rem;
     }
     .login-illustration {

@@ -11,12 +11,12 @@ const HistoryView = () => {
         <HeroSection />
       </div>
 
-      <fieldset style={{ margin: "20px", padding: "20px", borderRadius: "10px", border: "0px solid #ccc", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",  width: "800px", height:"auto", marginLeft: "auto", marginRight: "auto", textAlign: "center", backgroundColor: "#f6fbff" }}>
-        <legend><span style={{fontSize:'24px', fontWeight:"bold"}}>History</span></legend>
+      <fieldset style={{ margin: "20px", padding: "20px", borderRadius: "10px", border: "0px solid #ccc", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",  width: "800px", height:"auto", marginLeft: "auto", marginRight: "auto", textAlign: "center",  backgroundColor: "rgba(247, 253, 255, 0.5)" }}>
+        <legend><span style={{fontSize:'48px', fontWeight:"bold"}}>History</span></legend>
         <div>
-          <h1>For Over 50 Years... We Have Received Grace Upon Grace</h1>
+          <h2 style={{fontSize: "30px", fontWeight: "bold"}}>For Over 50 Years... We Have Received Grace Upon Grace</h2>
           <br />
-          <h3>
+          <h4 style={{textAlign: "justify", textDecoration: "none", fontSize: "20px" }}>
             In 1943, Immanuel Lutheran Church of Copperas Cove, Texas, initiated
             the idea of a mission church in Killeen. Services began May 23, 1954,
             under the sponsorship of Immanuel. Worship and Sunday School were held
@@ -45,7 +45,7 @@ const HistoryView = () => {
             of the expanding needs of the school and church. The school has faced
             many challenges and has enjoyed 25 years of blessings and success
             serving the congregation and the Killeen and Ft. Hood communities.
-          </h3>
+          </h4>
         </div>
       </fieldset>
 

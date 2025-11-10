@@ -16,55 +16,53 @@
   position: relative;
   background-size: 104%;
   margin-bottom: 20px;
-  
+  overflow: visible; /* keep hero image visibility */
+  text-align: center; /* Center text in hero */
 }
 
-.worshipview-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(247, 253, 255);
-  font-size: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 95%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-
-.worshipview-about {
-  padding: 2rem;
-  background-color: rgba(247, 253, 255);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width:95%;
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.worshipview-special {
-  padding: 2rem;
-  background-color: rgba(247, 253, 255);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width:95%;
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
+/* Apply DailyVerse visual tokens to worship view blocks */
+.worshipview-content,
+.worshipview-about,
+.worshipview-special,
 .worshipview-communion {
-  padding: 2rem;
-  background-color: rgba(247, 253, 255);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width:95%;
-  margin: 0 auto;
-  text-align: center;
+  background: rgba(246, 251, 255, 0.7); /* was #f6fbff */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  font-family: "Libre Baskerville", serif;
+  color: #222;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center; /* Center text in content blocks */
+  width: 75%;
+  margin: 0 auto 2rem; /* center and add 2rem gap between sections */
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
+/* Hover uplift like .daily-verse */
+.worshipview-content:hover,
+.worshipview-about:hover,
+.worshipview-special:hover,
+.worshipview-communion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+}
+
+/* Ensure headings/text use DailyVerse colors and weights */
+.worshipview-content h1,
+.worshipview-about h1,
+.worshipview-special h1,
+.worshipview-communion h1,
+.worshipview-content h2,
+.worshipview-about h2,
+.worshipview-special h2,
+.worshipview-communion h2 {
+  color: #014691f1;
+  font-weight: 600;
+  font-family: "Libre Baskerville", serif;
+}
+
+/* Buttons/links keep existing look but adopt text shadow + accessible focus */
 .about-holy {
   display: inline-block;
   margin-top: 1rem;
@@ -75,6 +73,13 @@
   border-radius: 5px;
   font-size: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  margin-left: auto;  /* Center button in parent */
+  margin-right: auto; /* Center button in parent */
+}
+.about-holy:focus {
+  outline: 3px solid rgba(1,70,145,0.15);
+  outline-offset: 2px;
 }
 
 @media (max-width: 900px) {

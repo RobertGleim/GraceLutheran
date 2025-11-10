@@ -1,3 +1,7 @@
+/* Import home styles so contact inherits the same background, variables, and responsive rules */
+@import "./Homeview.css";
+
+/* Replace the hero to use the shared home background / hero style */
 .contact-hero {
   background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
   min-height: 300px;
@@ -18,178 +22,217 @@
   opacity: 0.95;
 }
 
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+   background: rgba(247, 253, 255, 0.5);
+  padding: 1.75rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #e6eef8;
+}
+
+.contact-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.12);
+}
+
+
+/* Container and layout should align with home .main-content/.center-column rules */
 .contact-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  /* allow the shared root background to remain visible around cards */
+  background: transparent;
 }
 
-.contact-section {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem;
-  background: rgba(16, 86, 236, 0.05);
-  border-radius: 10px;
-}
-
-.contact-section h2 {
-  color: #1056ec;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.contact-detail {
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.contact-offices {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
+/* Cards use the same look as home .church-card / .pastor-message-sidebar */
 .office-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: rgba(247, 253, 255, 0.5);
+  padding: 1.75rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #e6eef8;
 }
 
 .office-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.12);
 }
 
 .office-card h3 {
-  color: #1056ec;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  color: #014691f1;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
+/* Use consistent type/weights used in Homeview */
 .office-card .phone {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
-  margin: 1rem 0;
+  color: #0a0a0a;
+  margin: 0.6rem 0;
 }
 
-.office-card .hours {
-  color: #666;
+/* Contact form card should match pastor-message-sidebar / other white cards */
+.contact-form-section {
+  
+  margin: 0 auto;
+  padding: 1.75rem;
+  background: rgba(247, 253, 255, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  border: 1px solid #e6eef8;
+  text-align: center;
+}
+
+
+
+.contact-form-section h2 {
+  color: #014691f1;
+  font-size: 1.8rem;
+  text-align: center;
   margin-bottom: 1.5rem;
 }
 
+/* Buttons and links use home palette */
+.email-link,
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #014691f1;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+}
+
+.email-link:hover,
+.submit-btn:hover {
+  background: #68c0f3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 86, 236, 0.2);
+}
+
+/* Email link: keep it as a simple inline link (no filled colored box) */
 .email-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #1056ec;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: all 0.3s;
+  color: #1056ec;            /* link color consistent with theme */
+  background: transparent;   /* no colored box */
+  padding: 0;                /* no extra padding */
+  text-decoration: underline;
+  border-radius: 0;
+  transition: color 0.2s, transform 0.15s;
 }
 
 .email-link:hover {
-  background: #68c0f3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 86, 236, 0.3);
+  color: #083a8a;
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .email-icon {
   width: 30px;
   height: 30px;
-  filter: brightness(0) invert(1);
+  filter: none; /* keep icon natural; remove forced invert if needed */
 }
 
-.contact-form-section {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form-section h2 {
-  color: #1056ec;
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
+/* Form container: constrain inputs area to 75% of the contact-form-section and center it */
 .contact-form {
+  width: 75%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  align-items: stretch; /* inputs will span the available width */
+  box-sizing: border-box;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+/* Ensure submit button uses the requested gradient and centers its content */
+.submit-btn {
+  background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.form-group label {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
+/* Ensure inputs and textarea share the same visual style as the message textarea */
 .form-group input,
 .form-group textarea {
+  box-sizing: border-box;
+  width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #e9f0f8;
   border-radius: 6px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  color: #111;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/* Inputs should have a consistent height similar to native form controls */
+.form-group input {
+  height: 44px;
+  line-height: 1.2;
+}
+
+/* Message textarea: taller and vertically resizable */
+.form-group textarea {
+  min-height: 140px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Focus state shared for accessibility */
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #1056ec;
+  border-color: #014691f1;
+  box-shadow: 0 2px 8px rgba(1,70,145,0.08);
 }
 
-.submit-btn {
-  padding: 1rem 2rem;
-  background: #1056ec;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
+/* Grid layout matches Homeview's responsive grid approach */
+.contact-offices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.submit-btn:hover {
-  background: #68c0f3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 86, 236, 0.3);
-}
-
-@media (max-width: 768px) {
+/* Make smaller adjustments for mobile consistent with Homeview breakpoints */
+@media (max-width: 900px) {
   .contact-hero h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
-
   .contact-hero p {
     font-size: 1rem;
   }
-
   .contact-container {
-    padding: 2rem 1rem;
-  }
-
-  .contact-offices {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-form-section {
     padding: 1.5rem;
+  }
+  .contact-form-section {
+    padding: 1rem;
+  }
+}
+
+/* Responsive: use wider form area on small screens */
+@media (max-width: 700px) {
+  .contact-form {
+    width: 95%;
   }
 }

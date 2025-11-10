@@ -18,7 +18,7 @@
   background-size: 102%;
   background-repeat: no-repeat;
   background-position: center bottom -18px;
-  background-color: rgba(0, 8, 255, 0.1);
+  
   background-blend-mode: overlay;
   position: relative;
   text-align: center;
@@ -61,6 +61,7 @@
 }
 
 .church-card {
+  background: white;
   background-image: url("/Logo-removebg.png");
   background-size: contain;
   background-position: center;
@@ -76,7 +77,8 @@
   position: relative;
   z-index: 5;
   bottom: 2rem;
-  background-color: #f6fbff;
+  
+  background-color: rgba(247, 253, 255, 0.9);
   border: 1px solid #ccc;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -103,7 +105,7 @@
   position: relative;
   z-index: 5;
   bottom: 2rem;
-  background-color: #f6fbff;
+  background-color: rgba(247, 253, 255, 0.9);
   border: 1px solid #ccc;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -130,7 +132,7 @@
   position: relative;
   z-index: 5;
   bottom: 2rem;
-  background-color: #f6fbff;
+  background-color: rgba(247, 253, 255, 0.9);
   border: 1px solid #ccc;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -153,8 +155,8 @@
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 5;
-  background-color: #f6fbff;
-  
+  background-color: rgba(247, 253, 255, 0.9);
+  overflow: hidden;
   overflow-y: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -177,6 +179,7 @@
   color: #014691f1;
   font-weight: 600;
   font-size: 1.5rem;
+
 }
 
 .pastor-message-sidebar p {
@@ -193,6 +196,8 @@
 
 .pastor-message-sidebar::-webkit-scrollbar {
   width: 6px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .pastor-message-sidebar::-webkit-scrollbar-track {
@@ -204,11 +209,15 @@
 
 .pastor-message-sidebar::-webkit-scrollbar-thumb {
   background: #014691f1;
-  border-radius: 3px;
+  border-radius: 10px;
+  overflow: hidden;
+
 }
 
 .pastor-message-sidebar::-webkit-scrollbar-thumb:hover {
   background: #012d5a;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .main-content {
@@ -222,12 +231,12 @@
   width: 100%;
 }
 
-/* Shared background across the entire page - apply to html/body so it covers full width */
+
 :root {
-  --home-shared-bg: url("/public/background-main.jpg"); /* <- replace with your image path */
+  --home-shared-bg: url('/background-main.jpg'); /* updated: served from root instead of /public */
 }
 
-/* Apply background to page root so there are no white gutters left/right */
+
 html,
 body,
 #root {
@@ -242,9 +251,9 @@ body,
 }
 
 /* Keep internal blocks transparent so the root background is continuous */
+/* removed .search-bible from this group so the search component can control its background */
 .home-intro,
-.main-content,
-.search-bible {
+.main-content {
   background: transparent;
   background-image: none;
 }

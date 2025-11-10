@@ -1,14 +1,22 @@
+/* Reuse Homeview styles so DonationView matches Homeview */
+@import './Homeview.css';
+
+/* Donation-specific root to ensure the view container remains correctly sized
+   and can host any donation-specific overrides without duplicating Homeview rules */
 .donation-view {
+  /* keep same structural sizing as previous donation-view */
   min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #f6fbff 0%, #e8f4ff 100%);
+  /* background is provided by imported Homeview.css (root background) */
 }
 
+/* preserve the previous construction container styling but inherit Homeview tokens */
 .construction-container {
-  background: #f6fbff;
+  /* ...existing donation-specific styles (if you want to keep them) ... */
+  background: rgba(246, 251, 255, 0.9);
   border-radius: 16px;
   padding: 3rem;
   max-width: 600px;
@@ -19,140 +27,12 @@
   transition: all 0.3s ease;
 }
 
-.construction-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
-}
-
-.construction-icon {
-  margin-bottom: 2rem;
-  animation: bounce 2s infinite;
-}
-
-.icon-text {
-  font-size: 5rem;
-  display: inline-block;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.construction-title {
-  font-size: 2.5rem;
-  color: #014691f1;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.construction-message {
-  font-size: 1.2rem;
-  color: #222;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.construction-submessage {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 2rem;
-  font-style: italic;
-}
-
-.construction-loader {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.loader-bar {
-  width: 12px;
-  height: 40px;
-  background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
-  border-radius: 6px;
-  animation: loading 1s infinite ease-in-out;
-}
-
-.loader-bar:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.loader-bar:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.loader-bar:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes loading {
-  0%, 100% {
-    transform: scaleY(0.5);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 700px) {
-  .construction-container {
-    padding: 2rem;
-  }
-  
-  .icon-text {
-    font-size: 4rem;
-  }
-  
-  .construction-title {
-    font-size: 2rem;
-  }
-  
-  .construction-message {
-    font-size: 1.1rem;
-  }
-  
-  .construction-submessage {
-    font-size: 0.95rem;
-  }
-}
-
+/* small responsive tweaks can be added here if needed */
 @media (max-width: 500px) {
   .donation-view {
     padding: 1rem;
   }
-  
   .construction-container {
     padding: 1.5rem;
-  }
-  
-  .icon-text {
-    font-size: 3rem;
-  }
-  
-  .construction-title {
-    font-size: 1.75rem;
-  }
-  
-  .construction-message {
-    font-size: 1rem;
-  }
-  
-  .construction-submessage {
-    font-size: 0.9rem;
-  }
-  
-  .loader-bar {
-    width: 10px;
-    height: 35px;
   }
 }

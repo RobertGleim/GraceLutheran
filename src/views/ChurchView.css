@@ -1,15 +1,15 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
+}
 
 .ChurchHero {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
   min-height: 300px;
@@ -20,7 +20,7 @@
 .ChurchHero-bg1 {
   position: absolute;
   inset: 0;
-  background-image: url('/Sanctuary-1024x768.jpg');
+  background-image: url("/Sanctuary-1024x768.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -45,18 +45,18 @@
   left: 50%;
   top: 35%;
   transform: translate(-50%, -50%);
-  
+  padding: 1rem;
   z-index: 2;
   width: 75%;
-  height: 75%;
+
   pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
   animation: fadeIn 2s ease-out;
+  border-radius: 10px;
+  overflow: hidden;
 }
-
-
 
 @keyframes fadeInCards {
   0% {
@@ -80,7 +80,25 @@
   border: blur();
   margin: 0 auto;
   margin-top: 5rem;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 10px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInBoth 900ms ease-out 300ms forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes fadeInBoth {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .greeting {
@@ -88,123 +106,137 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-margin:0  auto;
-    position: relative;
-    z-index: 5;
-    text-align: center;
-    margin-top: 1rem;
-    width: 90%;
-    padding: 1rem;
-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    background: #f6fbff;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
-    color: #222;
-    font-family: "Libre Baskerville", serif;
-    font-weight: 400;
-    
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  margin-top: 1rem;
+  width: 90%;
+  padding: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: #f6fbff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
 }
 
-.greeting:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
-}
+
 
 .worship-card {
-    background-image: url('/W2logo-removebg.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 150px;
-    z-index: 5;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    animation: fadeInCards 2s ease-out;
-    
-   
+  background-image: url("/W2logo-removebg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 150px;
+  z-index: 5;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  animation: fadeInCards 2s ease-out;
+  background-color: rgba(247, 253, 255, 0.7); /* keeps bg image visible on top while matching card color */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: "Libre Baskerville", serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* keep image placement unchanged but clipped to radius */
 }
-
 
 .mission-card {
-     background-image: url('/missionlogo-removebg.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 150px;
-    z-index: 5;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    animation: fadeInCards 2s ease-out;
+  background-image: url("/missionlogo-removebg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 150px;
+  z-index: 5;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  animation: fadeInCards 2s ease-out;
+  background-color: rgba(247, 253, 255, 0.7);
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: "Libre Baskerville", serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* keep image placement unchanged but clipped to radius */
 }
 
-
 .beliefs-card {
-    background-image: url('/beliefslogo-removebg.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 150px;
-    z-index: 5;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    animation: fadeInCards 2s ease-out;
+  background-image: url("/beliefslogo-removebg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 150px;
+  z-index: 5;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  animation: fadeInCards 2s ease-out;
+  background-color: rgba(247, 253, 255, 0.7); /* keeps bg image visible on top while matching card color */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: "Libre Baskerville", serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* keep image placement unchanged but clipped to radius */
 }
 
 .church-info-cards {
-    
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    margin-top: 2rem;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
 }
 
 .church-staff {
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    margin-top:2rem;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-} 
-
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
 
 .pastor-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    align-items: center;
-    width: 500px;
-    height: 600px;
-    margin: 1rem;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  height: 600px;
+  margin: 1rem;
+  border-radius: 8px;
 
-    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
-    border: 1px solid #ccc;
-    background: #f6fbff;
-    overflow: hidden; 
-    padding: 1rem; 
-    text-align: center;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  border: 1px solid #ccc;
+  background-color: rgba(247, 253, 255, 0.7);
+  overflow: hidden;
+  padding: 1rem;
+  text-align: center;
 
-    font-family: "Libre Baskerville", serif;
-    color: #222;
+  font-family: "Libre Baskerville", serif;
+  color: #222;
 }
 
 .pastor-card:hover {
@@ -213,24 +245,24 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .admin-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    width: 500px;
-    height: 600px;
-    margin: 1rem;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  height: 600px;
+  margin: 1rem;
+  border-radius: 8px;
 
-    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
-    border: 1px solid #ccc;
-    background: #f6fbff;
-    overflow: hidden; 
-    padding: 1rem;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  border: 1px solid #ccc;
+  background-color: rgba(247, 253, 255, 0.7);
+  overflow: hidden;
+  padding: 1rem;
 
-    font-family: "Libre Baskerville", serif;
-    color: #222;
+  font-family: "Libre Baskerville", serif;
+  color: #222;
 }
 
 .admin-card:hover {
@@ -239,22 +271,21 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .pastor-image {
- 
-    width: 120px; 
-    height: 120px;
-    border-radius: 25%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08); 
+  width: 120px;
+  height: 120px;
+  border-radius: 25%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .admin-image {
-  width: 120px; 
-    height: 120px;
-    border-radius: 25%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08); 
+  width: 120px;
+  height: 120px;
+  border-radius: 25%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .image-container1 {
@@ -273,7 +304,6 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   width: 100%;
 }
 
-
 .ChurchHero > p {
   position: absolute;
   bottom: 10px;
@@ -286,79 +316,91 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .church-resources {
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    margin-top: 2rem;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    }
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
 
 .history {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    width: 300px;
-    height: 150px;
-    z-index: 5;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    background-image: url('/open-book.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 1px solid #ccc;
-    background-color: #f6fbff; /* keeps bg image on top but gives card color */
-    padding: 0.5rem;
-    
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 300px;
+  height: 150px;
+  z-index: 5;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-image: url("/open-book.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #ccc;
+  background-color: rgba(247, 253, 255, 0.7); /* keeps bg image on top but gives card color */
 }
 
 .calendar {
-  
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
-    margin: 0 auto;
-    width: 300px;
-    height: 150px;
-    z-index: 5;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    background-image: url('/calendar.png');
-    background-size: 35%;
-    background-position: center;
-    background-repeat: no-repeat;
-   
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #f6fbff; /* keeps bg image on top but gives card color */
-    padding: 0.5rem;
-    
-   
-} 
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  margin: 0 auto;
+  width: 300px;
+  height: 150px;
+  z-index: 5;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  background-image: url("/calendar.png");
+  background-size: 35%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: rgba(247, 253, 255, 0.7); /* keeps bg image on top but gives card color */
+}
 
 .youtube-icon {
   display: flex;
-    flex-direction: column;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 150px;
-    background-image: url('/youtube-icon.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 10;
-    cursor: pointer;
-    border-radius: 8px;
-    background-color: #f6fbff; /* keeps bg image on top but gives card color */
-    border: 1px solid #ccc;
-    padding: 0.5rem;
+  flex-direction: column;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 150px;
+  background-image: url("/youtube-icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: rgba(247, 253, 255, 0.7); /* keeps bg image on top but gives card color */
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+/* Make resource tiles lift on hover/focus like the rest of the cards */
+.history,
+.calendar,
+.youtube-icon {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.history:hover,
+.calendar:hover,
+.youtube-icon:hover,
+.history:focus,
+.calendar:focus,
+.youtube-icon:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+  outline: none;
 }
 
 /* Apply uniform text shadow across main ChurchView text elements */
@@ -372,6 +414,89 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 .church-resources,
 .search-bible {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Match DailyVerse visual tokens for greeting, info cards and staff cards */
+.greeting {
+  /* keep structure/spacing already in place, apply daily-verse look */
+  background-color: rgba(247, 253, 255, 0.7);;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  font-family: "Libre Baskerville", serif;
+  color: #222;
+  /* preserve existing padding/width from prior rules */
+}
+
+.greeting h2,
+.greeting h3 {
+  color: #014691f1;
+  font-weight: 600;
+}
+
+/* church-info cards - preserve background-image but use daily-verse card styling */
+.worship-card,
+.mission-card,
+.beliefs-card {
+  background-color: rgba(247, 253, 255, 0.7); /* keeps bg image visible on top while matching card color */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: "Libre Baskerville", serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* keep image placement unchanged but clipped to radius */
+}
+
+/* uplift on hover to match .daily-verse */
+.worship-card:hover,
+.mission-card:hover,
+.beliefs-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+}
+
+/* Ensure any text inside these cards sits above the background image */
+.worship-card > *,
+.mission-card > *,
+.beliefs-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Staff cards: ensure typography and headings match daily-verse */
+.pastor-card,
+.admin-card {
+  font-family: "Libre Baskerville", serif;
+  color: #222;
+  /* existing background/border/shadow are preserved; ensure consistent hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pastor-card:hover,
+.admin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+}
+
+/* Headings inside staff cards follow DailyVerse heading color */
+.pastor-card h4,
+.admin-card h4,
+.pastor-card h2,
+.admin-card h2 {
+  color: #014691f1;
+  font-weight: 600;
+}
+
+/* Paragraph/text sizing and color consistent with DailyVerse */
+.greeting p,
+.pastor-card p,
+.admin-card p {
+  color: #222;
+
+  line-height: 1;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 @media (max-width: 900px) {

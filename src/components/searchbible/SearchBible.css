@@ -8,16 +8,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #f6fbff;
+
+  background-color: rgba(247, 253, 255, 0.9);
   border-radius: 8px;
   padding: 1rem;
-  width: 100%;       
-  max-width: 600px;  
+  width: 100%;
+  max-width: 600px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
   border: 1px solid #ccc;
   transition: all 0.3s ease;
-  margin: 0; 
-  
+  margin: 0;
 }
 
 .search-bible:hover {
@@ -29,15 +29,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row; 
+  flex-direction: row;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  
 }
 
 input {
-  background: blur(10px);
-  background-color: #f6fbff83;
+  background-color: transparent;
 }
 
 .search-bible input[type="text"] {
@@ -48,13 +46,11 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.3s ease;
-  
 }
 
 .search-bible input[type="text"]:focus {
   outline: none;
   border-color: #1056ec;
-
 }
 
 .search-bible button {
@@ -94,16 +90,19 @@ input {
 /* Custom scrollbar for search results */
 .search-results::-webkit-scrollbar {
   width: 6px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .search-results::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 3px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .search-results::-webkit-scrollbar-thumb {
   background: #014691f1;
-  border-radius: 3px;
+  border-radius: 10px;
 }
 
 .search-results::-webkit-scrollbar-thumb:hover {
@@ -111,7 +110,7 @@ input {
 }
 
 .search-result {
-  background: #f6fbff;
+  background-color: rgba(247, 253, 255, 0.9);
   border-radius: 6px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -167,21 +166,21 @@ input {
   .search-bible {
     padding: 0.75rem;
   }
-  
+
   .search-bible input[type="text"] {
     padding: 0.6rem;
     font-size: 0.95rem;
   }
-  
+
   .search-bible button {
     padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
   }
-  
+
   .search-result h4 {
     font-size: 1.1rem;
   }
-  
+
   .search-result .text {
     font-size: 1rem;
   }
@@ -191,36 +190,36 @@ input {
   .search-bible {
     padding: 0.5rem;
   }
-  
+
   .search-bible form {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .search-bible input[type="text"] {
     width: 100%;
     padding: 0.5rem;
     font-size: 0.9rem;
   }
-  
+
   .search-bible button {
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
-  
+
   .search-result {
     padding: 0.75rem;
   }
-  
+
   .search-result h4 {
     font-size: 1rem;
   }
-  
+
   .search-result .text {
     font-size: 0.9rem;
   }
-  
+
   .search-results {
     max-height: 200px;
   }

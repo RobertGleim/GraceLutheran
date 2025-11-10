@@ -36,7 +36,7 @@ const NavBar = () => {
         <NavLink to="/Church" onClick={() => setOpen(false)}>Church</NavLink>
         <NavLink to="/Contact" onClick={() => setOpen(false)}>Contact</NavLink>
         <NavLink to="/Calendar" onClick={() => setOpen(false)}>Events</NavLink>
-
+        <NavLink to="/School" onClick={() => setOpen(false)}>School</NavLink>
         <NavLink to="/Donation" onClick={() => setOpen(false)}>Donations</NavLink>
 
         {user?.role === 'admin' && (

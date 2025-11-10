@@ -17,37 +17,58 @@
   position: relative;
   background-size: 104%;
   margin-bottom: 20px;
-  
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  text-align: center;
+  overflow: visible;
 }
 
-.mission-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(247, 253, 255);
-  
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 95%;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+/* Main mission blocks use DailyVerse tokens, centered and constrained */
+.mission-content,
+.mission-video,
+.mission-details {
+  background: rgba(246, 251, 255, 0.7); /* DailyVerse card color, slightly translucent */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  font-family: "Libre Baskerville", serif;
+  color: #222;
   text-align: center;
-}   
+  width: 75%;
+  max-width: 1100px;
+  margin: 0 auto 2rem; /* center and 2rem gap between sections */
+  padding: 1rem;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover uplift to match daily-verse cards */
+.mission-content:hover,
+.mission-video:hover,
+.mission-details:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+}
 
 .mission-video {
   
   display: flex;
   justify-content: center;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  align-items: center;
+  padding: 1rem;
   overflow: hidden;
   width: 100%;
   max-width: 825px;
   margin: 0 auto;
   padding : 1rem;
-  background-color: rgba(247, 253, 255);
+  background-color: rgba(247, 253, 255, 0.5);
   margin-bottom: 2rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: "Libre Baskerville", serif;
+  color: #222;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mission-video video {
@@ -64,14 +85,18 @@
     flex-direction: column;
     align-items: center;
   padding: 2rem;
-  background-color: rgba(247, 253, 255);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width:95%;
+  background-color: rgba(247, 253, 255, 0.7);
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+  width:75%;
+  max-width: 1100px;
   margin: 0 auto;
   text-align: center;
   margin-bottom: 20px;
-
+  font-family: "Libre Baskerville", serif;
+  color: #222;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mission-details img {

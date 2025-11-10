@@ -15,6 +15,7 @@ import NavBar from './components/navbar/NavBar';
 import ContactView from './views/ContactView';
 import SchoolView from './views/SchoolView';
 import DonationView from './views/DonationView';
+import UpcomingView from './views/UpcomingView'; // <-- new import
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/contact" element={<ContactView />} />
         <Route path="/school" element={<SchoolView />} />
         <Route path="/donation" element={<DonationView />} />
+        <Route path="/upcoming-events" element={<UpcomingView />} /> {/* <-- new route */}
       </Routes>
       <Footer />
     </BrowserRouter>

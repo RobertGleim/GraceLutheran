@@ -1,10 +1,14 @@
+/* Reuse Homeview styles so SchoolView matches Homeview */
+@import './Homeview.css';
+
+/* school-specific root: keep sizing/layout but rely on Homeview for page background */
 .school-view {
   min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #f6fbff 0%, #e8f4ff 100%);
+  /* background provided by imported Homeview.css */
 }
 
 .construction-container {

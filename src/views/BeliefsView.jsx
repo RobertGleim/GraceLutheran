@@ -20,8 +20,7 @@ const BeliefsView = () => {
             inspiration of the Holy Scriptures which are used as the source and
             norm of all that is taught and confessed. The following, primarily
             drawn from the Small Catechism, is a brief explanation of what the
-            Lutheran Church teaches, believes and confesses. The following can
-            also be downloaded as a PDF file.
+            Lutheran Church teaches, believes and confesses. 
           </h3>
         </div>
 
