@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .homeHero-bg1 {
@@ -89,12 +88,11 @@
 }
 
 .school-card {
-  
   background-image: url("/grace-school-removebg.png");
   background-size: contain;
   background-position: center 15px;
   background-repeat: no-repeat;
-   display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 25%;
@@ -117,9 +115,12 @@
 }
 
 .donation-card {
+  background-image: url("/d5fffe1e-dc6f-4b9a-a78f-6c74934c11b5.jpg");
+  background-size: contain;
+  background-position: center 15px;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 25%;
   height: 150px;
@@ -153,7 +154,7 @@
   position: relative;
   z-index: 5;
   background-color: #f6fbff;
-  border: 1px solid #ccc;
+  
   overflow-y: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -190,14 +191,15 @@
   font-size: 1rem;
 }
 
-/* Custom scrollbar for pastor message sidebar */
 .pastor-message-sidebar::-webkit-scrollbar {
   width: 6px;
 }
 
 .pastor-message-sidebar::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 3px;
+  border-radius: 5px;
+  overflow: hidden;
+
 }
 
 .pastor-message-sidebar::-webkit-scrollbar-thumb {
@@ -220,6 +222,33 @@
   width: 100%;
 }
 
+/* Shared background across the entire page - apply to html/body so it covers full width */
+:root {
+  --home-shared-bg: url("/public/background-main.jpg"); /* <- replace with your image path */
+}
+
+/* Apply background to page root so there are no white gutters left/right */
+html,
+body,
+#root {
+  min-height: 100vh;
+  height: 100%;
+  background-image: var(--home-shared-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-color: #f0f4f8; /* fallback color */
+}
+
+/* Keep internal blocks transparent so the root background is continuous */
+.home-intro,
+.main-content,
+.search-bible {
+  background: transparent;
+  background-image: none;
+}
+
 hr {
   width: 80%;
   border: 0;
@@ -227,7 +256,69 @@ hr {
   margin: 0.5rem auto 1rem auto;
 }
 
+.search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
 
+.search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 1 1 600px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.center-column .youtube {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+@media (max-width: 900px) {
+  .right-column {
+    width: 95vw;
+    max-width: 95vw;
+    flex: 0 0 auto;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .search-wrapper {
+    justify-content: center;
+  }
+  .center-column {
+    max-width: 95vw;
+    flex: 0 0 auto;
+  }
+  .center-column .youtube {
+    max-width: 95vw;
+  }
+}
 
 /* Responsive layout for main content and cards */
 @media (max-width: 1200px) {
@@ -237,16 +328,16 @@ hr {
     gap: 2rem;
     padding: 0 1rem;
   }
-  
+
   .youtube {
     max-width: 600px;
     order: 1;
   }
-  
+
   .pastor-message-sidebar {
     order: 2;
   }
-  
+
   .dailyverse-container {
     order: 3;
   }
@@ -400,11 +491,10 @@ iframe {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   width: 100%;
   max-width: 600px;
   min-width: 400px;
-  flex: 1 1 500px;
 }
 
 /* Responsive YouTube embed */

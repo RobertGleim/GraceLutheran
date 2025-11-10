@@ -5,13 +5,19 @@
 }
 
 .search-bible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #f6fbff;
   border-radius: 8px;
   padding: 1rem;
-  max-width: 600px;
+  width: 100%;       
+  max-width: 600px;  
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
   border: 1px solid #ccc;
   transition: all 0.3s ease;
+  margin: 0; 
+  
 }
 
 .search-bible:hover {
@@ -26,6 +32,12 @@
   flex-direction: row; 
   gap: 0.5rem;
   margin-bottom: 1rem;
+  
+}
+
+input {
+  background: blur(10px);
+  background-color: #f6fbff83;
 }
 
 .search-bible input[type="text"] {
@@ -36,11 +48,13 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.3s ease;
+  
 }
 
 .search-bible input[type="text"]:focus {
   outline: none;
   border-color: #1056ec;
+
 }
 
 .search-bible button {

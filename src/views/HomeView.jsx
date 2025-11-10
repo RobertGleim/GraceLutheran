@@ -113,28 +113,31 @@ const HomeView = () => {
           )}
         </div>
 
-        {/* YouTube Video Section - In center */}
-        <div className="youtube">
-          <div className="youtube-responsive">
-            <iframe
-              src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+        {/* Center column: YouTube above, Search centered under it */}
+        <div className="center-column">
+          <div className="youtube">
+            <div className="youtube-responsive">
+              <iframe
+                src="https://www.youtube.com/embed/zVr8VortWJE?si=od36QN1j03ijyy0e"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <h4>Watch Our Latest Sermon</h4>
           </div>
-          <h4>Watch Our Latest Sermon</h4>
+
+          <div className="search-wrapper">
+            <SearchBible />
+          </div>
         </div>
 
         <div className="dailyverse-container">
           <DailyVerse />
         </div>
-      </div>
-
-      <SearchBible />
-      
+      </div> {/* end .main-content */}
     </>
   );
 };

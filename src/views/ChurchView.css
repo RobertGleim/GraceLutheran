@@ -1,3 +1,10 @@
+* {
+    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
 .ChurchHero {
     display: flex;
     flex-direction: row;
@@ -61,13 +68,19 @@
 }
 
 .gracename {
-    text-shadow: 
-        2px 0px 2px rgb(236, 182, 4),
-        2px 2px 2px rgba(4, 161, 252, 0.829);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-size: 5rem;
-    
-        
-       
+  color: #020c18f1;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border: blur();
+  margin: 0 auto;
+  margin-top: 5rem;
+  backdrop-filter: blur(5px);
 }
 
 .greeting {
@@ -78,20 +91,24 @@
 margin:0  auto;
     position: relative;
     z-index: 5;
-    color: rgb(3, 0, 0);
-    font-size: 24px;
-    font-weight: 400;
     text-align: center;
     margin-top: 1rem;
-    border: 1px solid #ddd;
     width: 90%;
     padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    background: #fff;
-    border-radius: 10px;
-    text-shadow: 
-        2px 0px 2px rgb(236, 182, 4),
-        1px 1px 2px rgba(4, 161, 252, 0.5);
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: #f6fbff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+    color: #222;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    
+}
+
+.greeting:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
 }
 
 .worship-card {
@@ -178,14 +195,22 @@ margin:0  auto;
     height: 600px;
     margin: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-    background-color: rgb(247, 253, 255);
+
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+    border: 1px solid #ccc;
+    background: #f6fbff;
     overflow: hidden; 
     padding: 1rem; 
     text-align: center;
-}   
+
+    font-family: "Libre Baskerville", serif;
+    color: #222;
+}
+
+.pastor-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
+}
 
 .admin-card {
     display: flex;
@@ -197,12 +222,20 @@ margin:0  auto;
     height: 600px;
     margin: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 5;
-    background-color: rgb(247, 253, 255);
+
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+    border: 1px solid #ccc;
+    background: #f6fbff;
     overflow: hidden; 
-    padding: 1rem; 
+    padding: 1rem;
+
+    font-family: "Libre Baskerville", serif;
+    color: #222;
+}
+
+.admin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 86, 236, 0.15);
 }
 
 .pastor-image {
@@ -249,7 +282,7 @@ margin:0  auto;
   color: rgb(2, 2, 2);
   z-index: 3;
   font-size: 3rem;
-  text-shadow: 2px 0px 2px rgb(236, 182, 4), 2px 2px 2px rgba(4, 161, 252, 0.827);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .church-resources {
@@ -277,6 +310,9 @@ margin:0  auto;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    border: 1px solid #ccc;
+    background-color: #f6fbff; /* keeps bg image on top but gives card color */
+    padding: 0.5rem;
     
 
 }
@@ -298,7 +334,9 @@ margin:0  auto;
     background-repeat: no-repeat;
    
     border-radius: 8px;
-    
+    border: 1px solid #ccc;
+    background-color: #f6fbff; /* keeps bg image on top but gives card color */
+    padding: 0.5rem;
     
    
 } 
@@ -317,6 +355,23 @@ margin:0  auto;
     background-repeat: no-repeat;
     z-index: 10;
     cursor: pointer;
+    border-radius: 8px;
+    background-color: #f6fbff; /* keeps bg image on top but gives card color */
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+
+/* Apply uniform text shadow across main ChurchView text elements */
+.ChurchHero > p,
+.gracename,
+.greeting,
+.pastor-card,
+.admin-card,
+.church-info-cards,
+.church-staff,
+.church-resources,
+.search-bible {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 900px) {
@@ -331,6 +386,7 @@ margin:0  auto;
     font-size: 16px;
     padding: 0.5rem;
     width: 98%;
+    background: #f6fbff; /* reaffirm for small screens */
   }
   .church-info-cards {
     flex-direction: column;
@@ -353,6 +409,7 @@ margin:0  auto;
     height: auto;
     min-height: 350px;
     padding: 0.5rem;
+    background: #f6fbff;
   }
   .pastor-image,
   .admin-image {
@@ -374,8 +431,8 @@ margin:0  auto;
   .youtube-icon {
     width: 90vw;
     height: 80px;
-    font-size: 1rem;
-    background-size: contain; /* ensure responsiveness */
+    background-size: contain;
+    background-color: #f6fbff;
   }
 }
 
@@ -391,6 +448,7 @@ margin:0  auto;
     font-size: 13px;
     padding: 0.25rem;
     width: 100%;
+    background: #f6fbff;
   }
   .worship-card,
   .mission-card,
@@ -404,6 +462,7 @@ margin:0  auto;
     width: 99vw;
     min-height: 220px;
     padding: 0.25rem;
+    background: #f6fbff;
   }
   .pastor-image,
   .admin-image {
@@ -428,7 +487,7 @@ margin:0  auto;
   .youtube-icon {
     width: 98vw;
     height: 50px;
-    font-size: 0.8rem;
-    background-size: contain; /* ensure responsiveness */
+    background-size: contain;
+    background-color: #f6fbff;
   }
 }
