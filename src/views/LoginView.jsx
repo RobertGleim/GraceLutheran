@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { apiFetch } from '../utils/api.js'
 import './AuthForm.css'
 
 const LoginView = () => {
@@ -9,31 +10,28 @@ const LoginView = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const apiBase = '' // leave empty for same-origin or set your API base like process.env.REACT_APP_API_URL
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
     setLoading(true)
 
     try {
-      const res = await fetch(`${apiBase}/users/login`, {
+      const res = await apiFetch('/users/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim().toLowerCase(), password })
       })
-      const body = await res.json()
+      const body = await res.json().catch(()=>null)
       setLoading(false)
 
       if (!res.ok) {
-        setError(body.message || (body.errors && JSON.stringify(body.errors)) || 'Login failed')
+        setError(body?.message || (body?.errors && JSON.stringify(body.errors)) || 'Login failed')
         return
       }
 
-      if (body.token) {
+      if (body?.token) {
         localStorage.setItem('token', body.token)
       }
-      if (body.user?.role === 'admin') navigate('/admin')
+      if (body?.user?.role === 'admin') navigate('/admin')
       else navigate('/')
     } catch {
       setLoading(false)

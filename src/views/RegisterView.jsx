@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { API_URL } from '../contexts/AuthContext.jsx'
 import './AuthForm.css'
 
 const RegisterView = () => {
@@ -11,18 +12,22 @@ const RegisterView = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const apiBase = '' // set if backend on other origin
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+
     if (password !== confirm) {
       setError('Passwords do not match')
       return
     }
+    if (!API_URL) {
+      setError('Backend API URL is not configured. Set VITE_API_URL or use the default backend.')
+      return
+    }
+
     setLoading(true)
     try {
-      const res = await fetch(`${apiBase}/users`, {
+      const res = await fetch(`${API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -31,20 +36,34 @@ const RegisterView = () => {
           password
         })
       })
-      const body = await res.json()
+      const body = await res.json().catch(() => null)
       setLoading(false)
 
       if (!res.ok) {
-        setError(body.message || (body.errors && JSON.stringify(body.errors)) || 'Registration failed')
+        setError(body?.message || (body?.errors && JSON.stringify(body.errors)) || 'Registration failed')
         return
       }
 
-      // backend returns token on successful registration (if not, you can call /users/login instead)
-      if (body.token) {
+      // If backend returns token+user use them, otherwise fallback to logging in
+      if (body?.token && body?.user) {
         localStorage.setItem('token', body.token)
+        localStorage.setItem('user', JSON.stringify(body.user))
+        navigate('/')
+        return
+      }
+
+      // Fallback: attempt login if token wasn't returned
+      const loginRes = await fetch(`${API_URL}/users/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password })
+      })
+      const loginBody = await loginRes.json().catch(() => null)
+      if (loginRes.ok && loginBody?.token) {
+        localStorage.setItem('token', loginBody.token)
+        localStorage.setItem('user', JSON.stringify(loginBody.user))
         navigate('/')
       } else {
-        // fallback: navigate to login so user can sign in
         navigate('/login')
       }
     } catch {
