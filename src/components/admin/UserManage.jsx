@@ -10,9 +10,6 @@ function UserManage() {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [loading, setLoading] = useState(false);
 
-  // ID for which PATCH was not supported by the server and a full PUT is required
-  const [patchUnsupportedId, setPatchUnsupportedId] = useState(null);
-
   // handle input changes for the edit form
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -117,28 +114,16 @@ function UserManage() {
     };
 
     try {
-      // Primary: PATCH (partial update keeps password unchanged when omitted)
-      let res = await requestJson('PATCH');
+      // use PUT (backend expects PUT; it will accept partial fields and ignore missing password)
+      let res = await requestJson('PUT');
 
-      // If PATCH not implemented (501) or method not allowed (405), do NOT auto-PUT.
-      // Instead, open the editor and show an explicit "Force PUT" option so admin can provide password and confirm.
-      if (!res.ok && (res.status === 501 || res.status === 405)) {
-        // Mark this user as requiring full update and open edit form so admin can add password.
-        setPatchUnsupportedId(id);
-        startEdit(users.find(u => u.id === id) || { id });
-        alert('Server does not support PATCH. To update this user perform a full update (PUT). Please provide a password (if required) and click "Save (Force PUT)".');
-        return;
-      }
-
-      // If PUT/PATCH returned 400 validation error, surface it and if password is required prompt admin to fill it
+      // Handle validation errors (400) and other responses
       if (res && res.status === 400) {
         let errJson = null;
         try { errJson = await res.json(); } catch {/* ignore parsing errors */}
         if (errJson && errJson.password) {
           alert(`Password required by server: ${JSON.stringify(errJson.password)}. Please enter a password to proceed.`);
-          startEdit(users.find(u => u.id === id) || { id });
-          const pwdInput = document.querySelector(`form.user-edit-form[data-user-id="${id}"] input[name="password"]`);
-          if (pwdInput) pwdInput.focus();
+          // keep the editor open for admin to provide password
           return;
         }
         alert(`Validation error: ${JSON.stringify(errJson || 'Bad Request')}`);
@@ -149,7 +134,6 @@ function UserManage() {
         await fetchUsers();
         setEditingId(null);
         setForm({ username: '', email: '', password: '' });
-        setPatchUnsupportedId(null);
       } else {
         // Other non-ok responses
         let errMsg = `Error saving user${res ? ` (status ${res.status})` : ''}.`;
@@ -165,52 +149,6 @@ function UserManage() {
       }
     } catch {
       alert('Network error while saving user. Check server or CORS settings.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Explicit "Force PUT" flow: only attempted when admin provides a password and confirms.
-  const saveEditForcePut = async (id) => {
-    if (!form.password || form.password.trim() === '') {
-      alert('Force PUT requires providing a password (server enforces full update). Enter a password then retry.');
-      return;
-    }
-    const token = localStorage.getItem('token');
-    setLoading(true);
-    const rawPayload = { username: form.username, email: form.email, password: form.password };
-    const payload = cleanPayload(rawPayload);
-    try {
-      const res = await fetch(`${API_URL}/users/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(payload)
-      });
-      if (res && res.ok) {
-        await fetchUsers();
-        setEditingId(null);
-        setForm({ username: '', email: '', password: '' });
-        setPatchUnsupportedId(null);
-      } else if (res && res.status === 400) {
-        let errJson = null;
-        try { errJson = await res.json(); } catch {/* ignore parsing errors */}
-        alert(`Validation error: ${JSON.stringify(errJson || 'Bad Request')}`);
-      } else {
-        let errMsg = `Error (status ${res ? res.status : 'unknown'}) while forcing update.`;
-        try {
-          const errJson = res ? await res.json() : null;
-          if (errJson?.error) errMsg = errJson.error;
-          else if (errJson?.message) errMsg = errJson.message;
-        } catch {
-          // Ignore JSON parsing errors, use fallback error message
-        }
-        alert(errMsg);
-      }
-    } catch {
-      alert('Network error while forcing PUT. Check server or CORS.');
     } finally {
       setLoading(false);
     }
@@ -243,18 +181,9 @@ function UserManage() {
     };
 
     try {
-      // Try PATCH first
-      let res = await requestJsonRole('PATCH');
+      // use PUT (server expects PUT)
+      let res = await requestJsonRole('PUT');
 
-      // If PATCH is not supported, do not auto-PUT. Open editor and instruct admin to use Force PUT.
-      if (!res.ok && (res.status === 501 || res.status === 405)) {
-        setPatchUnsupportedId(u.id);
-        startEdit(u);
-        alert('Server does not support PATCH. To change role perform a full update (PUT). Provide a password (if required) and click "Save (Force PUT)".');
-        return;
-      }
-
-      // If server requires password (400), open editor so admin can supply password
       if (res && res.status === 400) {
         let errJson = null;
         try { errJson = await res.json(); } catch {/* ignore parsing errors */}
@@ -343,15 +272,6 @@ function UserManage() {
                           </button>
                         </div>
                       </div>
-                      {/* Add this button block near Save/Cancel in the form */}
-                      { patchUnsupportedId === u.id && (
-                        <div style={{marginTop:'6px', color:'#b33'}}>
-                          <div><strong>Server requires full update (PUT).</strong> Enter password and click below to force PUT.</div>
-                          <button type="button" className="btn-force" onClick={() => saveEditForcePut(u.id)} disabled={loading}>
-                            Save (Force PUT)
-                          </button>
-                        </div>
-                      )}
                     </form>
                   </td>
                 </tr>
