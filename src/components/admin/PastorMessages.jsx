@@ -224,6 +224,7 @@ function PastorMessages() {
             value={formData.title}
             onChange={handleChange}
             required
+            placeholder='Message Title'
           />
         </div>
         
@@ -235,6 +236,7 @@ function PastorMessages() {
             onChange={handleChange}
             rows="6"
             required
+            placeholder='Message up to 1000 charaters '
           />
         </div>
         

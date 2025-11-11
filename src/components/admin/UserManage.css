@@ -50,16 +50,46 @@
   font-size: 0.95rem;
 }
 
+/* password toggle inline (in edit row) */
+.password-wrap-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative; /* ensure the toggle can be absolutely positioned inside */
+}
+.password-wrap-inline input {
+  flex: 1 1 auto;
+  margin: 0;
+  padding-right: 2.6rem; /* reserve room for the absolute toggle */
+}
+.password-wrap-inline .pw-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Actions */
 .actions-col {
-  width: 240px;
+  width: 140px; /* reduced from 240px since non-edit rows only show Edit */
   text-align: right;
 }
 
 .user-table .btn-edit,
 .user-table .btn-toggle,
 .user-table .btn-save,
-.user-table .btn-cancel {
+.user-table .btn-cancel,
+.user-table .btn-delete {
   margin-left: 0.5rem;
   padding: 0.45rem 0.65rem;
   border-radius: 6px;
@@ -90,6 +120,12 @@
   background: #f0f0f0;
   color: #333;
   border: 1px solid #ddd;
+}
+
+/* delete button */
+.user-table .btn-delete {
+  background: #e53e3e;
+  color: #fff;
 }
 
 /* editing row highlight */

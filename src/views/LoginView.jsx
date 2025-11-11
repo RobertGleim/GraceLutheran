@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext.jsx'
-import './AuthForm.css'
+import './LoginView.css'
 
 const LoginView = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -15,6 +16,7 @@ const LoginView = () => {
     e.preventDefault()
     setError('')
     setLoading(true)
+    setShowPassword(false)
 
     try {
       const result = await login(email.trim().toLowerCase(), password)
@@ -31,6 +33,13 @@ const LoginView = () => {
       setError('Network error. Please try again.')
     }
   }
+
+  const holdShowStart = (e) => {
+    // prevent focusing quirks on touch
+    if (e && e.type === 'touchstart') e.preventDefault()
+    setShowPassword(true)
+  }
+  const holdShowEnd = () => setShowPassword(false)
 
   return (
     <div className="auth-background">
@@ -73,14 +82,28 @@ const LoginView = () => {
 
             <label className="input-group">
               <span className="input-icon">🔒</span>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-                required
-              />
+              <div className="password-wrap">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                />
+                <button
+                  type="button"
+                  className="pw-toggle"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  onMouseDown={holdShowStart}
+                  onMouseUp={holdShowEnd}
+                  onMouseLeave={holdShowEnd}
+                  onTouchStart={holdShowStart}
+                  onTouchEnd={holdShowEnd}
+                  onKeyDown={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); setShowPassword(true) } }}
+                  onKeyUp={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') setShowPassword(false) }}
+                >👁</button>
+              </div>
             </label>
 
             <button className="submit-btn" type="submit" disabled={loading}>

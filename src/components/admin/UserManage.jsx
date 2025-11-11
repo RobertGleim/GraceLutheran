@@ -8,8 +8,17 @@ function UserManage() {
   const [users, setUsers] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState({ username: '', email: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [editingPassword, setEditingPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // handlers for "press-and-hold" show-password toggle (mouse/touch/keyboard)
+  const holdShowStart = (e) => {
+    if (e && e.type === 'touchstart') e.preventDefault();
+    setShowPassword(true);
+  };
+  const holdShowEnd = () => setShowPassword(false);
+  
   // handle input changes for the edit form
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +52,11 @@ function UserManage() {
       password: '' // optional; send only if admin fills it
     });
 
+    // ensure password hidden when opening editor
+    setShowPassword(false);
+    // ensure we're not already in "editing password" mode
+    setEditingPassword(false);
+
     // ensure UI has time to render before focusing
     setTimeout(() => {
       const pwd = document.querySelector(`form.user-edit-form[data-user-id="${u.id}"] input[name="password"]`);
@@ -53,6 +67,8 @@ function UserManage() {
   const cancelEdit = () => {
     setEditingId(null);
     setForm({ username: '', email: '', password: '' });
+    setShowPassword(false);
+    setEditingPassword(false);
   };
 
   // helper to remove empty values (so password is omitted when blank)
@@ -134,6 +150,8 @@ function UserManage() {
         await fetchUsers();
         setEditingId(null);
         setForm({ username: '', email: '', password: '' });
+        setShowPassword(false);
+        setEditingPassword(false);
       } else {
         // Other non-ok responses
         let errMsg = `Error saving user${res ? ` (status ${res.status})` : ''}.`;
@@ -218,6 +236,48 @@ function UserManage() {
     }
   };
 
+  // new: delete user
+  const deleteUser = async (u) => {
+    if (!window.confirm(`Delete user ${u.email}? This action cannot be undone.`)) return;
+    const token = localStorage.getItem('token');
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_URL}/users/${u.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (res && res.ok) {
+        // remove user locally
+        setUsers((prev) => prev.filter(p => p.id !== u.id));
+        // if currently editing the deleted user, close editor
+        if (editingId === u.id) {
+          setEditingId(null);
+          setForm({ username: '', email: '', password: '' });
+          setShowPassword(false);
+        }
+      } else {
+        let errMsg = `Error deleting user${res ? ` (status ${res.status})` : ''}.`;
+        try {
+          const errJson = res ? await res.json() : null;
+          if (errJson?.error) errMsg = errJson.error;
+          else if (errJson?.message) errMsg = errJson.message;
+        } catch {
+          // ignore JSON parsing errors
+        }
+        alert(errMsg);
+      }
+    } catch {
+      alert('Network error while deleting user. Check server/CORS.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (user?.role !== 'admin') return <div>Access denied. Admin only.</div>;
 
   return (
@@ -251,25 +311,75 @@ function UserManage() {
                         saveEdit(u.id);
                       }}
                     >
-                      <div style={{display:'flex', gap: '0.75rem', alignItems:'flex-start', flexWrap:'wrap'}}>
-                        <div style={{flex:'1 1 200px'}}>
+                      {/* grid aligns to table columns: Name | Email/Username | Role | Actions */}
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr 1fr 220px',
+                        gap: '0.75rem',
+                        alignItems: 'start'
+                      }}>
+                        <div style={{ gridColumn: '1' }}>
                           <label style={{display:'block', fontWeight:600}}>Display</label>
                           <div style={{color:'#333'}}>{u.name || u.username || ''}</div>
                         </div>
-                        <div style={{flex:'1 1 240px'}}>
+
+                        <div style={{ gridColumn: '2' }}>
                           <label style={{display:'block', fontWeight:600}}>Username</label>
                           <input name="username" value={form.username} onChange={handleChange} />
                           <label style={{display:'block', fontWeight:600, marginTop:'6px'}}>Email</label>
                           <input name="email" value={form.email} onChange={handleChange} />
-                          <label style={{display:'block', fontWeight:600, marginTop:'6px'}}>Password (optional)</label>
-                          <input name="password" value={form.password} onChange={handleChange} placeholder="leave blank to keep existing" type="password" />
+                          <label style={{display:'block', fontWeight:600, marginTop:'6px'}}>Password</label>
+
+                          {/* If admin hasn't opted to edit password, show a masked placeholder.
+                              Clicking the small edit icon replaces the mask with an editable password input.
+                              We DO NOT reveal the real password (not possible/safe). */}
+                          {!editingPassword ? (
+                            <div className="password-wrap-inline">
+                              <input name="password_display" value="********" readOnly />
+                              <button
+                                type="button"
+                                className="pw-toggle pw-edit"
+                                aria-label="Edit password"
+                                onClick={() => setEditingPassword(true)}
+                              >✎</button>
+                            </div>
+                          ) : (
+                            <div className="password-wrap-inline">
+                              <input
+                                name="password"
+                                value={form.password}
+                                onChange={handleChange}
+                                placeholder="leave blank to keep existing"
+                                type={showPassword ? 'text' : 'password'}
+                              />
+                              <button
+                                type="button"
+                                className="pw-toggle"
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                onMouseDown={holdShowStart}
+                                onMouseUp={holdShowEnd}
+                                onMouseLeave={holdShowEnd}
+                                onTouchStart={holdShowStart}
+                                onTouchEnd={holdShowEnd}
+                                onKeyDown={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); setShowPassword(true) } }}
+                                onKeyUp={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') setShowPassword(false) }}
+                              >👁</button>
+                            </div>
+                          )}
                         </div>
-                        <div style={{flex:'0 0 220px', textAlign:'right', display:'flex', flexDirection:'column', gap:'8px'}}>
+
+                        <div style={{ gridColumn: '3' }}>
+                          <label style={{display:'block', fontWeight:600}}>Role</label>
+                          <div style={{color:'#333'}}>{u.role || 'user'}</div>
+                        </div>
+
+                        <div style={{ gridColumn: '4', textAlign: 'right', display:'flex', flexDirection:'column', gap:'8px' }}>
                           <button type="submit" className="btn-save" disabled={loading}>Save</button>
                           <button type="button" className="btn-cancel" onClick={cancelEdit}>Cancel</button>
                           <button type="button" className="btn-toggle" onClick={() => toggleAdmin(u)}>
                             {u.role === 'admin' ? 'Revoke Admin' : 'Make Admin'}
                           </button>
+                          <button type="button" className="btn-delete" onClick={() => deleteUser(u)} disabled={loading}>Delete</button>
                         </div>
                       </div>
                     </form>
@@ -281,10 +391,9 @@ function UserManage() {
                   <td>{u.email}</td>
                   <td className="role-cell">{u.role || 'user'}</td>
                   <td className="actions-col">
+                    
                     <button type="button" className="btn-edit" onClick={() => startEdit(u)}>Edit</button>
-                    <button type="button" className="btn-toggle" onClick={() => toggleAdmin(u)}>
-                      {u.role === 'admin' ? 'Revoke Admin' : 'Make Admin'}
-                    </button>
+                    
                   </td>
                 </tr>
               )
