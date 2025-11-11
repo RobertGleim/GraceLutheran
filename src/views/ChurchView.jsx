@@ -10,7 +10,7 @@ function ChurchView() {
       <div className="ChurchHero">
         <div className="ChurchHero-bg1"></div>
         <div className="ChurchHero-bg2 fadeIn">
-          <h1 className="gracename ">Grace Lutheran Church <br /><br /><span style={{ fontSize: "3rem" }}>
+          <h1 className="gracename ">Grace Lutheran Church <br /><br /><span className="title-span" >
           A Member of the Lutheran Church - Missouri Synod
           </span></h1>
         </div>
