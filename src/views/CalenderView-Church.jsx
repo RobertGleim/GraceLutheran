@@ -6,8 +6,9 @@ const CalenderView = () => {
   return (
     <div>
       <div className="home-hero">
-        <div className="homeHero-bg1 fadeIn"></div>
-        <div className="homeHero-bg2"></div>
+        <div className="homeHero-bg1 fadeIn">
+          <div className="homeHero-bg2"></div>
+        </div>
         <HeroSection />
       </div>
 
@@ -41,7 +42,13 @@ const CalenderView = () => {
 
       {/* simple responsive iframe wrapper (no toolbar / button) */}
       <div
-        style={{ position: "relative", width: "100%", paddingBottom: "75%" }}
+        style={{ 
+          position: "relative", 
+          width: "75%", 
+          maxWidth: "1200px",
+          paddingBottom: "75%",
+          margin: "0 auto"
+        }}
       >
         <iframe
           src="https://calendar.google.com/calendar/embed?src=iframely.embeds%40gmail.com"
@@ -50,12 +57,9 @@ const CalenderView = () => {
             position: "absolute",
             top: 0,
             left: 0,
-            width: "75%",
-            height: "75%",
+            width: "100%",
+            height: "100%",
             border: 0,
-            margin: "auto",
-            right: 0,
-            bottom: 0,
           }}
           allowFullScreen
         ></iframe>

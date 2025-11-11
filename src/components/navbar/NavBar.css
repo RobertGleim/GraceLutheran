@@ -12,11 +12,11 @@
   background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(16, 86, 236, 0.3);
-  position: sticky;
-  top: 0;
+  position: sticky; /* ✓ Already correct for sticking to top */
+  top: 0; /* ✓ Already correct */
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1000; /* ✓ Already correct - high enough to stay above content */
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -80,7 +80,7 @@
 .burger-bar {
   width: 22px;
   height: 2.5px;
-  background: #ffffff;
+  background:  #1056ec;
   margin: 2.5px 0;
   border-radius: 2px;
   transition: all 0.3s;
@@ -129,7 +129,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
   transition: width 0.3s;
 }
 
@@ -177,23 +177,35 @@
     display: flex;
   }
 
+  /* Reworked mobile off-canvas: use transform for consistent behavior across widths
+     and make width responsive so it never pushes off-screen on small devices. */
   .nav-links {
     position: fixed;
     top: 70px;
-    right: -100%;
+    right: 0;
+    left: auto;
+    transform: translateX(100%); /* hidden by default */
     flex-direction: column;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    width: 280px;
+    width: min(320px, 95vw);
+    max-width: 95vw;
     padding: 2rem 1.5rem;
     border-radius: 10px 0 0 10px;
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease-in-out;
+    transition: transform 0.28s cubic-bezier(.2,.9,.3,1);
     gap: 0;
+    z-index: 2000;
+    box-sizing: border-box;
   }
 
+  /* show state slides it into view reliably */
   .nav-links.show {
+    transform: translateX(0);
     right: 0;
+    left: auto;
+    background: linear-gradient(135deg, #1056ec 0%, #68c0f3 100%);
+    width: 40%
   }
 
   .nav-links a {

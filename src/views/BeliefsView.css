@@ -10,10 +10,14 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(240, 248, 255, 0.5);
-    
     position: relative;
     margin-bottom: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* scoped h1 for Beliefs view */
+.beliefs-hero h1 {
+  font-size: 4rem;
 }
 
 .card-container {
@@ -77,11 +81,6 @@ hr {
     
 }
 
-/* scoped h1 for Beliefs view */
-.beliefs-hero h1 {
-  font-size: 4rem;
-}
-
 h4 {
     margin-bottom: 1rem;
     text-decoration: underline;
@@ -97,13 +96,15 @@ h4 {
     padding: 1rem;
   }
   .card-container {
-    width: 98%;
+    width: 92%;
     padding: 1rem;
+    margin: 0 auto;
   }
   .card {
-    width: 95vw;
+    width: 100%;
     font-size: 1.1rem;
     padding: 1rem;
+    margin: 1rem auto;
   }
 }
 
@@ -117,14 +118,15 @@ h4 {
     margin-bottom: 10px;
   }
   .card-container {
-    width: 100%;
-    padding: 0.5rem;
+    width: 92%;
+    padding: 1rem;
+    margin: 0 auto;
   }
   .card {
-    width: 99vw;
+    width: 100%;
     font-size: 1rem;
     padding: 0.5rem;
-    margin: 0.5rem 0;
+    margin: 0.5rem auto;
   }
   hr {
     width: 90%;
@@ -140,10 +142,10 @@ h4 {
     background-size: 120%;
   }
   .card {
-    width: 100vw;
+    width: 100%;
     font-size: 0.8rem;
     padding: 0.2rem;
-    margin: 0.2rem 0;
+    margin: 0.5rem auto;
   }
   hr {
     width: 98%;

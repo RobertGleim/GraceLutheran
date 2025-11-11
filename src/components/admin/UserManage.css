@@ -135,6 +135,17 @@
 
 /* responsive */
 @media (max-width: 700px) {
+  .user-manage {
+    width: 92%;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .user-table-wrap {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
   .actions-col { width: auto; text-align: left; display: flex; flex-direction: column; gap: 0.5rem; }
   .user-table thead { display: none; }
   .user-table tbody td { display: block; padding: 0.5rem 0.75rem; }

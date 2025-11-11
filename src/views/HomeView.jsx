@@ -55,8 +55,9 @@ const HomeView = () => {
   return (
     <>
       <div className="home-hero">
-        <div className="homeHero-bg1 fadeIn"></div>
-        <div className="homeHero-bg2"></div>
+        <div className="homeHero-bg1 fadeIn">
+          <div className="homeHero-bg2"></div>
+        </div>
         <HeroSection />
       </div>
       <div className="home-intro">
@@ -90,6 +91,12 @@ const HomeView = () => {
               <h2>{pastorMessage.title}</h2>
                <hr />
               <p>{pastorMessage.message}</p>
+              <hr />
+              <p>
+                <em>
+                  - {pastorMessage.pastorName || " Pastor"}{" Andrew Green "}
+                </em>
+              </p>
             </>
           ) : (
             <>

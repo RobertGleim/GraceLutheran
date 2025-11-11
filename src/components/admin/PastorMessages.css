@@ -296,10 +296,24 @@
 @media (max-width: 768px) {
   .pastor-messages {
     padding: 1rem;
+    width: 92%;
+    margin: 0 auto;
   }
 
   .message-form {
     padding: 1rem;
+    width: 100%;
+  }
+
+  .message-form input[type="text"],
+  .message-form textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .message-card {
+    width: 100%;
+    margin: 0.5rem auto;
   }
 
   .message-actions {
