@@ -8,6 +8,8 @@ const RegisterView = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -23,6 +25,8 @@ const RegisterView = () => {
     }
 
     setLoading(true)
+    setShowPassword(false)
+    setShowConfirm(false)
     try {
       const result = await register({ username: name.trim(), email: email.trim().toLowerCase(), password })
       setLoading(false)
@@ -38,8 +42,30 @@ const RegisterView = () => {
     }
   }
 
+  const holdShowPasswordStart = (e) => {
+    if (e && e.type === 'touchstart') e.preventDefault()
+    setShowPassword(true)
+  }
+  const holdShowPasswordEnd = () => setShowPassword(false)
+
+  const holdShowConfirmStart = (e) => {
+    if (e && e.type === 'touchstart') e.preventDefault()
+    setShowConfirm(true)
+  }
+  const holdShowConfirmEnd = () => setShowConfirm(false)
+
   return (
     <div className="auth-background">
+      {/* loading overlay */}
+      {loading && (
+        <div className="loading-overlay" role="status" aria-live="polite">
+          <div className="loading-card">
+            <div className="spinner" />
+            <div className="loading-text">Creating your account…</div>
+          </div>
+        </div>
+      )}
+
       <div className="auth-card">
         <div className="auth-hero small-hero">
           <div className="hero-content">
@@ -79,24 +105,54 @@ const RegisterView = () => {
 
             <label className="input-group">
               <span className="input-icon">🔒</span>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className="password-wrap">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="new-password"
+                  required
+                />
+                <button
+                  type="button"
+                  className="pw-toggle"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  onMouseDown={holdShowPasswordStart}
+                  onMouseUp={holdShowPasswordEnd}
+                  onMouseLeave={holdShowPasswordEnd}
+                  onTouchStart={holdShowPasswordStart}
+                  onTouchEnd={holdShowPasswordEnd}
+                  onKeyDown={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); setShowPassword(true) } }}
+                  onKeyUp={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') setShowPassword(false) }}
+                >👁</button>
+              </div>
             </label>
 
             <label className="input-group">
               <span className="input-icon">🔒</span>
-              <input
-                type="password"
-                placeholder="Confirm password"
-                value={confirm}
-                onChange={(e) => setConfirm(e.target.value)}
-                required
-              />
+              <div className="password-wrap">
+                <input
+                  type={showConfirm ? 'text' : 'password'}
+                  placeholder="Confirm password"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  autoComplete="new-password"
+                  required
+                />
+                <button
+                  type="button"
+                  className="pw-toggle"
+                  aria-label={showConfirm ? 'Hide password' : 'Show password'}
+                  onMouseDown={holdShowConfirmStart}
+                  onMouseUp={holdShowConfirmEnd}
+                  onMouseLeave={holdShowConfirmEnd}
+                  onTouchStart={holdShowConfirmStart}
+                  onTouchEnd={holdShowConfirmEnd}
+                  onKeyDown={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); setShowConfirm(true) } }}
+                  onKeyUp={(ev) => { if (ev.key === ' ' || ev.key === 'Enter') setShowConfirm(false) }}
+                >👁</button>
+              </div>
             </label>
 
             <button className="submit-btn" type="submit" disabled={loading}>
