@@ -1,8 +1,7 @@
 .upcoming-page {
   max-width: 1200px;
   margin: 0 auto;
-  /* ensure the page fills the viewport so footer is pushed to the bottom;
-     provides a fallback footer height variable you can set globally if needed */
+  
   min-height: calc(100vh - var(--site-footer-height, 160px));
   display: flex;
   flex-direction: column;
@@ -31,7 +30,7 @@
 .upcoming-container {
   background: transparent;
   flex: 1 1 auto;
-  /* ensure internal spacing doesn't collapse */
+ 
   box-sizing: border-box;
 }
 
@@ -65,7 +64,7 @@
   line-height: 1.4;
 }
 
-/* Responsive tweaks */
+
 @media (max-width:700px) {
   .upcoming-page {
     padding: 1rem;
