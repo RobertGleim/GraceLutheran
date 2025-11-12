@@ -33,6 +33,7 @@ function UserManage() {
       });
       if (res.ok) {
         const data = await res.json();
+        console.log('Fetched users:', data); // Debug: check what data is returned
         setUsers(data);
       }
     } catch {
@@ -269,6 +270,32 @@ function UserManage() {
     }
   };
 
+  // Format date helper
+  const formatDate = (dateString) => {
+    console.log('Formatting date:', dateString); // Debug: check what's being passed
+    
+    if (!dateString) return 'N/A';
+    
+    try {
+      const date = new Date(dateString);
+      
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        console.warn('Invalid date:', dateString);
+        return 'Invalid Date';
+      }
+      
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+    } catch (err) {
+      console.error('Error formatting date:', err);
+      return 'Error';
+    }
+  };
+
   if (user?.role !== 'admin') return <div>Access denied. Admin only.</div>;
 
   return (
@@ -302,28 +329,19 @@ function UserManage() {
                         saveEdit(u.id);
                       }}
                     >
-                      {/* grid aligns to table columns: Name | Email/Username | Role | Actions */}
-                      <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr 1fr 220px',
-                        gap: '0.75rem',
-                        alignItems: 'start'
-                      }}>
-                        <div style={{ gridColumn: '1' }}>
+                      <div className="edit-form-grid">
+                        <div className="form-section">
                           <label style={{display:'block', fontWeight:600}}>Display</label>
                           <div style={{color:'#333'}}>{u.name || u.username || ''}</div>
                         </div>
 
-                        <div style={{ gridColumn: '2' }}>
+                        <div className="form-section">
                           <label style={{display:'block', fontWeight:600}}>Username</label>
                           <input name="username" value={form.username} onChange={handleChange} />
                           <label style={{display:'block', fontWeight:600, marginTop:'6px'}}>Email</label>
                           <input name="email" value={form.email} onChange={handleChange} />
                           <label style={{display:'block', fontWeight:600, marginTop:'6px'}}>Password</label>
 
-                          {/* If admin hasn't opted to edit password, show a masked placeholder.
-                              Clicking the small edit icon replaces the mask with an editable password input.
-                              We DO NOT reveal the real password (not possible/safe). */}
                           {!editingPassword ? (
                             <div className="password-wrap-inline">
                               <input name="password_display" value="********" readOnly />
@@ -359,12 +377,15 @@ function UserManage() {
                           )}
                         </div>
 
-                        <div style={{ gridColumn: '3' }}>
+                        <div className="form-section">
                           <label style={{display:'block', fontWeight:600}}>Role</label>
-                          <div style={{color:'#333'}}>{u.role || 'user'}</div>
+                          <div className={`role-badge ${u.role || 'user'}`}>
+                            <span className={`role-dot ${u.role || 'user'}`}></span>
+                            {u.role || 'user'}
+                          </div>
                         </div>
 
-                        <div style={{ gridColumn: '4', textAlign: 'right', display:'flex', flexDirection:'column', gap:'8px' }}>
+                        <div className="form-section form-actions">
                           <button type="submit" className="btn-save" disabled={loading}>Save</button>
                           <button type="button" className="btn-cancel" onClick={cancelEdit}>Cancel</button>
                           <button type="button" className="btn-toggle" onClick={() => toggleAdmin(u)}>
@@ -383,10 +404,24 @@ function UserManage() {
                     {user?.id === u.id && <span className="current-user-indicator">You</span>}
                   </td>
                   <td>{u.email}</td>
-                  <td className="role-cell">{u.role || 'user'}</td>
+                  <td className="role-cell">
+                    <div className={`role-badge ${u.role || 'user'}`}>
+                      <span className={`role-dot ${u.role || 'user'}`}></span>
+                      {u.role || 'user'}
+                    </div>
+                    <div className="joined-date">{formatDate(u.created_at)}</div>
+                  </td>
                   <td className="actions-col">
                     <button type="button" className="btn-edit" onClick={() => startEdit(u)}>Edit</button>
                   </td>
                 </tr>
               )
-            ))}          </tbody>        </table>      </div>    </div>  );}export default UserManage;
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default UserManage;

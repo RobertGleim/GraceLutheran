@@ -36,6 +36,15 @@
   color: var(--primary-blue-dark);
 }
 
+/* Joined date column */
+.joined-date {
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 0.1rem;
+  white-space: nowrap;
+}
+
 .user-table tbody td {
   padding: 0.6rem 0.75rem;
   border-bottom: 1px solid #f0f0f0;
@@ -136,27 +145,9 @@
 /* Role indicator badge */
 .role-cell {
   font-weight: 600;
-}
-
-.role-cell::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
-/* Green dot for admin */
-tr:has(.role-cell:contains('admin')) .role-cell::before,
-.role-cell:has(+ td:contains('admin'))::before {
-  background: #48bb78;
-}
-
-/* Gray dot for user */
-.role-cell::before {
-  background: #a0aec0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 /* Highlight current user row */
@@ -176,7 +167,87 @@ tr:has(.role-cell:contains('admin')) .role-cell::before,
   font-weight: 600;
 }
 
+/* Role badge styles */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.role-badge.admin {
+  background: rgba(72, 187, 120, 0.15);
+  color: #2f855a;
+}
+
+.role-badge.user {
+  background: rgba(160, 174, 192, 0.15);
+  color: #4a5568;
+}
+
+.role-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.role-dot.admin {
+  background: #48bb78;
+}
+
+.role-dot.user {
+  background: #a0aec0;
+}
+
+/* Edit form grid layout */
+.edit-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 220px;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-actions {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* responsive */
+@media (max-width: 900px) {
+  .edit-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .form-section:first-child {
+    grid-column: 1 / -1;
+  }
+  
+  .form-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .form-actions button {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 120px;
+  }
+}
+
 @media (max-width: 700px) {
   .user-manage {
     width: 92%;
@@ -187,10 +258,64 @@ tr:has(.role-cell:contains('admin')) .role-cell::before,
   .user-table-wrap {
     width: 100%;
     padding: 0.5rem;
+    overflow-x: hidden;
   }
 
-  .actions-col { width: auto; text-align: left; display: flex; flex-direction: column; gap: 0.5rem; }
+  .actions-col { 
+    width: auto; 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.5rem; 
+  }
+  
   .user-table thead { display: none; }
   .user-table tbody td { display: block; padding: 0.5rem 0.75rem; }
   .user-table tbody tr { margin-bottom: 1rem; border-bottom: 1px solid #eee; }
+  
+  /* Remove mobile label styling for joined date since it's now part of role cell */
+  
+  /* Mobile edit form - stack all fields */
+  .edit-form-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .form-actions {
+    text-align: left;
+    flex-direction: column;
+  }
+  
+  /* Full width buttons on mobile */
+  .form-actions button {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+  
+  /* Ensure role badge doesn't overflow */
+  .role-badge {
+    display: inline-flex;
+    max-width: 100%;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-manage {
+    padding: 0.5rem;
+  }
+  
+  .user-table-wrap {
+    padding: 0.25rem;
+  }
+  
+  .current-user-indicator {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+  }
+  
+  .user-table input {
+    font-size: 0.9rem;
+  }
 }

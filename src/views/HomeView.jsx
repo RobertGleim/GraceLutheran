@@ -103,19 +103,10 @@ const HomeView = () => {
               <h2>Message from the Pastor</h2>
               <br />
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-                odit impedit ratione dolore. Deserunt deleniti minus nostrum,
-                voluptatibus magnam nesciunt temporibus. Necessitatibus facere animi
-                vel in veniam nostrum nam tempora hic molestias possimus culpa
-                tenetur assumenda, quidem, repellat sit officia iste, ullam adipisci
-                sapiente similique amet! Minima omnis numquam corporis placeat. Sunt
-                tempora illo maiores voluptatibus fugit dicta atque nostrum
-                molestias. Autem, totam quod, ratione doloribus nihil aspernatur
-                voluptatibus repellat aliquid, odio dolorum natus et quos. Aut,
-                mollitia quibusdam maiores ipsam ipsa veniam eum ipsum repudiandae
-                reprehenderit iste aspernatur et quia commodi at numquam voluptatem
-                adipisci. Dolor corporis pariatur architecto?
+                Welcome! <br /> Here at Grace we strive to follow Jesus – first as He gathers us together in worship to feed and nourish us with His Word and Sacraments and then as He leads us into our neighborhoods and work places to serve one another and share God’s love.  Take some time to browse through our website and get to know a little about us.  You will discover our mission and learn how to connect to the people and ministry of Grace.  When you are ready, know that you are welcome to join us and be part of our mission team.
+                
               </p>
+              
             </>
           )}
         </div>
