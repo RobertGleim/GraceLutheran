@@ -4,7 +4,7 @@ import API_URL from '../../config/api';
 import './UserManage.css';
 
 function UserManage() {
-  const { user } = useContext(AuthContext);
+  const { user, refreshUser } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState({ username: '', email: '', password: '' });
@@ -173,51 +173,41 @@ function UserManage() {
   };
 
   const toggleAdmin = async (u) => {
-    if (!window.confirm(`Change admin status for ${u.email}?`)) return;
+    const newRole = u.role === 'admin' ? 'user' : 'admin';
+    const actionText = newRole === 'admin' ? 'grant admin privileges to' : 'revoke admin privileges from';
+    
+    if (!window.confirm(`Are you sure you want to ${actionText} ${u.email}?`)) return;
+    
     const token = localStorage.getItem('token');
     setLoading(true);
-    const newRole = u.role === 'admin' ? 'user' : 'admin';
-
-    // include fields backend expects, omit empty password
-    const rawPayload = {
-      username: u.username || (u.email ? u.email.split('@')[0] : ''),
-      email: u.email || '',
-      role: newRole
-    };
-    const payload = cleanPayload(rawPayload);
-
-    const requestJsonRole = async (method, extraHeaders = {}, body = payload) => {
-      return fetch(`${API_URL}/users/${u.id}`, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-          ...extraHeaders
-        },
-        body: JSON.stringify(body)
-      });
-    };
 
     try {
-      // use PUT (server expects PUT)
-      let res = await requestJsonRole('PUT');
-
-      if (res && res.status === 400) {
-        let errJson = null;
-        try { errJson = await res.json(); } catch {/* ignore parsing errors */}
-        if (errJson && errJson.password) {
-          alert(`Cannot change role: password required by server: ${JSON.stringify(errJson.password)}. Please edit the user and provide a password.`);
-          startEdit(u);
-          const pwdInput = document.querySelector(`form.user-edit-form[data-user-id="${u.id}"] input[name="password"]`);
-          if (pwdInput) pwdInput.focus();
-          return;
-        }
-        alert(`Validation error while changing role: ${JSON.stringify(errJson || 'Bad Request')}`);
-        return;
-      }
+      // Use dedicated role endpoint (PATCH /users/:id/role)
+      const res = await fetch(`${API_URL}/users/${u.id}/role`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ role: newRole })
+      });
 
       if (res && res.ok) {
+        const data = await res.json();
+        
+        // Update local user list
         setUsers((prev) => prev.map(p => p.id === u.id ? { ...p, role: newRole } : p));
+        
+        // If a new token was returned (updating own role), update localStorage
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          // Refresh current user context to get updated role
+          await refreshUser();
+          alert(`Your role has been updated to ${newRole}. Your session has been refreshed.`);
+        } else {
+          // Updated another user's role
+          alert(`Successfully ${newRole === 'admin' ? 'granted' : 'revoked'} admin privileges for ${u.email}.\n\nNote: They must log out and log back in for changes to take effect.`);
+        }
       } else {
         let errMsg = `Error changing role${res ? ` (status ${res.status})` : ''}.`;
         try {
@@ -225,11 +215,12 @@ function UserManage() {
           if (errJson?.error) errMsg = errJson.error;
           else if (errJson?.message) errMsg = errJson.message;
         } catch {
-          // Ignore JSON parsing errors, use fallback error message
+          // Ignore JSON parsing errors
         }
         alert(errMsg);
       }
-    } catch {
+    } catch (err) {
+      console.error('Role update error:', err);
       alert('Network error while updating role. Check server/CORS.');
     } finally {
       setLoading(false);
@@ -386,23 +377,16 @@ function UserManage() {
                   </td>
                 </tr>
               ) : (
-                <tr key={u.id}>
-                  <td>{u.name || u.username || ''}</td>
+                <tr key={u.id} className={user?.id === u.id ? 'current-user-row' : ''}>
+                  <td>
+                    {u.name || u.username || ''}
+                    {user?.id === u.id && <span className="current-user-indicator">You</span>}
+                  </td>
                   <td>{u.email}</td>
                   <td className="role-cell">{u.role || 'user'}</td>
                   <td className="actions-col">
-                    
                     <button type="button" className="btn-edit" onClick={() => startEdit(u)}>Edit</button>
-                    
                   </td>
                 </tr>
               )
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-export default UserManage;
+            ))}          </tbody>        </table>      </div>    </div>  );}export default UserManage;
