@@ -1,7 +1,12 @@
 .upcoming-page {
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem 2rem;
+  margin: 0 auto;
+  /* ensure the page fills the viewport so footer is pushed to the bottom;
+     provides a fallback footer height variable you can set globally if needed */
+  min-height: calc(100vh - var(--site-footer-height, 160px));
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem;
   box-sizing: border-box;
 }
 
@@ -25,6 +30,9 @@
 
 .upcoming-container {
   background: transparent;
+  flex: 1 1 auto;
+  /* ensure internal spacing doesn't collapse */
+  box-sizing: border-box;
 }
 
 .events-grid {

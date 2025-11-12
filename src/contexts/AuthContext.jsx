@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { API_URL, apiFetch } from "../utils/api";
+import { useInactivityTimeout } from '../hooks/useInactivityTimeout';
 
 const AuthContext = createContext();
 
@@ -107,12 +108,12 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const logout = () => {
+    const logout = useCallback(() => {
         setUser(null);
         setToken(null);
         localStorage.removeItem("user");
         localStorage.removeItem("token");
-    }
+    }, []);
 
     // Refresh user data from backend (call after role changes)
     const refreshUser = async () => {
@@ -174,6 +175,20 @@ export const AuthProvider = ({ children }) => {
         loadUser();
         return () => { mounted = false; }
     }, [token]); // eslint-disable-line
+
+    // Auto-logout on inactivity (only for admins, 30 minutes)
+    const handleInactivityTimeout = useCallback(() => {
+        console.log('Auto-logout due to inactivity');
+        alert('You have been logged out due to 30 minutes of inactivity.');
+        logout();
+    }, [logout]);
+
+    // Enable inactivity timeout only for admin users
+    useInactivityTimeout(
+        handleInactivityTimeout,
+        30, // 30 minutes
+        user?.role === 'admin' // Only enable for admins
+    );
 
     const value = {
         user,

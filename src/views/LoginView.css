@@ -95,6 +95,104 @@ form input {
   transform: translateY(-50%) scale(0.98);
 }
 
+/* layout for auth card: allow swapping hero and form */
+.auth-card {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  max-width: 980px;
+  margin: 20px auto;
+  /* smoother overall timing for layout changes */
+  transition: all 450ms cubic-bezier(.22,1,.36,1);
+}
+.auth-hero,
+.auth-form-container {
+  flex: 1 1 50%;
+  /* slightly longer, eased transform for a softer motion */
+  transition: transform 420ms cubic-bezier(.22,1,.36,1), order 0ms;
+}
+
+/* when swapped, place form where hero was and hero where form was */
+.auth-card.swapped .auth-form-container {
+  order: 1;
+  transform: translateY(0);
+  /* small stagger so form movement follows hero slightly — feels more natural */
+  transition-delay: 80ms;
+}
+.auth-card.swapped .auth-hero {
+  order: 2;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+/* responsive: stack on small screens and disable order swapping */
+@media (max-width: 800px) {
+  .auth-card {
+    flex-direction: column;
+  }
+  .auth-card .auth-hero,
+  .auth-card .auth-form-container {
+    order: unset;
+  }
+}
+
+/* New: primary submit button (match existing page buttons) */
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #3992f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 180ms ease, transform 120ms ease;
+}
+.submit-btn:hover:not(:disabled) {
+  background-color: #2073d6;
+  transform: translateY(-1px);
+}
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
+/* New: inline "link" style that still visually matches page (used for Register / Back to Login) */
+.link-button {
+  background: transparent;
+  border: none;
+  color: #3992f1;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 160ms ease, color 160ms ease, transform 120ms ease;
+}
+.link-button:hover,
+.link-button:focus {
+  color: #1a66bf;
+  background-color: rgba(57,146,241,0.06);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Ensure footer layout aligns nicely with primary button */
+.form-footer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 600px) {
     .login {
         width: 95vw;
