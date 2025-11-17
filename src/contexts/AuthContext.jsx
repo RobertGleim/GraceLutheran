@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null);
     const [token, setToken] = useState(localStorage.getItem("token") || null);
 
-    // helper to decode token payload (safe best-effort)
+    
     const decodeToken = (t) => {
         try {
             const payload = t.split('.')[1];
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // Sync user role from token on mount if token exists
+    
     useEffect(() => {
         if (token && user) {
             const decoded = decodeToken(token);
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             
             if (data.token && data.user) {
-                // Ensure role from token is used
+                
                 const decoded = decodeToken(data.token);
                 const userWithRole = { ...data.user, role: decoded?.role || data.user.role || 'user' };
                 
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
             if (!response.ok) {
                 return { success: false, error: data?.message || "Registration failed", details: data?.errors };
             }
-            // backend returns token + user
+            
             if (data.token && data.user) {
                 const decoded = decodeToken(data.token);
                 const userWithRole = { ...data.user, role: decoded?.role || data.user.role || 'user' };
@@ -115,7 +115,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
     }, []);
 
-    // Refresh user data from backend (call after role changes)
+    
     const refreshUser = async () => {
         if (!token) return { success: false, error: "No token available" };
         
@@ -130,7 +130,7 @@ export const AuthProvider = ({ children }) => {
             
             if (res.ok) {
                 const userData = await res.json();
-                // Always use role from current token
+                
                 const userWithTokenRole = { ...userData, role: decoded.role || userData.role || 'user' };
                 
                 setUser(userWithTokenRole);
@@ -145,7 +145,7 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // if token exists but user not loaded, try to fetch current user from backend
+    
     useEffect(() => {
         let mounted = true;
         const loadUser = async () => {
@@ -160,12 +160,12 @@ export const AuthProvider = ({ children }) => {
                 if (!mounted) return;
                 if (res.ok) {
                     const body = await res.json();
-                    // Use role from token, not just from API response
+                    
                     const userWithTokenRole = { ...body, role: decoded.role || body.role || 'user' };
                     setUser(userWithTokenRole);
                     localStorage.setItem("user", JSON.stringify(userWithTokenRole));
                 } else {
-                    // token might be invalid/expired: clear it
+                   
                     logout();
                 }
             } catch (err) {
@@ -174,20 +174,20 @@ export const AuthProvider = ({ children }) => {
         };
         loadUser();
         return () => { mounted = false; }
-    }, [token]); // eslint-disable-line
+    }, [token, logout, user]); 
 
-    // Auto-logout on inactivity (only for admins, 30 minutes)
+   
     const handleInactivityTimeout = useCallback(() => {
         console.log('Auto-logout due to inactivity');
         alert('You have been logged out due to 30 minutes of inactivity.');
         logout();
     }, [logout]);
 
-    // Enable inactivity timeout only for admin users
+    
     useInactivityTimeout(
         handleInactivityTimeout,
-        30, // 30 minutes
-        user?.role === 'admin' // Only enable for admins
+        30, 
+        user?.role === 'admin' 
     );
 
     const value = {
@@ -196,7 +196,7 @@ export const AuthProvider = ({ children }) => {
         login,
         register,
         logout,
-        refreshUser, // Add this for manual refresh after role changes
+        refreshUser, 
     };
     return <AuthContext.Provider value={value}>
         {children}

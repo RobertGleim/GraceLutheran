@@ -43,6 +43,18 @@ function PastorMessages() {
   // Create or update message
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate input
+    if (!formData.title.trim() || !formData.message.trim()) {
+      alert('Title and message cannot be empty');
+      return;
+    }
+    
+    if (formData.message.length > 1000) {
+      alert('Message cannot exceed 1000 characters');
+      return;
+    }
+    
     setLoading(true);
     
     const token = localStorage.getItem('token');
@@ -58,7 +70,10 @@ function PastorMessages() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          title: formData.title.trim(),
+          content: formData.message.trim()  // Changed from 'message' to 'content'
+        })
       });
 
       if (response.ok) {
@@ -86,9 +101,14 @@ function PastorMessages() {
           alert(editingId ? 'Message updated!' : 'Message created and activated!');
         }, 0);
       } else {
-        alert('Error saving message. Please try again.');
+        // Parse error message from server
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.message || errorData.error || 'Error saving message';
+        console.error('Server error:', errorData);
+        alert(`Error: ${errorMessage}`);
       }
-    } catch {
+    } catch (error) {
+      console.error('Request failed:', error);
       alert('Error saving message. Please check your connection.');
     } finally {
       setLoading(false);
@@ -236,8 +256,12 @@ function PastorMessages() {
             onChange={handleChange}
             rows="6"
             required
-            placeholder='Message up to 1000 charaters '
+            placeholder='Message up to 1000 characters'
+            maxLength="1000"
           />
+          <div>
+            <small>{formData.message.length}/1000 characters</small>
+          </div>
         </div>
         
         <div>
