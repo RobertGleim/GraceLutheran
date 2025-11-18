@@ -7,24 +7,17 @@ export const API_URL = (import.meta.env.VITE_API_URL || 'https://gracelutheranba
 const _failureCache = new Map(); // url -> expiry timestamp (ms)
 const FAILURE_TTL = 60 * 1000; // 60s
 
-/**
- * apiFetch(pathOrUrl, options)
- * - pathOrUrl: relative path (e.g. '/users/login') or absolute URL
- * - options: fetch options (body may be object or string)
- * Automatically prefixes API_URL for relative paths, attaches Authorization header if token present,
- * stringifies JS objects to JSON, sets Content-Type when sending a JSON body, and logs failing responses.
- */
+
 export async function apiFetch(pathOrUrl, options = {}) {
   const isAbsolute = /^https?:\/\//i.test(pathOrUrl);
   const url = isAbsolute ? pathOrUrl : `${API_URL}${pathOrUrl.startsWith('/') ? pathOrUrl : `/${pathOrUrl}`}`;
 
-  // if this endpoint recently returned 404, short-circuit to avoid repeated failing calls
+  
   const cached = _failureCache.get(url);
   if (cached && Date.now() < cached) {
-    // return a synthetic 404 Response so callers handle it consistently
-    // build a small JSON body for downstream consumers
+    
     const body = JSON.stringify({ message: 'Endpoint previously returned 404 (cached).', url });
-    // Response constructor is available in browsers; if not, throw to let caller handle
+    
     try {
       return new Response(body, { status: 404, statusText: 'Not Found', headers: { 'Content-Type': 'application/json' } });
     } catch  {

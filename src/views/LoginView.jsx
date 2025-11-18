@@ -24,8 +24,12 @@ const LoginView = () => {
     setLoading(true)
     setShowPassword(false)
 
+    console.log('[LOGIN VIEW] Submitting with email:', email.trim().toLowerCase());
+    console.log('[LOGIN VIEW] Password length:', password?.length);
+
     try {
       const result = await login(email.trim().toLowerCase(), password)
+      console.log('[LOGIN VIEW] Login result:', result);
       setLoading(false)
       if (result?.success) {
         // context user is set by login(), navigate now

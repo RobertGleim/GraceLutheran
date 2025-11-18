@@ -45,21 +45,28 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
+            console.log('[AUTH] Attempting login with:', { email, passwordLength: password?.length });
+            
             const response = await apiFetch('/users/login', {
                 method: "POST",
                 body: { email, password }
             });
 
+            console.log('[AUTH] Login response status:', response.status);
+
             if (!response.ok) {
+                const errorBody = await response.json().catch(() => null);
+                console.error('[AUTH] Login failed:', response.status, errorBody);
+                
                 if (response.status === 401) {
                     return { success: false, error: "Invalid email or password" };
                 } else {
-                    const errBody = await response.json().catch(()=>null);
-                    return { success: false, error: errBody?.message || "Server error occurred" };
+                    return { success: false, error: errorBody?.message || "Server error occurred" };
                 }
             } 
 
             const data = await response.json();
+            console.log('[AUTH] Login successful, received user:', data.user?.email);
             
             if (data.token && data.user) {
                 

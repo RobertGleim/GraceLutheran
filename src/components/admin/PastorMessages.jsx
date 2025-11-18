@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import API_URL from '../../config/api';
+// import API_URL from '../../config/api';
+import { API_URL } from '../../utils/api'; // <-- Use the correct API_URL import
 import './PastorMessages.css';
 
 function PastorMessages() {
@@ -211,7 +212,10 @@ function PastorMessages() {
 
   // Edit message
   const handleEdit = (message) => {
-    setFormData({ title: message.title, message: message.message });
+    setFormData({ 
+      title: message.title, 
+      message: message.content || message.message // Use content field from backend, fallback to message
+    });
     setEditingId(message.id);
     
     // Scroll to the form when editing
@@ -296,7 +300,7 @@ function PastorMessages() {
             .map((msg) => (
             <div key={msg.id} className={`message-card ${msg.is_active ? 'active' : ''} ${editingId === msg.id ? 'being-edited' : ''}`}>
               <h3>{msg.title} {editingId === msg.id && <span className="editing-indicator">(Editing)</span>}</h3>
-              <p>{msg.message}</p>
+              <p>{msg.content || msg.message}</p>
               <div className="message-actions">
                 <button
                   type="button"
